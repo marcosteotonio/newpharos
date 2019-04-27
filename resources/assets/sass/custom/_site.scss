@@ -1,0 +1,331 @@
+
+.centerGrid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+
+.header-menu-main{
+    background-color: #d3d3d3;
+    box-shadow: 0px 0px 4px #dddd;
+    background-image: linear-gradient(#d3d3d3 50px, #e8e8e8 50px);
+    height: 177px;
+}
+.header-menu-login{
+    background-color: $botton-menu-site;
+}
+.inline-menu-top{
+    height: 50px;
+}
+.inline-menu{
+    display: inline-flex;
+    float: right;
+    padding: 0px;
+    margin: 10px 0 0 0;
+
+    li {
+        list-style: none;
+        font-size: 14px;
+        padding: 4px 9px;
+        margin-left: 14px;
+        font-weight: bold;
+        color: $text-default;
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color: $text-color-clicked
+        }
+    }
+}
+.login-field{
+    float: right;
+    padding-top: 33px;
+    height: calc(169px - 50px);
+}
+
+.btn-access{
+    background-image: linear-gradient($button-access-top, $button-access-bottom);
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.btn-access:hover{
+    background-image: linear-gradient($button-access-bottom, $button-access-top);
+    color: white;
+}
+
+.btn-access-red{
+    background-image: linear-gradient($button-access-red-top, $button-access-red-bottom);
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+    height: 50px;
+    padding: 13px;
+    cursor: pointer;
+}
+.btn-access-red:hover{
+    background-image: linear-gradient($button-access-red-bottom, $button-access-red-top);
+    color: white;
+}
+
+
+.btn-facebook{
+    background-color: #0665d0;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.btn_pointer_agenc{
+    border: 14px solid #fff;
+    width: 1px;
+    height: 1px;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    display: inline;
+    top: -26px;
+    left: 30%;
+}
+.btn_pointer_client{
+    border: 14px solid #fff;
+    width: 1px;
+    height: 1px;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    display: inline;
+    top: -26px;
+    left: 75%;
+}
+
+.drop_box_default{
+    background-color: #fff;
+    padding: 15px 25px !important;
+    border: 2px solid #fff;
+    position: absolute;
+    width: 400px;
+    //right: 0px;
+    border-radius: 6px;
+}
+
+.btn-transparent{
+    background-color: unset;
+    border: unset;
+    position: relative;
+    display: flex;
+    left: calc(100% - 35px);
+    top: -25px;
+    color: #ddd;
+}
+.btn-transparent:hover{
+    color: #777;
+}
+
+.form-busca-agenciado{
+    width: 325px;
+}
+.input-text-w-image{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    height: 35px;
+}
+
+.ElencoShowCase__image{
+    height: 350px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    border-radius: 10px;
+    filter: grayscale(90%);
+    transition: 0.5s;
+}
+.ElencoShowCase__image:hover{
+    transition: 0.5s;
+    transform: scale(1.02);
+    filter: grayscale(0%);
+}
+.ElencoShowCase__name{
+    margin: 2px 0px -5px 0px;
+    font-size: 16px;
+    font-weight:800;
+    color: #333;
+}
+.ElencoShowCase__description{
+    font-size: 12px;
+    color: #888;
+}
+
+
+.container-with-chevrons{
+    padding: 0px 30px;
+}
+.chevron-right{
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    cursor: pointer;
+}
+.chevron-left{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    cursor: pointer;
+}
+
+.title-block{
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+//Botão dourado
+.btn-golden{
+    background-image: linear-gradient(#ffba17, #ffa016);
+    height: 35px;
+    border-radius: 5px;
+    margin-left: 15px;
+    font-weight: 800;
+    color: white;
+}
+.btn-golden:hover{
+    background-image: linear-gradient(#ffa016, #ffba17 );
+}
+
+// Botão com fundo extranho
+.btn-composed{
+    background-image: linear-gradient(#bc4d2f, #a05542);
+    height: 50px;
+    width: 355px;
+    border-radius: 10px;
+    padding: 12px 0;
+    color: white !important;
+    font-weight: 800;
+}
+.btn-composed-bg{
+    height: 40px;
+    width: 375px;
+    background-color: #692615;
+    position: absolute;
+    left: 396px;
+    top: 70px;
+    border-radius: 0px;
+    z-index: -1;
+}
+.works__main{
+    height: 520px;
+    background-size: cover;
+    background-position: 50% 50%;
+    transition: 0.5s;
+    filter: grayscale(100%);
+}
+.works__main:hover{
+    transition: 0.5s;
+    transform: scale(1.02);
+    filter: grayscale(0%);
+}
+.works__secundary{
+    height: 245px;
+    width: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    transition: 0.5s;
+    filter: grayscale(100%);
+}
+.works__secundary:hover{
+    transition: 0.5s;
+    transform: scale(1.02);
+    filter: grayscale(0%);
+}
+.works__main__front_shadow{
+    background-image: linear-gradient(#0000 -5px, #000);
+    position: relative;
+    height: 72px;
+    width: 100%;
+    bottom: -452px;
+    color: white;
+}
+.works__sec__front_shadow{
+    background: #fff;
+    position: relative;
+    height: 57px;
+    width: 100%;
+    bottom: -188px;
+    z-index: 3;
+    color: black;
+}
+
+.works__information{
+    padding: 5px 15px;
+    
+}
+.agency__name{
+    font-size: smaller;
+    font-weight: 800;
+}
+.agency__work_name{
+    font-size: x-large;
+    font-weight: 800;
+}
+
+//FOOTER HOME
+.footer{
+    background-color: #2d3645;
+    padding: 50px 0px 10px 0px;
+    height: 335px;
+    .footer__image{
+        max-height: 141px;
+        filter: opacity(20%);
+    }
+    .footer__image:hover{
+        filter: opacity(70%);
+    }
+    .footer__map{
+        list-style: none;
+        padding: 0px;
+        li{
+            padding-bottom: 25px;
+            a{
+                color: unset;
+            }
+        }
+        li a:hover{
+            color: white;
+        }
+    }
+    .footer__endereco{
+        list-style: none;
+        padding: 0px;
+        li {
+            padding-bottom: 10px;
+        }
+    }
+    .footer__social{
+    
+        a{
+            color: unset;
+        }
+    
+        a:hover i{
+            color: white;
+        }
+    }
+}
+
+.allrightsreserved{
+    height: 75px;
+    background-color: #272b34;
+    .centerGrid{
+        grid-template-rows: 75px;
+    }
+}

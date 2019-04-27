@@ -1,0 +1,98 @@
+//
+// Custom Variables
+//
+// Here you can add your own variables overrides
+//
+// The file is included before any other variable file,
+// so you can override them because they all use !default
+// --------------------------------------------------
+
+// For example, changing the primary color
+$primary: #3b5998;
+$secundary: #d3d3d3;
+
+$upper-menu-site: #d3d3d3;
+$botton-menu-site: #e8e8e8;
+$text-color: #2e3746;
+$text-color-clicked: #122;
+
+$button-access-top: #4e6994;
+$button-access-bottom: #3e5986;
+
+$button-access-hover: #3e5986;
+
+$button-access-red-top: #fd4746;
+$button-access-red-bottom: #c82828;
+$button-access-red-hover: #c82828;
+
+$orange-logo-color: #963c28;
+$text-default:  #2d3647;
+
+
+.padding-bottom{
+    padding-bottom: 15px;
+}
+.padding-15{
+    padding: 15px 0 15px 0;
+}
+.padding-65{
+    padding: 65px 0 65px 0;
+}
+
+.padding-50{
+    padding: 50px 0px;
+}
+
+input{
+    background-color: #eee !important;
+}
+
+.extra-bold{
+    font-weight: 800;
+}
+.bold{
+    font-weight: 600;
+}
+.normal{
+    font-weight: 400;
+}
+.thin{
+    font-weight: 200
+}
+
+
+.large-text{
+    font-size: 26px;
+}
+.medium-text{
+    font-size: 20px
+}
+.normal-text{
+    font-size: 16px
+}
+
+.text-color{
+    color: $text-default;
+}
+
+.rounded-corner{
+    border-radius: 10px;
+}
+.bg-gray{
+    background-color: #ddd;
+}
+.bg-gray-light{
+    background-color: #f0f0f0;
+}
+
+.orange-logo-color{
+    color: $orange-logo-color;
+}
+
+.margin-default{
+    margin-bottom: 15px;
+}
+
+.padding-normal{
+    padding: 25px 15px;
+}

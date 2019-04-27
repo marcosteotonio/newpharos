@@ -1,0 +1,532 @@
+ /* Theme color Css */ 
+  
+  a{
+		color:#d9009d;
+	}
+	
+	.menubar .dropdown a:hover 
+	{
+		background-color:#d9009d;
+		
+	}
+	
+	  .btn-fino:hover {
+    background-color: #d9009d;
+}
+	.filter-btn.active, .service-inner.even
+	{
+		background-color:#d9009d;
+	}
+	.btn-fino {
+    border: 2px solid #d9009d;
+	}
+	
+	.panel-link.collapsed {
+		border-bottom-color: #d9009d;
+	}
+	.next:hover, .prev:hover, .panel-link::after, .post-detail-meta a:hover, .user-post h4 span
+	.user-comments h4, .reply:hover,  .page404 h2, .page404 .btn-fino, .banner li .active, .residenc h4, .post-detail-meta a:hover,
+	.blog-content h4 a:hover, .post-detail-meta a:hover, .banner-link li, .case-info a:hover, .btn-fino.bss, .user-comments h4, .user-post h4 span
+	{
+		color: #d9009d;
+	}
+	.panel-link.collapsed::after, .timeline-block:nth-child(even) .timeline-icon, .filter-btn.active, .project-detail h4,
+	.single-team-detail li i, .cta .btn-fino, .fino-slider .owl-nav .owl-prev, .fino-slider .owl-nav .owl-next, .slide-content .btn-fino:hover,
+	.btn-fino:hover, .menubar .dropdown a:hover,
+	{
+		background-color: #d9009d;
+    }
+	.fino-pagination .pagin.active,
+	.fino-pagination .pagin:hover {
+		border-bottom: 5px solid #d9009d;
+		color: #d9009d;
+	}
+	.filter-btn
+	{
+		color: #d9009d;
+		border: 1px solid #d9009d;
+	}
+	.fino-pagination .pagin.active,.fino-pagination .pagin:hover
+	{
+		border-bottom: 5px solid #d9009d;
+		color: #d9009d;
+		font-weight: 600;
+	}
+	
+	.t-date,.timeline-block:nth-child(even) .timeline-icon, .timeline-block:nth-child(even) .timeline-icon::after, .timeline-block:nth-child(even) .timeline-icon::before
+	{
+		background-color: #d9009d;
+	}
+	
+	.all-title h3::after, .all-title h3::before, .all-title h3 span::after, .all-title h3 span::before, .top-head ul, .menubar .dropdown a:hover,
+	.menubar .dropdown a, .widget_calendar table caption, .quote::after	
+	{
+		background-color: #d9009d;
+	}
+	.btn-blog-h:hover
+	{
+		color: #d9009d;
+		border-bottom: 1px solid #d9009d;
+	}
+	.fino-pagination .page-numbers.current, .fino-pagination .page-numbers:hover
+	{
+		border-bottom: 5px solid #d9009d;
+		color: #d9009d;
+	}
+	
+	.btn-fino:before{
+	  border-bottom-color:#d9009d;
+	}
+	.btn-fino:after{
+	  border-top-color: #d9009d;
+	}
+	.top-head {
+	     border-bottom-color: #d9009d !important;
+    background-color: #ffffff !important;
+	}
+	.all-title h3::after,
+	.all-title h3::before,
+	.all-title h3 span::after,
+	.all-title h3 span::before{
+	  background-color: transparent;
+	}
+.logo-header:before, .logo-header:after {
+    background-color: #d9009d;
+}
+.bottom-head {
+    background-color: #d9009d;
+}
+	.top-head ul {
+	  background-color:  #ffffff !important;
+	}
+	.slide-content .btn-fino:hover{
+	  border-color: #d9009d;
+	}
+	.mobile-menu .has-sub.current .menu-link,
+	.mobile-menu a:hover,
+	.slide-content h3 {
+	  color: #d9009d;
+	}
+	 
+	.fino-slider .owl-nav [class*="owl-"]:hover {
+	  background-color: #fff;
+	  color: #d9009d;
+	}
+	.fino-slider .owl-nav .owl-prev,
+	.fino-slider .owl-nav .owl-next {
+	  background-color: #d9009d;
+	}
+
+	.fino-slider .owl-dots .owl-dot.active span,
+	.fino-slider .owl-dots .owl-dot:hover span {
+	  background-color: #d9009d;
+	}
+	.grow-business .btn-fino {
+		border-color: #d9009d;
+		color: #d9009d;
+	  }
+	  .grow-business .btn-fino:hover {
+		background-color: #d9009d;
+		color: #fff;
+	  }
+	  .buz-video .vid-btn{
+		background-color: #d9009d;
+	  }
+	  .buz-video .vid-btn i {
+		color: #fff;
+	  }
+ 
+	  .quote::after{
+		background-color: #d9009d;
+	}
+	.defi-wrap:hover::after,
+	.defi-wrap.current::after,
+	.defi-wrap::before{
+		background-color: #d9009d;
+	}
+	.defi-wrap h4 {
+	  color: #d9009d;
+	}
+	.defi-icon i{
+	  color: #d9009d;
+	}
+	.service-2 .defi-wrap:hover{
+	  border-color: #d9009d;
+	}
+	.case-tab{
+		border-bottom-color:#d9009d;
+	}
+	.case-tab::before {
+		border-bottom-color:#d9009d;
+	}
+	.case-tab:hover,
+	.case-tab.active {
+	  color: #d9009d;
+	}
+	.case-panel-wrap::after {
+	  background-color: #d9009d;
+	}
+	.case-info a:hover{
+	  color: #d9009d;
+	}
+	.team-overlay {
+	  background-color:#d9009d;
+	}
+	.social li a:hover {
+	  background-color: #d9009d;
+	}
+	.icon-holder::after,
+	.icon-holder::before,
+	.icon-holder span::after,
+	.icon-holder span::before {
+		background-color: #d9009d;
+	}
+	.cta-2 .btn-fino {
+	  background-color: #d9009d;
+	  border-color: #d9009d;
+	}
+	.cta-2 p{
+	  color: #d9009d;
+	}
+	.cta-3 {
+	  background-color: #d9009d;
+	}
+	.testimonial::after{
+		background-color: #d9009d;
+	}
+	.timeline-block:nth-child(even) .timeline-icon::after,
+	.timeline-block:nth-child(even) .timeline-icon::before{
+	  background-color: #d9009d;
+	}
+
+	.blog-content h4 a:hover {
+		color: #d9009d;
+	  }
+	  .post-meta a {
+		color: #d9009d;
+	  }
+	  .blog-content .btn-fino {
+		background-color: #d9009d;
+		border-color:#d9009d;
+	  }
+	  .blog-content .btn-fino:hover {
+		background-color: transparent;
+	  }
+	  .btn-blog-h:hover {
+		color: #d9009d;
+		border-bottom: 1px solid #d9009d;
+	  }
+	  .blog-item:hover .blog-content {
+		-webkit-box-shadow: 0px 1px 10px 0px rgba(215, 35, 35, 0.41);
+		box-shadow: 0px 1px 10px 0px rgba(215, 35, 35, 0.41);
+	  }
+	  .partner {
+		background-color: #d9009d;
+	  }
+	  .attach + label strong{
+		border-color:#d9009d;
+		color: #d9009d;
+	  }
+
+	  
+	.soc-links li p a {
+		color: #d9009d;
+	}
+
+	.contact-us .form-control:focus,
+	.contact-us .form-control:hover {
+	  border-color: #d9009d;
+	   
+	}
+	.footer-form .form-control:focus,
+	.footer-form .form-control:hover {
+	  border-color: #d9009d;
+	  
+	}
+	.footer-form .btn-fino {
+	  background-color: #d9009d;
+	  border-color: #d9009d;
+	}
+
+	.menubar .menu-link::before{    
+		background-color: #d9009d;
+	}
+	.menubar .dropdown a{
+		background-color: #d9009d;
+	}
+	
+	.slide-content h3{
+		    color:#d9009d;
+	}
+	.wpcf7-form-control:hover
+	{
+		 border-color: #d9009d;
+	}
+	
+	.progres h4,
+	.progres h5,
+	.progres .per{
+	  color: #d9009d;
+	}
+	#accordion .panel-title > a, #accordion .panel-title > a:hover
+	{
+		    background: #d9009d;
+	}
+	.comment-form .form-control:focus, .comment-form .form-control:hover
+	{
+		    border-color: #d9009d;
+	}
+	.blog-item:hover .blog-content
+	{
+		box-shadow: 0 1px 10px 0 #d9009d;
+
+	}
+	.about-2-tab-area ul .active a
+	{
+		background: #d9009d;
+		border: 1px solid #d9009d;
+	}
+	.about-2-tab-area ul li span:after
+	{
+		border-top: 7px solid #d9009d;
+	}
+	.about-2-tab-area ul li a:hover
+	{
+		background: #d9009d;
+		border: 1px solid #d9009d;
+	}
+	.panel-link.collapsed::after
+	{
+		    background-color: #d9009d;
+	}
+	.single-team .member-info, .single-team-detail li i
+	{
+		    background-color: #d9009d;
+	}
+	.price-header .price-amt
+		{
+			color:#fff;
+		}
+		 
+		.price-btn .btn-fino
+		{
+			border: 2px solid #d9009d;
+			color: #d9009d;
+		}
+		.price-btn .btn-fino:hover
+		{
+			background-color: #d9009d;
+		}
+		.price-btn .btn-fino:after
+		{
+			border-top-color: #d9009d;
+		}
+		.price-btn .btn-fino:before
+		{
+			border-bottom-color: #d9009d;
+		}
+		.pricing-table .price-header::after
+		{
+			background-color: #d9009d;
+			opacity:0.8;
+		}
+	
+.features-inner.even, .features-inner{
+	background-color: #d9009d;
+	
+}	
+
+.tag-cloud-link:hover {
+    background-color: #d9009d;
+    color: #fff;
+}
+
+	
+/* theme header css */
+
+.bottom-head{
+	padding: 7px 0;	
+}
+
+.bottom-head .menu-wrap{
+	margin-bottom:0px;	
+}
+
+
+
+/* slider css  */
+
+.fino-slider .owl-nav .owl-prev {
+    left: 50px;
+     padding-left: 0px
+}
+.fino-slider .owl-nav .owl-next {
+    right: 50px;
+    padding-right: 0px;
+}
+
+.fino-slider .owl-nav .owl-prev, .fino-slider .owl-nav .owl-next {
+   width: 50px;
+    height: 50px;
+    font-weight: 200;
+    
+    padding-top: 4px;
+    border-radius: 50%;
+    font-size: 29px;
+}
+.fino-slider .owl-nav .owl-prev, .fino-slider .owl-nav .owl-next {
+    background-color: #fff;
+    color: #000000;
+     border-radius: 50%;
+}
+
+
+.slide-content .btn-fino{
+	border-color: #d9009d;
+	background-color: #d9009d;
+	
+
+}
+.fino-slider .owl-dots .owl-dot span{
+	
+	width: 14px;
+    border-radius: 50%;
+    height: 14px;
+}
+
+.slide-content p {
+    
+    max-width: max-content;
+    padding: 0 70px;
+    
+}
+
+/* service */
+
+.features-inner.even, .features-inner {
+    background-color: transparent;
+    border: 0px;
+}
+.features-inner i {
+    color: #d9009d;
+    transform: scale(.9);
+    transition: all .3s ease;
+}
+.features-inner h5 a {
+    color: #0f0f13;
+    text-transform: uppercase;
+}
+.features-inner p{
+	color:#3e3c3c;
+	
+}
+
+.features-inner{	
+	padding: 45px 15px;
+}
+.blog-item:hover .blog-content {
+	box-shadow:none;
+}
+.blog-item .blog-content {
+    margin: 0px 0px;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.1);
+	box-shadow:none;
+}
+
+.btn-blog-h i{
+	display:none;
+}
+.top-head li span{
+	color:#333;
+}
+.top-head li p{
+	color:#333;
+}
+.head-detail li{
+	    border-color: #333;
+}
+.top-head .btn-fino {
+   
+    border: 2px solid #d9009d;
+}
+.service-section-cotainer{
+	padding:0 100px;
+}
+
+.all-title p {
+    padding-top: 20px;
+}
+
+.features-inner h5 a {
+    color: #3c3c3c;
+    text-transform: capitalize;
+}
+.features-inner h5 {
+    font-size: 23px;
+    font-weight: 600;
+}
+p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+}
+.slide-content h2 {
+    font-size: 49px;
+    line-height: 60px;
+    text-transform: capitalize;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.slide-overlay {
+    
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.post-detail-meta {
+    border-top: 0px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    padding: 15px 0;
+}
+.blog-detail-content {
+    padding: 0 0px;
+    margin: 0 5px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+   
+    padding-bottom: 30px;
+}
+.fino-pagination .page-numbers.current, .fino-pagination .page-numbers:hover {
+    border-bottom: 5px solid #d9009d;
+    color: #202020;
+    background: #ebebeb;
+    padding: 4px 18px;
+	
+	
+}
+.fino-pagination .page-numbers.current, .fino-pagination .page-numbers:hover {
+  
+    font-weight: 400;
+}
+.fino-pagination .page-numbers {
+   
+    font-size: 20px;
+}
+.blog-content h4 a {
+    
+    transition: all 0.3s ease;
+    border-bottom: 0px solid #e9e9e9;
+}
+.blog-content p {
+    padding: 15px 0;
+    border-bottom: 0px solid #e9e9e9;
+}
+.blog-item .blog-content {
+    margin: 0px 0px;
+    position: relative;
+    border: 0px solid rgba(0,0,0,0.1);
+    box-shadow: none;
+	padding: 20px 0px 25px;
+}

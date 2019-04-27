@@ -1,0 +1,37 @@
+/*
+Theme Name: Elvinaa Plus
+Theme URI: https://www.spiraclethemes.com/elvinaa-plus-free-wordpress-theme/
+Author: Spiracle Themes
+Author URI: https://www.spiraclethemes.com
+Description: Elvinaa Plus is a clean, modern and powerful free WordPress theme. It is best suitalble for all small sized and medium sized businesses. Elvinaa Plus comes with powerful theme customizer options that can be used to customize your website the way you want. It has a responsive layout built on Bootstrap framework. It also supports WooCommerce to build online stores.
+Template: elvinaa
+Version: 1.0.1
+Tags: e-commerce,right-sidebar,left-sidebar,custom-menu,featured-images,theme-options,blog,custom-colors,custom-logo,flexible-header,threaded-comments,one-column,full-width-template,sticky-post,translation-ready
+License: GNU General Public License v3 or later
+License URI: http://www.gnu.org/licenses/gpl.html
+Text Domain: elvinaa-plus
+*/
+
+
+html,body {   
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+    letter-spacing: 0.5px;    
+    margin: 0;
+    padding: 0;
+    overflow-x:hidden;
+}
+
+form.wpcf7-form {
+    width: 100%;
+    margin: auto;
+}
+
+article.page{
+	margin-bottom: 0;
+}
+
+article.page footer{
+    margin: 0;
+}

@@ -1,0 +1,19 @@
+[25-Mar-2019 00:38:53 UTC] Erro de banco de dados do WordPress Unknown column 'wp_' in 'field list' para a consulta SELECT wp_
+[29-Mar-2019 14:05:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function is_block_editor() on null in /home2/imagin09/public_html/wp-content/plugins/gutenberg/lib/widgets.php:13
+Stack trace:
+#0 /home2/imagin09/public_html/wp-includes/class-wp-hook.php(286): gutenberg_block_editor_admin_print_styles('')
+#1 /home2/imagin09/public_html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#2 /home2/imagin09/public_html/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /home2/imagin09/public_html/wp-content/plugins/google-analytics-for-wordpress/lite/includes/admin/onboarding-wizard.php(158): do_action('admin_print_sty...')
+#4 /home2/imagin09/public_html/wp-content/plugins/google-analytics-for-wordpress/lite/includes/admin/onboarding-wizard.php(82): MonsterInsights_Onboarding_Wizard->onboarding_wizard_header()
+#5 /home2/imagin09/public_html/wp-content/plugins/google-analytics-for-wordpress/lite/includes/admin/onboarding-wizard.php(64): MonsterInsights_Onboarding_Wizard->load_onboarding_wizard()
+#6 /home2/imagin09/publ in /home2/imagin09/public_html/wp-content/plugins/gutenberg/lib/widgets.php on line 13
+[29-Mar-2019 14:05:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function is_block_editor() on null in /home2/imagin09/public_html/wp-content/plugins/gutenberg/lib/widgets.php:13
+Stack trace:
+#0 /home2/imagin09/public_html/wp-includes/class-wp-hook.php(286): gutenberg_block_editor_admin_print_styles('')
+#1 /home2/imagin09/public_html/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#2 /home2/imagin09/public_html/wp-includes/plugin.php(465): WP_Hook->do_action(Array)
+#3 /home2/imagin09/public_html/wp-content/plugins/google-analytics-for-wordpress/lite/includes/admin/onboarding-wizard.php(158): do_action('admin_print_sty...')
+#4 /home2/imagin09/public_html/wp-content/plugins/google-analytics-for-wordpress/lite/includes/admin/onboarding-wizard.php(82): MonsterInsights_Onboarding_Wizard->onboarding_wizard_header()
+#5 /home2/imagin09/public_html/wp-content/plugins/google-analytics-for-wordpress/lite/includes/admin/onboarding-wizard.php(64): MonsterInsights_Onboarding_Wizard->load_onboarding_wizard()
+#6 /home2/imagin09/publ in /home2/imagin09/public_html/wp-content/plugins/gutenberg/lib/widgets.php on line 13
