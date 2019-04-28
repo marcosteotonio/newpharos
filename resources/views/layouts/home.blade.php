@@ -13,9 +13,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Icons -->
-        <link rel="shortcut icon" href="{{ url( env('APP_PREFIX') . '/images/logo.png') }}">
-        <link rel="icon" sizes="192x192" type="image/png" href="{{ url( env('APP_PREFIX') . '/images/logo.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ url(env('APP_PREFIX') . '/images/logo.png') }}">
+        <link rel="shortcut icon" href="{{ url( '/images/logo.png') }}">
+        <link rel="icon" sizes="192x192" type="image/png" href="{{ url( '/images/logo.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ url('/images/logo.png') }}">
 
         <!-- JQUERY -->
         <script src="{{ asset( '/js/jquery.js' ) }}" async></script>
@@ -23,33 +23,33 @@
         <!-- Fonts and Styles -->
         @yield('css_before')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
-        <link rel="stylesheet" href="{{ url( env('APP_PREFIX') . '/css/dashmix.css') }}">
-        <link rel="stylesheet" href="{{ url( env('APP_PREFIX') . '/js/plugins/OwlCarousel2/dist/assets/owl.carousel.min.css') }}">
-        <link rel="stylesheet" href="{{ url( env('APP_PREFIX') . '/js/plugins/OwlCarousel2/dist/assets/owl.theme.default.min.css') }}">
+        <link rel="stylesheet" href="{{ asset( '/css/dashmix.css') }}">
+        <link rel="stylesheet" href="{{ asset( '/js/plugins/OwlCarousel2/dist/assets/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset( '/js/plugins/OwlCarousel2/dist/assets/owl.theme.default.min.css') }}">
         <style>
             @font-face {
                 font-family: ProximaNova;
                 font-style: normal;
                 font-weight: 400;
-                src: url("<?php echo url( env('APP_PREFIX') . '/fonts/proxima_ssv/ProximaNova-Regular.otf' ); ?>") format("opentype");
+                src: url("<?php echo asset( '/fonts/proxima_ssv/ProximaNova-Regular.otf' ); ?>") format("opentype");
             }
 
             @font-face {
                 font-family: ProximaNova;
                 font-weight: 600;
-                src: url("<?php echo url( env('APP_PREFIX') . '/fonts/proxima_ssv/ProximaNova-Bold.otf' ); ?>") format("opentype");
+                src: url("<?php echo asset( '/fonts/proxima_ssv/ProximaNova-Bold.otf' ); ?>") format("opentype");
             }
 
             @font-face {
                 font-family: ProximaNova;
                 font-weight: 800;
-                src: url("<?php echo url( env('APP_PREFIX') . '/fonts/proxima_ssv/ProximaNova-Black.otf' ); ?>") format("opentype");
+                src: url("<?php echo asset( '/fonts/proxima_ssv/ProximaNova-Black.otf' ); ?>") format("opentype");
             }
 
             @font-face {
                 font-family: ProximaNova;
                 font-weight: 200;
-                src: url("<?php echo url( env('APP_PREFIX') . '/fonts/proxima_ssv/ProximaNova-thin.otf' ); ?>") format("opentype");
+                src: url("<?php echo asset( '/fonts/proxima_ssv/ProximaNova-thin.otf' ); ?>") format("opentype");
             }
         </style>
 
@@ -87,7 +87,7 @@
                 animation-name: pulse;
             }
             </style>
-            <img class="animated pulse-infinite"src="<?php echo url( env('APP_PREFIX') . '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;position: relative;
+            <img class="animated pulse-infinite"src="<?php echo url( '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;position: relative;
 
 left: calc(50% - 73px);">
         </div>   
@@ -99,7 +99,7 @@ left: calc(50% - 73px);">
                     @yield('content')
             </main>
             <!-- Main Trabalhos -->
-            <main id="main-container-wo" style="background-image: url({{ asset( env('APP_PREFIX') . '/images/trabalhos-bg.png') }})">
+            <main id="main-container-wo" style="background-image: url({{ asset( '/images/trabalhos-bg.png') }})">
                     @yield('works')
             </main>
             <!-- FOOTER -->
@@ -111,12 +111,12 @@ left: calc(50% - 73px);">
 
         <!-- Laravel Original JS -->
         
-        <script src="{{ url( env('APP_PREFIX') . '/js/laravel.app.js') }}"></script>
+        <script src="{{ asset( '/js/laravel.app.js') }}"></script>
 
         <!-- Dashmix Core JS -->
-        <script src="{{ url(env('APP_PREFIX') . '/js/dashmix.app.js') }}"></script>
+        <script src="{{ asset('/js/dashmix.app.js') }}"></script>
 
-        <script type="text/javascript" src="{{ url( env('APP_PREFIX') . '/js/plugins/OwlCarousel2/dist/owl.carousel.min.js' ) }}"></script>
+        <script type="text/javascript" src="{{ asset( '/js/plugins/OwlCarousel2/dist/owl.carousel.min.js' ) }}"></script>
         
         
         <script>
