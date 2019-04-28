@@ -34,7 +34,7 @@ Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
 
 
 Route::group(['prefix' => '/ajax'], function(){
-    Route::post('/ajax/login-agenciado', 'SiteController@ajaxLoginAgenciado');
+    Route::post('/login-agenciado', 'SiteController@ajaxLoginAgenciado');
 });
 
 
