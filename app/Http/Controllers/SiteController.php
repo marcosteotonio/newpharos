@@ -3,19 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+
 use Exception;
 use App\Media;
 use App\Profile;
 use App\User;
+use App\Skills;
 
 use App\Post;
+
 use Carbon\Carbon;
 
 use DB;
 
 class SiteController extends Controller
 {
-    function __contructor(){
+    function __construct()
+    {
+        $data = [];
+        view()->share($data);
     }
 
     /**
@@ -43,6 +55,12 @@ class SiteController extends Controller
         $data['secWorksShowCase'] = $data['WorksShowCase']; unset( $data['secWorksShowCase'][0] );
         
         return view('site.home', $data);
+    }
+
+    function getLogout(){
+        Auth::logout();
+
+        return redirect('/')->with('info', 'Você foi deslogado!');
     }
 
     /**
@@ -116,6 +134,7 @@ class SiteController extends Controller
      */
     function getElencoPerfil(Request $request, $slug){
         $data['title'] = 'Elenco Perfil';
+
         try {
             $data['profile'] = Profile::getBySlug($slug);
             if(!$data['profile']){
@@ -229,6 +248,8 @@ class SiteController extends Controller
      */
     function getProfle(){
         $data['title'] = 'Perfil';
+        $data['user'] = auth::user();
+        $data['profile'] = Profile::where('user_id', $data['user']->id)->first();
         
         return view('site.profile', $data);
     }
@@ -236,17 +257,25 @@ class SiteController extends Controller
     /**
      * Editar Perfil
      */
-    function getProfleEditar($slug){
+    function getProfleEditar(Request $request){
         $data['title'] = 'Perfil :: Editar';
-        $data['profile'] = Profile::getBySlug($slug);
-        
+        $data['user'] = auth::user();
+        $data['profile'] = Profile::where('user_id', $data['user']->id)->first();
+
+        // dd($data);
         return view('site.profile_edit', $data);
     }
 
 
     //AJAX
-    public function ajaxLoginAgenciado(Request $request){
-        dd($request->all());
+    public function LoginAgenciado(Request $request){
+
+        $user = Auth::attempt([
+            'email' => $request->get('login_email'),
+            'password'=> $request->get('login_password')
+            ]);
+
+        return redirect()->intended('/')->with('info', 'Logado com successo!');
 
     }
 

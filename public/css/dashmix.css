@@ -16679,6 +16679,15 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   background-image: linear-gradient(#d3d3d3 50px, #e8e8e8 50px);
   height: 177px; }
 
+.logged_user__title {
+  font-size: 24px;
+  font-weight: 800; }
+.logged_user__options {
+  text-align: right; }
+  .logged_user__options a {
+    text-decoration: none;
+    color: black; }
+
 .header-menu-login {
   background-color: #e8e8e8; }
 
@@ -16920,6 +16929,14 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .agency__work_name {
   font-size: x-large;
   font-weight: 800; }
+
+.media_list__background {
+  height: 150px;
+  background-size: cover; }
+.media_list__delete {
+  float: right;
+  padding: 4px;
+  cursor: pointer; }
 
 .footer {
   background-color: #2d3645;

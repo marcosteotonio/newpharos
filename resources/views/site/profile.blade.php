@@ -44,13 +44,13 @@
                 <div class="perfil_buttons_area__title">
                     ÁREA DO AGENCIADO
                 </div>
-                <a href="{{ url( env('APP_PREFIX').'/elenco/1') }}">
+                <a href="{{ url( env('APP_PREFIX').'/elenco/'.$profile->slug) }}">
                     <button class="btn-profile pointer">
                         <i class="fa fa-fw fa-eye"></i><br>
                         visualizar perfil
                     </button>      
                 </a>
-                <a href="{{ url(env('APP_PREFIX').'/perfil/editar/1') }}">
+                <a href="{{ url(env('APP_PREFIX').'/perfil/editar') }}">
                     <button class="btn-profile pointer">
                         <i class="fa fa-fw fa-edit"></i><br>
                         editar perfil

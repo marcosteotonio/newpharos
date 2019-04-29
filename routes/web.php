@@ -11,10 +11,9 @@
 |
  */
 
-
-
 //SITE - todas as rotas em portugues
 Route::get('/', 'SiteController@getIndex')->name('home');
+Route::get('/logout', 'SiteController@getLogout')->name('logout');
 
 Route::get('/elencos', 'SiteController@getElencos')->name('elencos');
 Route::post('/elencos', 'SiteController@postElencos');
@@ -27,15 +26,16 @@ Route::get('/trabalho/{slug}', 'SiteController@getTrabalho');
 Route::get('/agencia', 'SiteController@getAgencia')->name('agencia');
 Route::get('/contato', 'SiteController@getContato')->name('contato');
 
-Route::get('/perfil', 'SiteController@getProfle')->name('perfil');
-Route::get('/perfil/editar/{slug}', 'SiteController@getProfleEditar');
 
 Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
 
-
-Route::group(['prefix' => '/ajax'], function(){
-    Route::post('/login-agenciado', 'SiteController@ajaxLoginAgenciado');
+Route::group(['middleware'=> ['auth.agenciado']], function(){
+    Route::get('/perfil', 'SiteController@getProfle')->name('perfil');
+    Route::get('/perfil/editar', 'SiteController@getProfleEditar');
 });
+
+
+
 
 
 // Route::group(['middleware' => 'SiteLogin'], function(){
@@ -50,6 +50,8 @@ Route::get('/admin', function () {
     return redirect()->route('login');
 });
 
+Route::post('/login-agenciado', 'SiteController@LoginAgenciado');
+Route::post('/login-cliente', 'SiteController@LoginAgenciado');
 
 Route::group(['middleware' => ['auth']], function () {
 

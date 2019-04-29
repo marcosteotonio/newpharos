@@ -33,14 +33,14 @@
     </div>
 
     <div id="ag_form__login" style="display: block;">
-        {!! Form::open(['method' => 'post', 'name' => 'form_login_agenciado', 'id' => 'form_login_agenciado', 'onsubmit' => 'return false;' ])!!}
+        {!! Form::open(['method' => 'post','url' => '/login-agenciado', 'name' => 'form_login_agenciado', 'id' => 'form_login_agenciado' ])!!}
             <div class="form-group">
                 {!! Form::label('login_email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
-                {!! Form::text('login_email', null, ['class' => 'form-control'])!!}
+                {!! Form::text('login_email', null, ['class' => 'form-control','required' => ''])!!}
             </div>
             <div class="form-group">
-            {!! Form::label('login_password', 'Senha', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
-                {!! Form::password('login_password', ['class' => 'form-control'])!!}
+            {!! Form::label('login_password', 'Senha', [ 'style' => 'font-size: 14px; font-weight: 200;'])!!}
+                {!! Form::password('login_password', ['class' => 'form-control','required' => ''])!!}
             </div>
             <div class="text-center padding-bottom">
                 {!! Form::submit('ENTRAR', ['class' => 'btn btn-access']) !!}
@@ -111,27 +111,31 @@
 </div>
 <script type="text/javascript" defer>
     console.log('JS Loading')
-    $('[name=form_login_agenciado]').on('submit', function(e){
+    // $('[name=form_login_agenciado]').on('submit', function(e){
         
-        let formdata = {
-            'email': $('[name=login_email]').val(),
-            'password': $('[name=login_password]').val()
-        }
+    //     let formdata = {
+    //         'email': $('[name=login_email]').val(),
+    //         'password': $('[name=login_password]').val()
+    //     }
 
-        $.ajax({
-        method: "POST",
-        url: "{!! url('ajax/login-agenciado') !!}",
-        data: formdata
-        })
-        .done( function( msg ) {
-            alert( "Data Saved: " + msg );
-        })
-        .fail( function( msg ) {
-            console.log(msg)
-            alert( "Data Saved: " + msg.statusText );
-        });
-    })
-
+    //     $.ajax({
+    //     method: "POST",
+    //     url: "{!! url('/api/ajax/login-agenciado') !!}",
+    //     data: formdata
+    //     })
+    //     .done( function( result ) {
+    //         if(result.message){
+    //             console.log( 'success', result )
+    //         } else {
+    //             console.log(result.content);
+    //             // window.open('/', '_self')
+    //         }
+    //     })
+    //     .fail( function( msg ) {
+    //         console.log(msg)
+    //         alert( "Data Saved: " + msg.statusText );
+    //     });
+    // })
 
 
     $('.ag_form__login_link').click(function(e){

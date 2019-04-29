@@ -46,4 +46,21 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    static function getLogin($email, $password){
+        $user = parent::where('email',$email ) ->where('level', 3)->first();
+
+        if( $user ){
+            if(!$user->password ){
+                return ['message' => 'incomplete'];
+            }
+    
+            if(password_verify ( $password , $user->password ) ){
+                return $user;
+            }
+        }
+
+        return ['message' => 'notfound'];
+
+    }
 }

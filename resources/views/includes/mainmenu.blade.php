@@ -1,4 +1,12 @@
-<?php ?>
+<?php
+    // use Illuminate\Support\Facades\Auth;
+    // $login = Auth::user();
+    // if(Auth::check()){
+    //     $level = $login->level;
+    // }
+    // Auth::logout()
+    
+?>
 <div class="container-page">
     <div class=header-menu-main>
         <div class="container">
@@ -39,10 +47,26 @@
                         </style>
                         <div id="botos_de_acesso_usuarios" class="col-md-12">
                             <div class="login-field">
-                                @if(isset($agenciado))
-                                    Agenciado
-                                @elseif(isset($cliente))
-                                    Cliente
+                                @if( auth()->check() )
+                                    @if( auth()->user()->level == 3 )
+                                        <div class="logged_user">
+                                            <div class="logged_user__title">
+                                                Olá, {{ auth()->user()->name }}!
+                                            </div>
+                                            <div class="logged_user__options">
+                                                <a href="{{ url('/perfil') }}"> Área do Agenciado </a> |  <a href="{{ url('/logout')}}">Sair</a>
+                                            </div>
+                                        </div>
+                                    @elseif( auth()->user()->level == 2 )
+                                        <div class="logged_user">
+                                            <div class="" style="font-size: 24px;font-weight: 800;">
+                                            Olá,{{ auth()->user()->name }}!
+                                            </div>
+                                            <div class="" style="text-align: right;">
+                                            <a href="{{ url('/cliente') }}"> Área do Cliente </a> |  <a href="{{ url('/logout')}}">Sair</a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 @else
                                     <button type="button" class="btn btn-access acess_agenciado" style="color: white; height: 50px;">
                                         <i class="fa fa-fw fa-star"></i>
