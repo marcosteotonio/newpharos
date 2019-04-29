@@ -42,7 +42,7 @@ use Carbon\Carbon;
                                 <!--  -->
                                 <div class="form-group" style="width: 37%; padding-right: 5px; display: inline-block;">
                                     {!! Form::label('date_birth','Data de Nascimento')!!}
-                                    {!! Form::text('date_birth', Carbon::parse( $profile->date_birth )->format('d/m/Y') ,['class' => 'form-control', 'style' => ''])!!}
+                                    {!! Form::text('date_birth', isset($profile->date_birth) ? Carbon::parse( $profile->date_birth )->format('d/m/Y'): '',['class' => 'form-control', 'style' => ''])!!}
                                 </div>
 
                                 <div class="form-group" style="width: 20%;  padding-right: 5px; display: inline-block;">
