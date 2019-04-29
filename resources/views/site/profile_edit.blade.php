@@ -47,17 +47,17 @@ use Carbon\Carbon;
 
                                 <div class="form-group" style="width: 20%;  padding-right: 5px; display: inline-block;">
                                     {!! Form::label('height','Altura')!!}
-                                    {!! Form::text('height', $profile->height,['class' => 'form-control', 'style' => ''])!!}
+                                    {!! Form::text('height', isset($profile->height) ? $profile->height : ''',['class' => 'form-control', 'style' => ''])!!}
                                 </div>
 
                                 <div class="form-group" style="width: 20%; padding-right: 5px;  display: inline-block;">
                                     {!! Form::label('dummy','Manequin')!!}
-                                    {!! Form::text('dummy', $profile->dummy,['class' => 'form-control', 'style' => ''])!!}
+                                    {!! Form::text('dummy', isset( $profile->dummy) ? $profile->dummy : '',['class' => 'form-control', 'style' => ''])!!}
                                 </div>
 
                                 <div class="form-group" style="width: 20%; display: inline-block; float: right;">
                                     {!! Form::label('feet','Calçado')!!}
-                                    {!! Form::text('feet', $profile->feet,['class' => 'form-control', 'style' => ''])!!}
+                                    {!! Form::text('feet', isset($profile->feet) ? $profile->feet : '',['class' => 'form-control', 'style' => ''])!!}
                                 </div>
                                 <!--  -->
 
@@ -110,7 +110,7 @@ use Carbon\Carbon;
                                             
                                             </style>
                                             <div class="owl-carousel owl-theme owl-loaded owl-drag">
-                                                @foreach($profile->toArray()['medias'] as $key => $val )
+                                                @foreelse($profile->toArray()['medias'] as $key => $val )
                                                     <div class="media_list">
                                                         <div class="media_list__delete">
                                                             <i class="fa fa-trash" style=" color: #9f432c"></i>
@@ -118,7 +118,12 @@ use Carbon\Carbon;
                                                         <div class="media_list__background" style="background-image: url( '<?php echo url( '/uploads/profiles/' .$profile->user_id.'/'. $val['path'] ); ?>' );">
                                                         </div>
                                                     </div>
-                                                @endforeach
+                                                @empty
+                                                    <div class="media_list">
+                                                        <div class="media_list__background">
+                                                        </div>
+                                                    </div>
+                                                @endforelse
                                             </div>
                                         </div>
                                     </div>
