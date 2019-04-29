@@ -63,9 +63,9 @@ use Carbon\Carbon;
 
                                 <div class="form-group" style="">
                                     <label for="">Sexo</label><br>
-                                    <input  name="gender" type="radio" value="masculino" <?php if($profile->gender == 'masculino'){ echo  'checked="true"'; } ?> > Masculino
+                                    <input  name="gender" type="radio" value="masculino" <?php if(isset($profile->gender)){ if($profile->gender == 'masculino'){ echo  'checked="true"'; } }?> > Masculino
                                     &nbsp; &nbsp;
-                                    <input  name="gender" type="radio" value="feminino" <?php if($profile->gender == 'feminino'){ echo  'checked="true"'; } ?> > Feminino
+                                    <input  name="gender" type="radio" value="feminino" <?php if(isset($profile->gender)){ if($profile->gender == 'feminino'){ echo  'checked="true"'; } } ?> > Feminino
                                 </div>
 
                                 <div class="form-group" style="">
