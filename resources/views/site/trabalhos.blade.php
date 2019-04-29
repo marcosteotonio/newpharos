@@ -60,26 +60,58 @@
                 <div class="works">
                     
                     @forelse($works as $key =>  $val)
-                        <?php //dd($val->slug) ?>
-                        @if( in_array( $key, ['0']) )
-                        <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>"
-                        class="work__item works__item__main work__image rounded-corner"
-                        style="background-image: url('<?php echo url(  $val->media ); ?>')">
-                            <div class="work__inside">
-                                <div class="work__item__information work__item__information_main rounded-base">
-                                    <div class="work__Information__title medium-text bold">
-                                        <?php
-                                            $txt = $val->subtitle;
-                                            $len = 35;
-                                            if( strlen( $txt ) <= $len ){
-                                                echo  $txt;
-                                            } else {
-                                                echo substr($txt, 0, $len).'...';
-                                            }
-                                        ?>
+                        @if(0)
+                            @if( in_array( $key, ['0']) )
+                                <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>"
+                                class="work__item works__item__main work__image rounded-corner"
+                                style="background-image: url('<?php echo url(  $val->media ); ?>')">
+                                    <div class="work__inside">
+                                        <div class="work__item__information work__item__information_main rounded-base">
+                                            <div class="work__Information__title medium-text bold">
+                                                <?php
+                                                    $txt = $val->subtitle;
+                                                    $len = 35;
+                                                    if( strlen( $txt ) <= $len ){
+                                                        echo  $txt;
+                                                    } else {
+                                                        echo substr($txt, 0, $len).'...';
+                                                    }
+                                                ?>
+                                            </div>
+                                            <div class="work__Information__subtitle xlarge-text bold">
+                                                
+                                                <?php
+                                                    $txt = $val->title;
+                                                    $len = 25;
+                                                    if( strlen( $txt ) <= $len ){
+                                                        echo  $txt;
+                                                    } else {
+                                                        echo substr($txt, 0, $len).'...';
+                                                    }
+                                                ?>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="work__Information__subtitle xlarge-text bold">
-                                        
+                                </a>
+                            @else
+                                <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>" class="work__item works__item__sec">
+                                    <div class="work__inside work__image" style="background-image: url('<?php echo url( $val->media ); ?>">
+                                        <div class="work__item__information">
+                                            <div class="work__Information__title bold">
+                                                <?php
+                                                    $txt = $val->subtitle;
+                                                    $len = 25;
+                                                    if( strlen( $txt ) <= $len ){
+                                                        echo  $txt;
+                                                    } else {
+                                                        echo substr($txt, 0, $len).'...';
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="work__Information__subtitle bold">
                                         <?php
                                             $txt = $val->title;
                                             $len = 25;
@@ -89,40 +121,9 @@
                                                 echo substr($txt, 0, $len).'...';
                                             }
                                         ?>
-                                        
                                     </div>
-                                </div>
-                            </div>
-                        </a>
-                        @else
-                            <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>" class="work__item works__item__sec">
-                                <div class="work__inside work__image" style="background-image: url('<?php echo url( $val->media ); ?>">
-                                    <div class="work__item__information">
-                                        <div class="work__Information__title bold">
-                                            <?php
-                                                $txt = $val->subtitle;
-                                                $len = 25;
-                                                if( strlen( $txt ) <= $len ){
-                                                    echo  $txt;
-                                                } else {
-                                                    echo substr($txt, 0, $len).'...';
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="work__Information__subtitle bold">
-                                    <?php
-                                        $txt = $val->title;
-                                        $len = 25;
-                                        if( strlen( $txt ) <= $len ){
-                                            echo  $txt;
-                                        } else {
-                                            echo substr($txt, 0, $len).'...';
-                                        }
-                                    ?>
-                                </div>
-                            </a> 
+                                </a> 
+                            @endif
                         @endif
                     @empty
                         <div class="" style="grid-row: 1; grid-column: 1 / 4">

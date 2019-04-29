@@ -199,6 +199,7 @@ class SiteController extends Controller
     function getTrabalhos(){
         $data['title'] = 'Trabalhos';
         $data['works'] = Post::all();
+        $data['works'] = [];
       
         return view('site.trabalhos', $data);
     }
