@@ -111,7 +111,7 @@ use Carbon\Carbon;
                                             </style>
                                             <div class="owl-carousel owl-theme owl-loaded owl-drag">
                                                 @if($profile)
-                                                    @forelse($profile->toArray()['medias'] as $key => $val )
+                                                    @foreach($profile->toArray()['medias'] as $key => $val )
                                                     <div class="media_list">
                                                         <div class="media_list__delete">
                                                             <i class="fa fa-trash" style=" color: #9f432c"></i>
@@ -119,8 +119,8 @@ use Carbon\Carbon;
                                                         <div class="media_list__background" style="background-image: url( '<?php echo url( '/uploads/profiles/' .$profile->user_id.'/'. $val['path'] ); ?>' );">
                                                         </div>
                                                     </div>
-                                                    @endforelse
-                                                @forelse
+                                                    @endforeach
+                                                @else
                                                     <div class="media_list">
                                                         <div class="media_list__background">
                                                         </div>
