@@ -47,7 +47,7 @@ use Carbon\Carbon;
 
                                 <div class="form-group" style="width: 20%;  padding-right: 5px; display: inline-block;">
                                     {!! Form::label('height','Altura')!!}
-                                    {!! Form::text('height', isset($profile->height) ? $profile->height : ''',['class' => 'form-control', 'style' => ''])!!}
+                                    {!! Form::text('height', isset($profile->height) ? $profile->height : '',['class' => 'form-control', 'style' => ''])!!}
                                 </div>
 
                                 <div class="form-group" style="width: 20%; padding-right: 5px;  display: inline-block;">
