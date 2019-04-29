@@ -198,7 +198,7 @@ class SiteController extends Controller
      */
     function getTrabalhos(){
         $data['title'] = 'Trabalhos';
-        $data['secWorkShowCase'] = $this->getNotice(false);
+        $data['works'] = Post::all();
       
         return view('site.trabalhos', $data);
     }

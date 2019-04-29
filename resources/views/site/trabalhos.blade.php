@@ -58,7 +58,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="works">
-                    @forelse($secWorkShowCase as $key =>  $val)
+                    
+                    @forelse($works as $key =>  $val)
                         <?php //dd($val->slug) ?>
                         @if( in_array( $key, ['0']) )
                         <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>"
@@ -124,10 +125,10 @@
                             </a> 
                         @endif
                     @empty
-                    <div class="" style="grid-row: 1; grid-column: 1 / 4">
-                        Aqui estaremos expondo os trabalhos que nossa agência tem atuado no momento.<br>
-                        Tente voltar mais tarde...
-                    </div>
+                        <div class="" style="grid-row: 1; grid-column: 1 / 4">
+                            Aqui estaremos expondo os trabalhos que nossa agência tem atuado no momento.<br>
+                            Tente voltar mais tarde...
+                        </div>
                     @endforelse
                 </div>
             </div> 

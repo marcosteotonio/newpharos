@@ -85,11 +85,13 @@ use Carbon\Carbon;
                                     <div class="title_yt">
                                         Playlist de Vídeos
                                     </div>
+                                    @if(0)
                                     <div class="form-group" style="">
                                         {!! Form::text('title_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 39%;'])!!}
                                         {!! Form::text('link_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 49%;'])!!}
                                         <button type="button" class="btn" style="float: right;"><i class="fa fa-trash" style=" color: #9f432c"></i></button>
                                     </div>
+                                    @endif
                                     <div class="form-group" style="">
                                         {!! Form::text('title_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 39%; background-color: #fff !important;'])!!}
                                         {!! Form::text('link_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 49%; background-color: #fff !important;'])!!}
