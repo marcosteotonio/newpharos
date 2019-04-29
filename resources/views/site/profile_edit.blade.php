@@ -119,7 +119,7 @@ use Carbon\Carbon;
                                                         <div class="media_list__background" style="background-image: url( '<?php echo url( '/uploads/profiles/' .$profile->user_id.'/'. $val['path'] ); ?>' );">
                                                         </div>
                                                     </div>
-                                                    @endforeach
+                                                    @endforeach 
                                                 @else
                                                     <div class="media_list">
                                                         <div class="media_list__background">
@@ -135,6 +135,10 @@ use Carbon\Carbon;
                                         {!! Form::file('media[]')!!}
                                     </div>
                                 </div>
+                                <div style="padding: 15px; text-align: center;">
+                                    <button type="button" class="btn btn-access" style="">Salvar</button>
+                                </div>
+
 
 
                                 
