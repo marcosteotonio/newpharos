@@ -110,7 +110,7 @@ use Carbon\Carbon;
                                             
                                             </style>
                                             <div class="owl-carousel owl-theme owl-loaded owl-drag">
-                                                @foreelse($profile->toArray()['medias'] as $key => $val )
+                                                @forelse($profile->toArray()['medias'] as $key => $val )
                                                     <div class="media_list">
                                                         <div class="media_list__delete">
                                                             <i class="fa fa-trash" style=" color: #9f432c"></i>
