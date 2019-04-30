@@ -271,10 +271,10 @@ class SiteController extends Controller
      * Login Agenciado
      */
     public function LoginAgenciado(Request $request){
-        dd($request->all());
+        
         $user = Auth::attempt([
-            'email' => $request->get('login_email'),
-            'password'=> $request->get('login_password')
+            'email' => $request->get('email'),
+            'password'=> $request->get('password')
             ]);
 
         if(!$user){
@@ -287,38 +287,45 @@ class SiteController extends Controller
 
     public function RegisterAgenciado(Request $request){
         
-        request()->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed',
-        ]);
+        // request()->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required|min:8|confirmed',
+        // ]);
 
         $user = User::create($request->all());
 
-        if ($request->hasFile('image')) {
-            $media = new Media;
+        // if ($request->hasFile('image')) {
+        //     $media = new Media;
 
-            $slug = str_slug($request->name, "-");
+        //     $slug = str_slug($request->name, "-");
 
-            $image = $request->file('image');
-            $name = "{$slug}.{$request->image->extension()}";
-            $path = "/uploads/users";
-            $destinationPath = public_path($path);
-            $imagePath = $destinationPath . "/" . $name;
-            $image->move($destinationPath, $name);
+        //     $image = $request->file('image');
+        //     $name = "{$slug}.{$request->image->extension()}";
+        //     $path = "/uploads/users";
+        //     $destinationPath = public_path($path);
+        //     $imagePath = $destinationPath . "/" . $name;
+        //     $image->move($destinationPath, $name);
 
-            $media->path = $path . "/" . $name;
-            $media->type = "image";
+        //     $media->path = $path . "/" . $name;
+        //     $media->type = "image";
 
-            $user->medias()->save($media);
+        //     $user->medias()->save($media);
+        // }
+
+        $login = Auth::attempt([
+            'email' => $request->get('email'),
+            'password'=> $request->get('password')
+            ]);
+
+        if($login){
+            return redirect()->intended('/')->with('success', 'Usuário cadastrado com successo!');
         }
-        
-        $user = Auth::attempt([
-        'email' => $request->get('login_email'),
-        'password'=> $request->get('login_password')
-        ]);
 
-        return redirect()->intended('/')->with('success', 'Usuário cadastrado com successo!');
+        return redirect()->intended('/')->with('error', 'Problemas em cadastrar usuário!');
+        
+        
+
     }
 
 }

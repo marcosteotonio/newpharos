@@ -147,31 +147,31 @@
 </div>
 <script type="text/javascript" defer>
     console.log('JS Loading')
-    $('form[name=form_login_agenciado]').on('submit', function(e){
-        e.preventDefault()
-        console.log( document.getElementById('email_login').value )
+    // $('form[name=form_login_agenciado]').on('submit', function(e){
+    //     e.preventDefault()
+    //     console.log( document.getElementById('email_login').value )
 
-        formdata = {
-            'email': document.getElementById('email_login').value
-        }
-        $.ajax({
-        method: "GET",
-        url: "{!! url('/api/site/check-agenciado') !!}",
-        data: formdata
-        })
-        .done( function( result ) {
-            if(result.message){
-                console.log( 'success', result )
-            } else {
-                console.log(result.content);
-                // window.open('/', '_self')
-            }
-        })
-        .fail( function( msg ) {
-            console.log(msg)
-            alert( "Data Saved: " + msg.statusText );
-        });
-    })
+    //     formdata = {
+    //         'email': document.getElementById('email_login').value
+    //     }
+    //     $.ajax({
+    //     method: "GET",
+    //     url: "{!! url('/api/site/check-agenciado') !!}",
+    //     data: formdata
+    //     })
+    //     .done( function( result ) {
+    //         if(result.message){
+    //             console.log( 'success', result )
+    //         } else {
+    //             console.log(result.content);
+    //             // window.open('/', '_self')
+    //         }
+    //     })
+    //     .fail( function( msg ) {
+    //         console.log(msg)
+    //         alert( "Data Saved: " + msg.statusText );
+    //     });
+    // })
 
 
     $('.ag_form__login_link').click(function(e){
