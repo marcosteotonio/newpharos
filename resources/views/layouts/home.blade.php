@@ -25,7 +25,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
         <link rel="stylesheet" href="{{ asset( '/css/dashmix.css') }}">
         <link rel="stylesheet" href="{{ asset( '/js/plugins/OwlCarousel2/dist/assets/owl.carousel.min.css') }}">
-        <link rel="stylesheet" href="{{ asset( '/js/plugins/OwlCarousel2/dist/assets/owl.theme.default.min.css') }}">
         <style>
             @font-face {
                 font-family: ProximaNova;
@@ -124,10 +123,49 @@ left: calc(50% - 73px);">
                 setTimeout( function(){
                     document.body.style.overflowY = 'auto'
                     $('.showUP').hide();
-                }, 1000);
+                }, 500);
             }
         </script>
+        
         @yield('js_after')
 
+
+        <script type="text/javascript" src="{{ asset( '/js/plugins/bootstrap-notify-master/bootstrap-notify.min.js' ) }}"></script>
+        <script>
+            $.notifyDefaults({
+                placement: {
+                    from: "bottom"
+                },
+                animate:{
+                    enter: "animated fadeInLeft",
+                    exit: "animated fadeOutRight"
+                }
+            });
+        </script>
+        @if(Session::has('error'))
+            <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('error') }}" 
+                },{type: 'danger' });
+            </script>
+        @elseif(Session::has('success'))
+            <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('success') }}" 
+                },{type: 'success' });
+            </script>
+        @elseif(Session::has('warning'))
+            < <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('warning') }}" 
+                },{type: 'warning' });
+            </script>
+        @elseif(Session::has('info'))
+            <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('info') }}" 
+                },{type: 'info' });
+            </script>
+        @endif   
     </body>
 </html>

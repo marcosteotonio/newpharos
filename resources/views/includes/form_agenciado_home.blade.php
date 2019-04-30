@@ -33,14 +33,14 @@
     </div>
 
     <div id="ag_form__login" style="display: block;">
-        {!! Form::open(['method' => 'post','url' => '/login-agenciado', 'name' => 'form_login_agenciado', 'id' => 'form_login_agenciado' ])!!}
+        {!! Form::open(['method' => 'post','url' => url('/login-agenciado'), 'name' => 'form_login_agenciado', 'id' => 'form_login_agenciado' ])!!}
             <div class="form-group">
-                {!! Form::label('login_email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
-                {!! Form::text('login_email', null, ['class' => 'form-control','required' => ''])!!}
+                {!! Form::label('email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
+                {!! Form::email('email', null, ['id' => 'email_login', 'class' => 'form-control','required' => ''])!!}
             </div>
             <div class="form-group">
-            {!! Form::label('login_password', 'Senha', [ 'style' => 'font-size: 14px; font-weight: 200;'])!!}
-                {!! Form::password('login_password', ['class' => 'form-control','required' => ''])!!}
+            {!! Form::label('password', 'Senha', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
+                {!! Form::password('password', ['id' => 'password_login', 'class' => 'form-control','required' => ''])!!}
             </div>
             <div class="text-center padding-bottom">
                 {!! Form::submit('ENTRAR', ['class' => 'btn btn-access']) !!}
@@ -65,7 +65,7 @@
     </div>
 
     <div id="ag_form__resend" style="display: none;">
-        <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+        <form method="POST" action="{{ url('registrar-agenciado') }}" name="registrar-agenciado" aria-label="{{ __('Register') }}">
             @csrf
 
             <div class="form-group ">
@@ -147,31 +147,31 @@
 </div>
 <script type="text/javascript" defer>
     console.log('JS Loading')
-    // $('[name=form_login_agenciado]').on('submit', function(e){
-        
-    //     let formdata = {
-    //         'email': $('[name=login_email]').val(),
-    //         'password': $('[name=login_password]').val()
-    //     }
+    $('form[name=form_login_agenciado]').on('submit', function(e){
+        e.preventDefault()
+        console.log( document.getElementById('email_login').value )
 
-    //     $.ajax({
-    //     method: "POST",
-    //     url: "{!! url('/api/ajax/login-agenciado') !!}",
-    //     data: formdata
-    //     })
-    //     .done( function( result ) {
-    //         if(result.message){
-    //             console.log( 'success', result )
-    //         } else {
-    //             console.log(result.content);
-    //             // window.open('/', '_self')
-    //         }
-    //     })
-    //     .fail( function( msg ) {
-    //         console.log(msg)
-    //         alert( "Data Saved: " + msg.statusText );
-    //     });
-    // })
+        formdata = {
+            'email': document.getElementById('email_login').value
+        }
+        $.ajax({
+        method: "GET",
+        url: "{!! url('/api/site/check-agenciado') !!}",
+        data: formdata
+        })
+        .done( function( result ) {
+            if(result.message){
+                console.log( 'success', result )
+            } else {
+                console.log(result.content);
+                // window.open('/', '_self')
+            }
+        })
+        .fail( function( msg ) {
+            console.log(msg)
+            alert( "Data Saved: " + msg.statusText );
+        });
+    })
 
 
     $('.ag_form__login_link').click(function(e){

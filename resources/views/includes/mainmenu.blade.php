@@ -5,7 +5,6 @@
     //     $level = $login->level;
     // }
     // Auth::logout()
-    
 ?>
 <div class="container-page">
     <div class=header-menu-main>

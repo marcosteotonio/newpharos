@@ -51,7 +51,10 @@ Route::get('/admin', function () {
 });
 
 Route::post('/login-agenciado', 'SiteController@LoginAgenciado');
+Route::post('/registrar-agenciado', 'SiteController@RegisterAgenciado');
+
 Route::post('/login-cliente', 'SiteController@LoginAgenciado');
+Route::post('/register-cliente', 'SiteController@LoginAgenciado');
 
 Route::group(['middleware' => ['auth']], function () {
 

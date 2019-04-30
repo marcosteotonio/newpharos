@@ -68,30 +68,8 @@
                 <div class="centerGrid">
                 Pharos Elenco,  2015 - {!! date('Y') !!} &#169; - Todos os Direitos reservados
                 <!-- - edrobeda -->
-
                 </div>
             </div>
         </div>
     </div>
 </main>
-
-@if(Session::has('error'))
-    <script type="text/javascript">
-        alert( <?php echo Session::has('error') ?> )
-    </script>
-@endif
-@if(Session::has('success'))
-    <script type="text/javascript">
-        alert( <?php echo Session::has('success') ?> )
-    </script>
-@endif
-@if(Session::has('warning'))
-    <script type="text/javascript">
-         alert( <?php echo Session::has('warning') ?> )
-    </script>
-@endif
-@if(Session::has('info'))
-    <script type="text/javascript">
-         alert( <?php echo Session::has('info') ?> )
-    </script>
-@endif

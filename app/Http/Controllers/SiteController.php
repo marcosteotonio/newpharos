@@ -59,7 +59,7 @@ class SiteController extends Controller
 
     function getLogout(){
         Auth::logout();
-
+        
         return redirect('/')->with('info', 'Você foi deslogado!');
     }
 
@@ -267,17 +267,58 @@ class SiteController extends Controller
         return view('site.profile_edit', $data);
     }
 
-
-    //AJAX
+    /**
+     * Login Agenciado
+     */
     public function LoginAgenciado(Request $request){
-
+        dd($request->all());
         $user = Auth::attempt([
             'email' => $request->get('login_email'),
             'password'=> $request->get('login_password')
             ]);
 
+        if(!$user){
+            return redirect()->intended('/')->with('error', 'E-mail e/ou Senha inválida!');
+        }
+
         return redirect()->intended('/')->with('info', 'Logado com successo!');
 
+    }
+
+    public function RegisterAgenciado(Request $request){
+        
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::create($request->all());
+
+        if ($request->hasFile('image')) {
+            $media = new Media;
+
+            $slug = str_slug($request->name, "-");
+
+            $image = $request->file('image');
+            $name = "{$slug}.{$request->image->extension()}";
+            $path = "/uploads/users";
+            $destinationPath = public_path($path);
+            $imagePath = $destinationPath . "/" . $name;
+            $image->move($destinationPath, $name);
+
+            $media->path = $path . "/" . $name;
+            $media->type = "image";
+
+            $user->medias()->save($media);
+        }
+        
+        $user = Auth::attempt([
+        'email' => $request->get('login_email'),
+        'password'=> $request->get('login_password')
+        ]);
+
+        return redirect()->intended('/')->with('success', 'Usuário cadastrado com successo!');
     }
 
 }

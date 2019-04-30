@@ -123,5 +123,43 @@
                 }, 1000);
             }
         </script>
+
+        <script type="text/javascript" src="{{ asset( '/js/plugins/bootstrap-notify-master/bootstrap-notify.min.js' ) }}"></script>
+        <script>
+            $.notifyDefaults({
+                placement: {
+                    from: "bottom"
+                },
+                animate:{
+                    enter: "animated fadeInUp",
+                    exit: "animated fadeOutDown"
+                }
+            });
+        </script>
+        @if(Session::has('error'))
+            <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('error') }}" 
+                },{type: 'danger' });
+            </script>
+        @elseif(Session::has('success'))
+            <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('success') }}" 
+                },{type: 'success' });
+            </script>
+        @elseif(Session::has('warning'))
+            < <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('warning') }}" 
+                },{type: 'warning' });
+            </script>
+        @elseif(Session::has('info'))
+            <script type="text/javascript">
+                $.notify({
+                    message: "{{ Session::get('info') }}" 
+                },{type: 'info' });
+            </script>
+        @endif 
     </body>
 </html>
