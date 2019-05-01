@@ -11,7 +11,7 @@
         display: none;
     }
 </style>
-<div id="ag_form" class="formularios">
+<div id="ag_form" class="formularios" style="box-shadow: 1px 1px 10px #0006;">
     <div class="btn_pointer_agenc" style=""></div>
     <div class="padding-bottom">
         <span class="ag_form__botoes_default">
@@ -31,6 +31,8 @@
             <i class="fa fa-fw fa-times"></i>
         </label>
     </div>
+
+    <!-- login #################################################################################### -->
 
     <div id="ag_form__login" style="display: block;">
         {!! Form::open(['method' => 'post','url' => url('/login-agenciado'), 'name' => 'form_login_agenciado', 'id' => 'form_login_agenciado' ])!!}
@@ -64,45 +66,30 @@
         </script>
     </div>
 
+    <!-- register #################################################################################### -->
+
+
     <div id="ag_form__resend" style="display: none;">
-        <form method="POST" action="{{ url('registrar-agenciado') }}" name="registrar-agenciado" aria-label="{{ __('Register') }}">
+        <form method="POST" action="{{ url('registrar-agenciado') }}" id="form_register_agenciado" name="agenciado" aria-label="{{ __('Register') }}">
             @csrf
+            <input type="hidden" name="level" value="3" id="">
 
             <div class="form-group ">
                 <label for="name" style="font-size: 14px; font-weight: 200;">nome</label>
 
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                @if ($errors->has('name'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                @endif
-            
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
             </div>
 
             <div class="form-group ">
                 <label for="email" style="font-size: 14px; font-weight: 200;">E-mail</label>
 
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
             </div>
 
             <div class="form-group">
                 <label for="password" style="font-size: 14px; font-weight: 200;">senha</label>
 
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
+                <input id="password" type="password" class="form-control" name="password" required>
             </div>
 
             <div class="form-group">
@@ -128,6 +115,9 @@
         </div>
     </div>
 
+    <!-- forgot #################################################################################### -->
+
+
     <div id="ag_form__forgot" style="display: none;">
         {!! Form::open(['method' => 'post', 'url' => '#', 'onsubmit' => 'return false;' ])!!}
             <div>
@@ -144,34 +134,89 @@
             </div>
         {!! Form::close()!!}
     </div>
-</div>
-<script type="text/javascript" defer>
-    console.log('JS Loading')
-    // $('form[name=form_login_agenciado]').on('submit', function(e){
-    //     e.preventDefault()
-    //     console.log( document.getElementById('email_login').value )
 
-    //     formdata = {
-    //         'email': document.getElementById('email_login').value
-    //     }
-    //     $.ajax({
-    //     method: "GET",
-    //     url: "{!! url('/api/site/check-agenciado') !!}",
-    //     data: formdata
-    //     })
-    //     .done( function( result ) {
-    //         if(result.message){
-    //             console.log( 'success', result )
-    //         } else {
-    //             console.log(result.content);
-    //             // window.open('/', '_self')
-    //         }
-    //     })
-    //     .fail( function( msg ) {
-    //         console.log(msg)
-    //         alert( "Data Saved: " + msg.statusText );
-    //     });
-    // })
+
+
+
+
+</div>
+<script type="text/javascript">
+    console.log('js forms initiated')
+
+    function showMessagesError(msgs){
+        msgs = msgs.error;
+        console.log('start with', msgs)
+        for (var key in msgs) {
+            if (msgs.hasOwnProperty(key)) {
+                $.notify({
+                    message: msgs[key][0]
+                },{type: 'danger' });
+            }
+        }
+    }
+
+
+    $('#form_login_agenciado').submit(function(e){
+        e.preventDefault()
+        var formData = new FormData( document.querySelector("#form_login_agenciado") );
+        $('.btn-primary').attr('disabled', 'disabled');
+        $.ajax({
+            method: "POST",
+            url: "{!! url('/api/site/login-agenciado') !!}",
+            data: formData,
+            processData: false,
+            contentType: false,
+            // enctype: 'multipart/form-data'
+        })
+        .done( function( result ) {
+            console.log(result)
+            $('.btn-primary').removeAttr('disabled');
+            if(result.error){
+                $.notify({
+                    message: result.error
+                },{type: 'danger' });
+            } else {
+                $('#form_login_agenciado').unbind('submit').submit()
+            }
+        })
+        .fail( function( msg ) {
+            $('.btn-primary').removeAttr('disabled');
+            $.notify({
+                message: msg 
+            },{type: 'danger' });
+        });
+    })
+
+    $('#form_register_agenciado').submit(function(e){
+        e.preventDefault()
+        var formData = new FormData( document.querySelector("#form_register_agenciado") );
+        $('.btn-primary').attr('disabled', 'disabled');
+        $.ajax({
+            method: "POST",
+            url: "{!! url('/api/site/register-agenciado') !!}",
+            data: formData,
+            processData: false,
+            contentType: false,
+            // enctype: 'multipart/form-data'
+        })
+        .done( function( result ) {
+            console.log(result)
+            $('.btn-primary').removeAttr('disabled');
+            if(result.error){
+                showMessagesError(result)
+            } else {
+                $('#form_register_agenciado').unbind('submit').submit()
+            }
+        })
+        .fail( function( msg ) {
+            $('.btn-primary').removeAttr('disabled');
+            $.notify({
+                message: msg 
+            },{type: 'danger' });
+        });
+    })
+
+    
 
 
     $('.ag_form__login_link').click(function(e){

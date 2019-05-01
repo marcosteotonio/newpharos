@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('profiles', 'Api\ProfilesController@index');
 
 Route::group(['prefix' => 'site'], function(){
-    Route::get('check-agenciado', 'Api\HelperController@getCheckAgenciado');
+    Route::post('login-agenciado', 'Api\HelperController@getLoginAgenciado');
+    Route::post('register-agenciado', 'Api\HelperController@getRegisterAgenciado');
 });
 

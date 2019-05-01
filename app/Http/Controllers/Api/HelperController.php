@@ -31,18 +31,63 @@ class HelperController extends Controller
        
     }
 
-    function getCheckAgenciado(Request $request){
-        dd($request->all());
-        $validatedData = $request->validate([
-            'email' => 'required|unique:user',
-        ]);
-
-        $user = Profile::where('email', $email)->first();
-        if($user){
-            return response()->json(['success' => 'usuário já existe']);
-        }
-        return response()->json(['error' => 'Usuário ainda não existe.']);
+    function getLoginAgenciado(Request $request){
         
+        $messages = [
+            'required' => 'O :attribute é necessário.',
+            'email' => 'O :attribute é inválido.',
+        ];
+        
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];        
+
+        $validator = Validator::make( $request->all() , $rules, $messages);
+        
+        
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+        $user = User::where(['email' => $request->get('email'), 'level' => 3 ])->first();
+
+        if (!$user){
+            return response()->json(['error' => ['Usuário e/ou Senha incorreto!'] ] );
+        } else if( !password_verify ( $request->get('password') , $user->password ) ) {
+            return response()->json(['error' => ['Usuário e/ou Senha incorreto!'] ] );
+        }
+
+        return response()->json(['success' => 'successo']);
+
+    }
+
+    function getRegisterAgenciado(Request $request){
+        
+        $messages = [
+            'required' => 'O :attribute é necessário.',
+            'unique' => 'O :attribute já existe.',
+            'password.confirmed' => 'A senha não confere!',
+            'email' => 'O :attribute é inválido.',
+            'password.min' => 'A senha deve conter no mínimo :min caracteres.'
+        ];
+        
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required',
+            'level' => 'between:1,3|required'
+        ];        
+
+        $validator = Validator::make( $request->all() , $rules, $messages);
+        
+        
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+        
+        return response()->json(['success' => 'successo']);
 
     }
     

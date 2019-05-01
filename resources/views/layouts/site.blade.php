@@ -61,7 +61,7 @@
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
     </head>
     <body style="font-family: 'ProximaNova', serif;">
-        <div class="showUP" style="
+            <div class="showUP" style="
                 display: grid;
                 grid-template-columns: 1fr;
                 grid-template-rows: 1fr;
@@ -71,23 +71,23 @@
                 height: 100%;
                 position: fixed;
                 align-items: center;">
-                    <style>
-                    @keyframe pulse{
-                        0%{ transform: scale(1)};
-                        50%{ transform: scale(1.5);}
-                        100%{ transform: scale(1);}} 
-                    }
-                    .animated{
-                        animation-iteration-count: infinite;
-                        animation-duration: 1s;
-                        animation-timing-function: easy-in-out;
-                    }
-                    .pulse-infinite
-                    {
-                        animation-name: pulse;
-                    }
-                    </style>
-                    <img class="animated pulse-infinite"src="<?php echo url( env('APP_PREFIX') . '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;position: relative; left: calc(50% - 73px);">
+                <style>
+                @keyframe pulse{
+                    0%{ transform: scale(1)};
+                    50%{ transform: scale(1.5);}
+                    100%{ transform: scale(1);}} 
+                }
+                .animated{
+                    animation-iteration-count: infinite;
+                    animation-duration: 1s;
+                    animation-timing-function: easy-in-out;
+                }
+                .pulse-infinite
+                {
+                    animation-name: pulse;
+                }
+                </style>
+                <img class="animated pulse-infinite"src="<?php echo url( '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;position: relative; left: calc(50% - 73px);">
             </div>
         @include('includes.mainmenu')
 

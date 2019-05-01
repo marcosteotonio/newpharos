@@ -11,7 +11,7 @@
         display: none;
     }
 </style>
-<div id="cli_form" class="formularios">
+<div id="cli_form" class="formularios" style="box-shadow: 1px 1px 10px #0006;">
     <div class="btn_pointer_client" style=""></div>
     <div class="padding-bottom">
         <span class="cli_form__botoes_default">

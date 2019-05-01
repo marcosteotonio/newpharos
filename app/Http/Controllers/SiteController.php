@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 use Exception;
 use App\Media;
@@ -287,13 +287,12 @@ class SiteController extends Controller
 
     public function RegisterAgenciado(Request $request){
         
-        // request()->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique:users',
-        //     'password' => 'required|min:8|confirmed',
-        // ]);
+        
 
-        $user = User::create($request->all());
+        $data = $request->all();
+        $data['level'] = 3;
+
+        $user = User::create($data);
 
         // if ($request->hasFile('image')) {
         //     $media = new Media;
