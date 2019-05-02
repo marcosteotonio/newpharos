@@ -119,20 +119,33 @@
 
 
     <div id="ag_form__forgot" style="display: none;">
-        {!! Form::open(['method' => 'post', 'url' => '#', 'onsubmit' => 'return false;' ])!!}
-            <div>
+        {!! Form::open(['method' => 'post','url' => '','onSubmit' => 'return false;','name' => 'form_resend_agenciado', 'id' => 'form_resend_agenciado' ])!!}
+            <div class="" id="response-default">
                 Informe o email do seu cadastro para receber um link e recuperação de senha.
+            </div>
+            <div class="d-none" id="response-false">
+                <i class="fa fa-exclamation-triangle" style="color: red;"></i> Informe o email do seu cadastro para receber um link e recuperação de senha.
             </div>
             <div class="form-group">
                 {!! Form::label('email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
                 {!! Form::text('email', null, ['class' => 'form-control'])!!}
             </div>
             <div class="text-center padding-bottom">
-                <a href="" class="btn btn-access">
-                    OBTER LINK
-                </a>
+                <div class="text-center padding-bottom">
+                    {!! Form::submit('OBTER LINK', ['class' => 'btn btn-access']) !!}
+                </div>
             </div>
         {!! Form::close()!!}
+    </div>
+
+    <div id="ag_form__forgot__response" style="display: none;">
+        <div>
+            Um link de recuperação de senha foi enviado com sucesso para o email
+            <b><span id="email_masked"></span></b>
+        </div>
+        <div class="text-center padding-bottom">
+            <button type="button" class="btn btn-access ag_form__back">FAZER LOGIN</button>
+        </div>
     </div>
 
 
@@ -141,11 +154,9 @@
 
 </div>
 <script type="text/javascript">
-    console.log('js forms initiated')
 
     function showMessagesError(msgs){
         msgs = msgs.error;
-        console.log('start with', msgs)
         for (var key in msgs) {
             if (msgs.hasOwnProperty(key)) {
                 $.notify({
@@ -153,6 +164,20 @@
                 },{type: 'danger' });
             }
         }
+    }
+    function mask_email_address(string) {
+        let divisor = '@'
+        let limit_showed = 3
+        string = string.split(divisor);
+        let email_print = ''
+        for (i=0;i<string[0].length;i++){
+            if(i < limit_showed){
+            email_print += string[0][i]
+            } else {
+                email_print += '*'
+            }
+        }
+        return email_print + '@' + string[1];
     }
 
 
@@ -169,7 +194,6 @@
             // enctype: 'multipart/form-data'
         })
         .done( function( result ) {
-            console.log(result)
             $('.btn-primary').removeAttr('disabled');
             if(result.error){
                 $.notify({
@@ -200,7 +224,6 @@
             // enctype: 'multipart/form-data'
         })
         .done( function( result ) {
-            console.log(result)
             $('.btn-primary').removeAttr('disabled');
             if(result.error){
                 showMessagesError(result)
@@ -216,7 +239,39 @@
         });
     })
 
-    
+    $('#form_resend_agenciado').submit(function(e){
+        e.preventDefault()
+        var formData = new FormData( document.querySelector("#form_resend_agenciado") );
+
+        $('.btn-primary').attr('disabled', 'disabled');
+
+        $.ajax({
+            method: "POST",
+            url: "/api/site/resend-agenciado",
+            data: formData,
+            processData: false,
+            contentType: false,
+            // enctype: 'multipart/form-data'
+        })
+        .done( function( result ) {
+            $('.btn-primary').removeAttr('disabled');
+            if(result.error){
+                showMessagesError(result)
+            } else {
+               $('#ag_form__forgot').hide()
+               $('#email_masked').text( mask_email_address(result.success) ) 
+               $('#ag_form__forgot__response').show()
+            }
+        })
+        .fail( function( fail ) {
+
+            $('.btn-primary').removeAttr('disabled');
+            $.notify({
+                message: msg 
+            },{type: 'danger' });
+        });
+    })
+
 
 
     $('.ag_form__login_link').click(function(e){
@@ -244,6 +299,7 @@
     function ag_login(){
         $('#ag_form__resend').hide()
         $('#ag_form__forgot').hide()
+        $('#ag_form__forgot__response').hide()
         $('#ag_form__login').slideDown(500)
     }
 
@@ -256,6 +312,7 @@
     function ag_forgot(){
         $('#ag_form__login').hide()
         $('#ag_form__resend').hide()
+        $('#ag_form__forgot__response').hide()
         $('#ag_form__forgot').slideDown(500)
     }
 

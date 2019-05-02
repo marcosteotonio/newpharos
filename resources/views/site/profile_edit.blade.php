@@ -28,26 +28,27 @@ use Carbon\Carbon;
                         </div>
                     </div>
                         <div class="col-md-12">
-                            {!! Form::open(['method' => 'post'])!!}
+                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-data', 'id' => 'edit-agenciado-data', 'onSubmit' => 'return false'])!!}
 
-                                <div class="form-group">
-                                    {!! Form::label('email','Email')!!}
-                                    {!! Form::text('email', $user->email ,['class' => 'form-control'])!!}
-                                </div>
                             
                                 <div class="form-group">
                                     {!! Form::label('name','Nome')!!}
-                                    {!! Form::text('name', $user->name,['class' => 'form-control'])!!}
+                                    {!! Form::text('name', $user->name,['class' => 'form-control', 'readonly' => 'true', 'style' => 'cursor: not-allowed'])!!}
+                                </div>
+
+                                <div class="form-group">
+                                    {!! Form::label('email','Email')!!}
+                                    {!! Form::text('email', $user->email ,['class' => 'form-control', 'readonly' => 'true', 'style' => 'cursor: not-allowed'])!!}
                                 </div>
                                 <!--  -->
                                 <div class="form-group" style="width: 37%; padding-right: 5px; display: inline-block;">
                                     {!! Form::label('date_birth','Data de Nascimento')!!}
-                                    {!! Form::text('date_birth', isset($profile->date_birth) ? Carbon::parse( $profile->date_birth )->format('d/m/Y'): '',['class' => 'form-control', 'style' => ''])!!}
+                                    {!! Form::text('date_birth', isset($profile->date_birth) ? Carbon::parse( $profile->date_birth )->format('d/m/Y'): '',['class' => 'form-control frm_date', 'style' => ''])!!}
                                 </div>
 
                                 <div class="form-group" style="width: 20%;  padding-right: 5px; display: inline-block;">
                                     {!! Form::label('height','Altura')!!}
-                                    {!! Form::text('height', isset($profile->height) ? $profile->height : '',['class' => 'form-control', 'style' => ''])!!}
+                                    {!! Form::text('height', isset($profile->height) ? $profile->height : '',['class' => 'form-control frm_height', 'style' => ''])!!}
                                 </div>
 
                                 <div class="form-group" style="width: 20%; padding-right: 5px;  display: inline-block;">
@@ -72,14 +73,18 @@ use Carbon\Carbon;
                                     {!! Form::label('resume','Currículo')!!}
                                     {!! Form::textarea('resume', '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
                                 </div>
+                            {!! Form::close()!!}
 
-                                <!--  -->
-
+                            <!--  -->
+                            <br>
+                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-media-profile', 'id' => 'edit-agenciado-media-profile'])!!}
                                 <div class="form-group" style="">
                                     {!! Form::label('file','Foto de Apresentação')!!}
                                     {!! Form::file('media[]')!!}
                                 </div>
 
+
+                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-media-videos', 'id' => 'edit-agenciado-media-videos'])!!}
                                 <!--  -->
                                 <div class="" style="background-color: #eee; padding: 15px;">
                                     <div class="title_yt">
@@ -102,6 +107,11 @@ use Carbon\Carbon;
                                     </div>
                                 </div>
                                 <br>
+                            {!! Form::close()!!}
+
+
+
+                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-media-images', 'id' => 'edit-agenciado-media-images'])!!}
                                 <div class="" style="background-color: #eee; padding: 15px;">
                                     <div class="title_yt">
                                         Galeria de Fotos
@@ -137,16 +147,12 @@ use Carbon\Carbon;
                                         {!! Form::file('media[]')!!}
                                     </div>
                                 </div>
-                                <div style="padding: 15px; text-align: center;">
-                                    <button type="button" class="btn btn-access" style="">Salvar</button>
-                                </div>
-
-
-
-                                
-
-                            {!! Form::close()!!}
+                        {!! Form::close()!!}
+                        <div style="padding: 15px; text-align: center;">
+                            <button type="button" class="btn btn-access" id="save_edit_agenciado_data" style="">Salvar</button>
                         </div>
+
+                    </div>
                 </div>
             </div>
             
@@ -155,8 +161,11 @@ use Carbon\Carbon;
 @endsection
 
 @section('js_after')
+    <script type="text/javascript" src="{{ asset('js/plugins/jQuery-Mask/jquery.mask.min.js') }}" async></script>
+    <script type="text/javascript" src="{{ asset('js/form.js') }}" async></script>
     <script type="text/javascript">
         $(document).ready(function(){
+
             $('.owl-carousel').owlCarousel({
                 items: 4,
                 margin:10,
@@ -176,12 +185,35 @@ use Carbon\Carbon;
                     }
                 }
             }).show()
-        });
 
-        var  new_form_yt = '<div class="form-group" style=""> \
-                    <input class="form-control" placeholder="Digiteo título do vídeo" style="display: inline-block; width: 39%; background-color: #fff !important;" name="title_yt[]" type="text" value=""> \
-                    <input class="form-control" placeholder="Digiteo título do vídeo" style="display: inline-block; width: 49%; background-color: #fff !important;" name="link_yt[]" type="text" value=""> \
-                    <button type="button" class="btn btn-access" style="float: right;"><i class="fa fa-check"></i></button> \
-                </div>'
+            $('#save_edit_agenciado_data').on('click', () => {
+
+                var formData = new FormData( document.getElementById('edit-agenciado-data'))
+                $.ajax({
+                    method: "POST",
+                    url: "{!! url('/api/site/edit-agenciado-data') !!}",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    // enctype: 'multipart/form-data'
+                })
+                .done( function( result ) {
+                    console.log(result)
+                    $('.btn-primary').removeAttr('disabled');
+                    if(result.error){
+                        showMessagesError(result)
+                    } else {
+                        $('#form_register_agenciado').unbind('submit').submit()
+                    }
+                })
+                .fail( function( msg ) {
+                    $('.btn-primary').removeAttr('disabled');
+                    $.notify({
+                        message: msg 
+                    },{type: 'danger' });
+                });
+
+            })
+        });
     </script>
 @endsection

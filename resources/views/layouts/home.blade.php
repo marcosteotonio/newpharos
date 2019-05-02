@@ -108,31 +108,29 @@
             <!-- END Main Container -->
         </div>
         <!-- END Page Container -->
-
-        <!-- Laravel Original JS -->
         
+        <!-- Laravel Original JS -->
         <script src="{{ asset( '/js/laravel.app.js') }}"></script>
-
+        
         <!-- Dashmix Core JS -->
         <script src="{{ asset('/js/dashmix.app.js') }}"></script>
 
         <script type="text/javascript" src="{{ asset( '/js/plugins/OwlCarousel2/dist/owl.carousel.min.js' ) }}"></script>
+        <script type="text/javascript" src="{{ asset( '/js/plugins/bootstrap-notify-master/bootstrap-notify.min.js' ) }}"></script>
         
         
+        @yield('js_after')
+
+
         <script>
+            
             window.onload = function(){
                 setTimeout( function(){
                     document.body.style.overflowY = 'auto'
                     $('.showUP').hide();
                 }, 1000);
             }
-        </script>
-        
-        @yield('js_after')
 
-
-        <script type="text/javascript" src="{{ asset( '/js/plugins/bootstrap-notify-master/bootstrap-notify.min.js' ) }}"></script>
-        <script>
             $.notifyDefaults({
                 placement: {
                     from: "bottom"

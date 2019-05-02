@@ -22,5 +22,8 @@ Route::get('profiles', 'Api\ProfilesController@index');
 Route::group(['prefix' => 'site'], function(){
     Route::post('login-agenciado', 'Api\HelperController@getLoginAgenciado');
     Route::post('register-agenciado', 'Api\HelperController@getRegisterAgenciado');
+    Route::post('resend-agenciado', 'Api\HelperController@getResendAgenciado');
+    
+    Route::post('edit-agenciado-data', 'Api\HelperController@getEditAgenciadoData');
 });
 

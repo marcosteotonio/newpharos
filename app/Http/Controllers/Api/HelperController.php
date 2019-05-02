@@ -91,4 +91,62 @@ class HelperController extends Controller
 
     }
     
+
+    function getResendAgenciado(Request $request){
+        $messages = [
+            'required' => 'O :attribute é requerido.',
+            'email' => 'O :attribute é inválido.',
+        ];
+        
+        $rules = [
+            'email' => [
+                'required',
+                'email',
+                function($attribute, $value, $fail){
+                    $user = User::where('email', $value )->first();
+                    if (!$user) {
+                        $fail( $attribute.' não cadastrado.');
+                    }
+                }
+            ],
+        ];        
+        
+        $validator = Validator::make( $request->all() , $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+        return response()->json(['success' => $request->get('email')]);
+        
+    }
+
+    function getEditAgenciadoData(Request $request){
+
+        $messages = [
+            'required' => 'O :attribute é necessário.',
+            'unique' => 'O :attribute já existe.',
+            'password.confirmed' => 'A senha não confere!',
+            'email' => 'O :attribute é inválido.',
+            'password.min' => 'A senha deve conter no mínimo :min caracteres.'
+        ];
+        
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required',
+            'level' => 'between:1,3|required'
+        ];        
+
+        $validator = Validator::make( $request->all() , $rules, $messages);
+        
+        
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+        
+        return response()->json(['success' => 'successo']);
+    }
+    
 }
