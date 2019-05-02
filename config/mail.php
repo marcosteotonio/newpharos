@@ -35,7 +35,8 @@ MAIL_ENCRYPTION=ssl
     |
     */
 
-    'host' => env('MAIL_HOST', 'imaginaremarketing.com'),
+    // 'host' => env('MAIL_HOST', 'imaginaremarketing.com'),
+    'host' => env('MAIL_HOST', 'notthisemail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -62,7 +63,8 @@ MAIL_ENCRYPTION=ssl
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'teste@imaginaremarketing.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'teste@notthisemail.com'),
+        // 'address' => env('MAIL_FROM_ADDRESS', 'teste@imaginaremarketing.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
@@ -90,7 +92,8 @@ MAIL_ENCRYPTION=ssl
     |
     */
 
-    'username' => env('teste@imaginaremarketing.com'),
+    'username' => env('teste@notthisemail.com'),
+    // 'username' => env('teste@imaginaremarketing.com'),
 
     'password' => env('teste123'),
 
