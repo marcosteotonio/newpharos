@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Favorito;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -147,6 +148,31 @@ class HelperController extends Controller
         }
         
         return response()->json(['success' => 'successo']);
+    }
+
+    public function postFavorito(Request $request){
+
+        $cliente = $request->logado_id; // cliente logado
+        $usuario = $request->usuario_id;
+
+        $noRepeat = Favorito::where('user_id', $cliente)
+                ->where('agenciado_id', $usuario);
+
+        if($noRepeat->count()){
+            return response()->json([
+                'error' => 'Você já adicionou esse perfil em seus favoritos'
+            ]);
+        } else {
+            Favorito::create([
+                'user_id' => $cliente,
+                'agenciado_id' => $usuario
+            ]);
+
+            return response()->json([
+                'success' => 'Favorito adicionado com sucesso!'
+            ]);
+        }
+
     }
     
 }

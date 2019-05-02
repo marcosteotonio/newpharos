@@ -318,7 +318,7 @@ class SiteController extends Controller
             ]);
 
         if($login){
-            return redirect()->intended('/')->with('success', 'Usuário cadastrado com successo!');
+            return redirect()->intended('/perfil')->with('success', 'Usuário cadastrado com successo!');
         }
 
         return redirect()->intended('/')->with('error', 'Problemas em cadastrar usuário!');
