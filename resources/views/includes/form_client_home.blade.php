@@ -33,7 +33,7 @@
     </div>
 
     <div id="cli_form__login" style="display: block;">
-        {!! Form::open(['method' => 'post', 'url' => '#', 'onsubmit' => 'return false;' ])!!}
+        {!! Form::open(['method' => 'post', 'url' => '#', 'id' => 'form_login_cliente' ])!!}
             <div class="form-group">
                 {!! Form::label('email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
                 {!! Form::text('email', null, ['class' => 'form-control'])!!}
@@ -43,9 +43,9 @@
                 {!! Form::password('password', ['class' => 'form-control'])!!}
             </div>
             <div class="text-center padding-bottom">
-                <a href="" class="btn btn-access">
+                <button type="submit" class="btn btn-access">
                     ENTRAR
-                </a>
+                </button>
             </div>
         {!! Form::close()!!}
         <div class="text-center padding-bottom">
@@ -64,14 +64,14 @@
     </div>
 
     <div id="cli_form__resend" style="display: none;">
-        {!! Form::open(['method' => 'post', 'url' => '#', 'onsubmit' => 'return false;' ])!!}
+        {!! Form::open(['method' => 'post', 'id' => 'form_resend_cliente' ])!!}
             <div class="form-group">
                 {!! Form::label('email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
-                {!! Form::text('email', null, ['class' => 'form-control'])!!}
+                {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'inputClienteEmail'])!!}
             </div>
             <div class="form-group">
                 {!! Form::label('password', 'Senha', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
-                {!! Form::password('password', ['class' => 'form-control'])!!}
+                {!! Form::password('password', ['class' => 'form-control', 'id' => 'inputClientePassword'])!!}
             </div>
             <div class="form-group">
                 {!! Form::label('password_confirm', 'Confirmar Senha', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
@@ -112,6 +112,16 @@
 </div>
 
 <script type="text/javascript" defer>
+
+    {{--Login Cliente--}}
+
+    $('form#form_login_cliente').submit(function(e){
+        e.preventDefault()
+        $.post('url', { email: $('#inputClienteEmail').val(), password: $('#inputClientePassword') })
+          .done(function(data){
+
+          })
+    })
 
     $('.cli_form__login_link').click(function(e){
         $('.cli_form__login_link')[0].style.color = '#000'

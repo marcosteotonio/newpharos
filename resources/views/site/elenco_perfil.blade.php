@@ -176,7 +176,6 @@
 
 
         <div class="row" style="padding-top: 32px;">
-            
             <div class="col-md-4">
                 <div class="profile__images">
                     @forelse( $profile['medias'] as $key => $images)
