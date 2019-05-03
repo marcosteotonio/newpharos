@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Favorito;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -90,7 +91,6 @@ class HelperController extends Controller
         return response()->json(['success' => 'successo']);
 
     }
-    
 
     function getResendAgenciado(Request $request){
         $messages = [
@@ -148,5 +148,90 @@ class HelperController extends Controller
         
         return response()->json(['success' => 'successo']);
     }
-    
+
+    //Apenas para cliente
+    public function postFavorito(Request $request){
+
+        $cliente = $request->logado_id; // cliente logado
+        $usuario = $request->usuario_id;
+
+        $noRepeat = Favorito::where('user_id', $cliente)
+                ->where('agenciado_id', $usuario);
+
+        if($noRepeat->count()){
+            return response()->json([
+                'error' => 'Você já adicionou esse perfil em seus favoritos'
+            ]);
+        } else {
+            Favorito::create([
+                'user_id' => $cliente,
+                'agenciado_id' => $usuario
+            ]);
+
+            return response()->json([
+                'success' => 'Favorito adicionado com sucesso!'
+            ]);
+        }
+
+    }
+
+    function getLoginCliente(Request $request){
+
+        $messages = [
+            'required' => 'O :attribute é necessário.',
+            'email' => 'O :attribute é inválido.',
+        ];
+
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+
+        $validator = Validator::make( $request->all() , $rules, $messages);
+
+
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+        $user = User::where(['email' => $request->get('email'), 'level' => 2 ])->first();
+
+        if (!$user){
+            return response()->json(['error' => ['Usuário e/ou Senha incorreto!'] ] );
+        } else if( !password_verify ( $request->get('password') , $user->password ) ) {
+            return response()->json(['error' => ['Usuário e/ou Senha incorreto!'] ] );
+        }
+
+        return response()->json(['success' => 'successo']);
+
+    }
+
+    function getRegisterCliente(Request $request){
+
+        $messages = [
+            'required' => 'O :attribute é necessário.',
+            'unique' => 'O :attribute já existe.',
+            'password.confirmed' => 'A senha não confere!',
+            'email' => 'O :attribute é inválido.',
+            'password.min' => 'A senha deve conter no mínimo :min caracteres.'
+        ];
+
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required',
+            'level' => 'between:1,3|required'
+        ];
+
+        $validator = Validator::make( $request->all() , $rules, $messages);
+
+
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+        return response()->json(['success' => 'successo']);
+
+    }
 }

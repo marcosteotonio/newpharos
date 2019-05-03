@@ -32,6 +32,10 @@ Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
 Route::group(['middleware'=> ['auth.agenciado']], function(){
     Route::get('/perfil', 'SiteController@getProfle')->name('perfil');
     Route::get('/perfil/editar', 'SiteController@getProfleEditar');
+    //Cliente
+    Route::get('/cliente', 'SiteController@Cliente')->name('cliente');
+    Route::get('/cliente/editar', 'SiteController@getClienteEditar');
+
 });
 
 
@@ -53,8 +57,8 @@ Route::get('/admin', function () {
 Route::post('/login-agenciado', 'SiteController@LoginAgenciado');
 Route::post('/registrar-agenciado', 'SiteController@RegisterAgenciado');
 
-Route::post('/login-cliente', 'SiteController@LoginAgenciado');
-Route::post('/register-cliente', 'SiteController@LoginAgenciado');
+Route::post('/login-cliente', 'SiteController@LoginCliente');
+Route::post('/registrar-cliente', 'SiteController@RegisterCliente');
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -75,6 +79,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/skills', 'SkillController');
 
     // Client
+
     Route::get('/clients/solicitation', 'ClientController@solicitation');
     Route::get('/clients/awaiting', 'ClientController@awaiting');
     Route::resource('/clients', 'ClientController');

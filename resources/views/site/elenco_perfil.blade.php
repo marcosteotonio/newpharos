@@ -158,11 +158,13 @@
 
             <div class="col-md-8 col-sm-4 col-xs-12">
                 <div class="float-right">
-                    <a href="" class="btn btn-access-red">
+                    @if(Auth::user())
+                    <a  class="btn btn-access-red" id="bt-favoritar" style="color:#FFF">
                         <i class="fa fa-fw fa-heart d-sm-none"></i>
                         <i class="fa fa-fw fa-heart ml-1 d-none d-sm-inline-block"></i>
-                        <span class="d-none d-sm-inline-block" style="text-transform: uppercase;">demonstrar interesse</span>
+                        <span class="d-none d-sm-inline-block" style="text-transform: uppercase;color:#FFF">demonstrar interesse</span>
                     </a>
+                    @endif
                     <a href="" class="btn btn-access" style="height: 50px; padding: 13px;">
                         <i class="fa fa-fw fa-share-alt fa-lg d-sm-none"></i>
                         <i class="fa fa-fw fa-share-alt fa-lg ml-1 d-none d-sm-inline-block"></i>
@@ -174,7 +176,6 @@
 
 
         <div class="row" style="padding-top: 32px;">
-            
             <div class="col-md-4">
                 <div class="profile__images">
                     @forelse( $profile['medias'] as $key => $images)
@@ -296,5 +297,30 @@
                 $('#player').attr('src', src)
             })
         });
+
+
+    //    opcao de favoritar
+        $('#bt-favoritar').click(function(){
+
+            $.post("{{route('favoritar')}}", {usuario_id : {{$profile['user_id']}}, logado_id: {{ Auth::user()->id}}}, function(data){
+              if(data.success){
+                  $.notify({
+                      // options
+                      message: data.success
+                  },{
+                      // settings
+                      type: 'danger'
+                  });
+              } else {
+                  $.notify({
+                      // options
+                      message: data.error
+                  },{
+                      // settings
+                      type: 'danger'
+                  });
+              }
+            })
+        })
     </script>
 @endsection
