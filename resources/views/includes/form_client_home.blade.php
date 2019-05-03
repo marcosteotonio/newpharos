@@ -33,7 +33,7 @@
     </div>
 
     <div id="cli_form__login" style="display: block;">
-        {!! Form::open(['method' => 'post', 'url' => '#', 'id' => 'form_login_cliente' ])!!}
+        {!! Form::open(['method' => 'post', 'url' => '/login-cliente', 'id' => 'form_login_cliente' ])!!}
             <div class="form-group">
                 {!! Form::label('email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
                 {!! Form::text('email', null, ['class' => 'form-control'])!!}
@@ -64,7 +64,7 @@
     </div>
 
     <div id="cli_form__resend" style="display: none;">
-        {!! Form::open(['method' => 'post', 'id' => 'form_resend_cliente' ])!!}
+        {!! Form::open(['method' => 'post','url'=> '/registrar-cliente', 'id' => 'form_resend_cliente' ])!!}
             <div class="form-group">
                 {!! Form::label('email', 'E-mail', ['style' => 'font-size: 14px; font-weight: 200;'])!!}
                 {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'inputClienteEmail'])!!}
@@ -115,13 +115,15 @@
 
     {{--Login Cliente--}}
 
-    $('form#form_login_cliente').submit(function(e){
-        e.preventDefault()
-        $.post('url', { email: $('#inputClienteEmail').val(), password: $('#inputClientePassword') })
-          .done(function(data){
+    {{--$('form#form_login_cliente').submit(function(e){--}}
+        {{--e.preventDefault();--}}
+        {{--alert('foi')--}}
+        {{--$.post("{{route('login.cliente')}}", { email: $('#inputClienteEmail').val(), password: $('#inputClientePassword') })--}}
+          {{--.done(function(data){--}}
+                {{--alert(data)--}}
+          {{--})--}}
 
-          })
-    })
+    {{--})--}}
 
     $('.cli_form__login_link').click(function(e){
         $('.cli_form__login_link')[0].style.color = '#000'

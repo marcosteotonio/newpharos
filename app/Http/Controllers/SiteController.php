@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Config;
@@ -324,6 +325,76 @@ class SiteController extends Controller
         return redirect()->intended('/')->with('error', 'Problemas em cadastrar usuário!');
         
         
+
+    }
+
+
+    public function cliente(){
+        $lista = Favorito::where('user_id', Auth::user()->id)->get();
+
+        $ids = $lista->map(function($lista){
+            return $lista->agenciado_id;
+        });
+        $favoritos = Profile::whereIn('user_id', $ids)->get();
+
+        return view('site.cliente', compact('favoritos'));
+    }
+
+    /*
+     * LOGIN DO CLIENTE
+     * */
+    public function LoginCliente(Request $request){
+        $user = Auth::attempt([
+            'email' => $request->get('email'),
+            'password'=> $request->get('password'),
+            'level' => 2
+        ]);
+        if(!$user){
+            return redirect()->intended('/')->with('error', 'E-mail e/ou Senha inválida!');
+        }
+        return redirect()->intended('/cliente')->with('info', 'Logado com successo!');
+    }
+
+
+    public function RegisterCliente(Request $request){
+
+
+
+        $data = $request->all();
+        $data['level'] = 2;
+
+        $user = User::create($data);
+
+        // if ($request->hasFile('image')) {
+        //     $media = new Media;
+
+        //     $slug = str_slug($request->name, "-");
+
+        //     $image = $request->file('image');
+        //     $name = "{$slug}.{$request->image->extension()}";
+        //     $path = "/uploads/users";
+        //     $destinationPath = public_path($path);
+        //     $imagePath = $destinationPath . "/" . $name;
+        //     $image->move($destinationPath, $name);
+
+        //     $media->path = $path . "/" . $name;
+        //     $media->type = "image";
+
+        //     $user->medias()->save($media);
+        // }
+
+        $login = Auth::attempt([
+            'email' => $request->get('email'),
+            'password'=> $request->get('password')
+        ]);
+
+        if($login){
+            return redirect()->intended('/cliente')->with('success', 'Usuário cadastrado com successo!');
+        }
+
+        return redirect()->intended('/')->with('error', 'Problemas em cadastrar usuário!');
+
+
 
     }
 
