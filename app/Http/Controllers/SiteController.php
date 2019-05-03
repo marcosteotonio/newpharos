@@ -282,7 +282,7 @@ class SiteController extends Controller
             return redirect()->intended('/')->with('error', 'E-mail e/ou Senha inválida!');
         }
 
-        return redirect()->intended('/')->with('info', 'Logado com successo!');
+        return redirect()->intended('/perfil')->with('info', 'Logado com successo!');
 
     }
 
