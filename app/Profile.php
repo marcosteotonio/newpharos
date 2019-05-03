@@ -58,6 +58,8 @@ class Profile extends Model
         'tutor_rg',
         'tutor_organ',
         'tutor_cpf',
+        'curso',
+        'publicidade'
     ];
 
     protected $dates = [

@@ -73,6 +73,16 @@ use Carbon\Carbon;
                                     {!! Form::label('resume','Currículo')!!}
                                     {!! Form::textarea('resume', '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
                                 </div>
+
+                            <div class="form-group" style="">
+                                {!! Form::label('resume','Cursos')!!}
+                                {!! Form::textarea('curso', '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
+                            </div>
+
+                            <div class="form-group" style="">
+                                {!! Form::label('resume','Publicidades')!!}
+                                {!! Form::textarea('publicidade', '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
+                            </div>
                             {!! Form::close()!!}
 
                             <!--  -->

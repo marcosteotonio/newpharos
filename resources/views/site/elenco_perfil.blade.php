@@ -221,17 +221,14 @@
                         <div class="profille__curriculo_subtitle">
                             Cursos:
                         </div>
-                        <div> Take 04 intensivo em TV e cinema 2016 </div>
-                        <div> Take 04 intensivo em Publicidade e Propaganda 2016 </div>
-                        <div> Take 04 intensivo em Publicidade e Propaganda 2016 </div>
+                       {{$profile['curso']}}
                     </div>
                     <div class="col-md-12 padding-15">
                         <div class="profille__curriculo_subtitle">
                             Publicidade:
                         </div>
-                        <div> Comercial Shopping Lages Gardem</div>
-                        <div> Comercial Shopping Lages Gardem</div>
-                        <div> Comercial Shopping Lages Gardem</div>
+                        {{ $profile['publicidade'] }}
+
                     </div>
                 </div>
 
