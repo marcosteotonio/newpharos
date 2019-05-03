@@ -302,7 +302,7 @@
     //    opcao de favoritar
         $('#bt-favoritar').click(function(){
 
-            $.post("{{route('favoritar')}}", {usuario_id : {{$profile['user_id']}}, logado_id: {{ Auth::user()->id}}}, function(data){
+            $.post("{{route('favoritar')}}", {usuario_id : {{$profile['user_id']}}, logado_id: {{ (Auth::user()) ? Auth::user()->id : ''}}}, function(data){
               if(data.success){
                   $.notify({
                       // options
