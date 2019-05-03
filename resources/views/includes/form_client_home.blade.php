@@ -78,9 +78,9 @@
                 {!! Form::password('password', ['class' => 'form-control'])!!}
             </div>
             <div class="text-center padding-bottom">
-                <a href="" class="btn btn-access">
+                <button type="submit" class="btn btn-access">
                     CADASTRAR
-                </a>
+                </button>
             </div>
         {!! Form::close()!!}
         <div class="text-center padding-bottom">
