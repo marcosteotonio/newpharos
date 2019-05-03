@@ -362,8 +362,9 @@ class SiteController extends Controller
 
         $data = $request->all();
         $data['level'] = 2;
-
+        $data['name'] = 'cliente';
         $user = User::create($data);
+
 
         // if ($request->hasFile('image')) {
         //     $media = new Media;
