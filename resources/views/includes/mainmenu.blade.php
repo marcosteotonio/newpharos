@@ -1,21 +1,60 @@
 <?php
+if(0){
     // use Illuminate\Support\Facades\Auth;
     // $login = Auth::user();
     // if(Auth::check()){
     //     $level = $login->level;
     // }
     // Auth::logout()
+}
 ?>
+<style>
+
+</style>
 <div class="container-page">
     <div class=header-menu-main>
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
+                <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
                     <a href="{!!route('home')!!}">
-                        <img src="<?php echo url( env('APP_PREFIX') . '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;">
+                        <img src="<?php echo url( '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;">
                     </a>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <button type="button" class="menu_mobile_open" style="display: none">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div id="menu_mobile_topo" class="menu_mobile" style="display: none;">
+                    <div class="menu_mobile__main">
+                        <a class="menu_mobile__main__image" href="{!!route('home')!!}">
+                            <img src="<?php echo url( '/images/logo-white.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;">
+                        </a>
+                        <div class="menu_mobile__main__menu">
+                            <ul>
+                                <li>
+                                    <a href="{!!route('elencos')!!}">
+                                        ELENCO
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{!! route('trabalhos') !!}">
+                                        TRABALHOS
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{!!route('agencia')!!}">
+                                        AGÊNCIA
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{!!route('contato')!!}">
+                                        CONTATO
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="row">
                         <div class="col-md-12 inline-menu-top">
                             <ul class=inline-menu>
@@ -68,13 +107,13 @@
                                     @endif
                                 @else
                                     <button type="button" class="btn btn-access acess_agenciado" style="color: white; height: 50px;">
-                                        <i class="fa fa-fw fa-star"></i>
-                                        <span class="d-none d-sm-inline-block">ÁREA DO AGENCIADO</span>
+                                        <i class="d-none d-sm-inline-block fa fa-fw fa-star"></i>
+                                        <span class="">ÁREA DO AGENCIADO</span>
                                     </button>
                                     
                                     <button type="button" class="btn btn-access acess_client" style="color: white; height: 50px;">
-                                        <i class="fa fa-fw fa-eye"></i>
-                                        <span class="d-none d-sm-inline-block">AREA DO CLIENTE</span>
+                                        <i class="d-none d-sm-inline-blockfa fa-fw fa-eye"></i>
+                                        <span class="">AREA DO CLIENTE</span>
                                     </button>
                                 @endif
                             </div>
@@ -108,5 +147,25 @@
         $('.formularios').hide()
         $('#cli_form').show()
     })
+
+    $('.menu_mobile_open').click(function(){
+        console.log('click')
+        let status = document.getElementById('menu_mobile').style.display
+        if( status === 'none'){
+            document.getElementById('menu_mobile').style.display = "block"
+        } else {
+            document.getElementById('menu_mobile').style.display = "none"
+        }
+        $('#menu_mobile_topo').toggle()  
+    })
+
+    $(document).click(function(event) { 
+        $target = $(event.target);
+        if(!$target.closest('.menu_mobile').length && 
+        $('.menu_mobile').is(":visible")) {
+            $('.menu_mobile').hide();
+        }        
+    });
+    
 
 </script>

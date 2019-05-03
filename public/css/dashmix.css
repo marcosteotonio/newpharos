@@ -16941,7 +16941,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .footer {
   background-color: #2d3645;
   padding: 50px 0px 10px 0px;
-  height: 335px; }
+  height: auto; }
   .footer .footer__image {
     max-height: 141px;
     filter: opacity(20%); }
@@ -16971,5 +16971,77 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   background-color: #272b34; }
   .allrightsreserved .centerGrid {
     grid-template-rows: 75px; }
+
+@media (max-width: 767px) {
+  .header-menu-main {
+    height: auto;
+    text-align: center; }
+    .header-menu-main .inline-menu-top {
+      display: none; }
+
+  .footer {
+    text-align: center; }
+    .footer__image {
+      margin-bottom: 15px; }
+
+  .btn__decorated_side {
+    display: none !important; }
+
+  #cli_form {
+    width: 90% !important;
+    right: unset !important;
+    top: 30px !important;
+    position: fixed !important;
+    top: 40px !important; }
+
+  #ag_form {
+    width: 90% !important;
+    right: unset !important;
+    top: 30px !important;
+    position: fixed !important;
+    top: 40px !important; }
+
+  .btn_pointer_agenc, .btn_pointer_client {
+    display: none; }
+
+  .btn__decorated_side {
+    display: none; }
+
+  .login-field {
+    width: 100%;
+    height: unset;
+    margin-bottom: 10px; }
+
+  .menu_mobile_open {
+    display: block !important;
+    position: fixed;
+    padding: 13px; }
+
+  .menu_mobile {
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    z-index: 105;
+    width: 90%;
+    background-color: #3e5986; }
+    .menu_mobile__main__image {
+      margin-bottom: 15px; }
+    .menu_mobile__main__menu ul {
+      display: block;
+      height: 100%;
+      padding: 25px; }
+      .menu_mobile__main__menu ul li {
+        list-style-type: none;
+        padding: unset;
+        margin: unset;
+        font-size: 20px;
+        font-weight: 600;
+        height: 50px; }
+        .menu_mobile__main__menu ul li a {
+          color: white !important; }
+        .menu_mobile__main__menu ul li a:hover {
+          box-shadow: 1px 1px 4px #ffff; } }
 
 /*# sourceMappingURL=dashmix.css.map */
