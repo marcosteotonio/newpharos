@@ -103,7 +103,7 @@
         $(document).ready(function(){
             $('.owl-carousel').owlCarousel({
                 items: 4,
-                loop:true,
+                loop:{{( count($favoritos) >= 4 ? "true" : "false"  )}},
                 margin:10,
                 nav:true,
                 dots: false,
