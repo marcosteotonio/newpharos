@@ -89,14 +89,14 @@
         <div class="upperButtons">
             <div class="row">
                 <div class="col md-12">
-                    <div class="inline-flex float-right">
+                    <div class="inline-flex float-right btn_facaparte">
                         <a href="#">
                             <div class="btn btn-golden">FAÇA PARTE DO NOSSO ELENCO</div>
                         </a>
                     </div>
                     <div class="inline-flex float-right form-busca-agenciado">
-                        {!! Form::open(['url' => '#', 'method'=> 'post', 'style'=> ''])!!}
-                            {!! Form::text('search', null, ['class'=> 'input-text-w-image', 'placeholder' => 'Encontre um agenciado...'])!!}
+                        {!! Form::open(['url' => url( env('APP_PREFIX') .'/elencos'),'class'=> '','name' => 'pesquisa_form', 'method'=> 'get', 'style'=> ''])!!}
+                            {!! Form::text('search', isset($input['search']) ? $input['search'] : '' , ['class'=> 'input-text-w-image', 'placeholder' => 'Encontre um agenciado...'])!!}
                             <button type="submit" class="btn-transparent">
                                 <i class='fa fa-search'></i>
                             </button>

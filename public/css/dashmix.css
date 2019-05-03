@@ -16992,14 +16992,16 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     right: unset !important;
     top: 30px !important;
     position: fixed !important;
-    top: 40px !important; }
+    top: 40px !important;
+    max-width: unset !important; }
 
   #ag_form {
     width: 90% !important;
     right: unset !important;
     top: 30px !important;
     position: fixed !important;
-    top: 40px !important; }
+    top: 40px !important;
+    max-width: unset !important; }
 
   .btn_pointer_agenc, .btn_pointer_client {
     display: none; }
@@ -17015,7 +17017,19 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   .menu_mobile_open {
     display: block !important;
     position: fixed;
-    padding: 13px; }
+    padding: 13px;
+    border: unset;
+    background-color: unset; }
+
+  .btn_facaparte {
+    width: 100%;
+    margin-bottom: 10px; }
+    .btn_facaparte a .btn-golden {
+      margin-left: 0px;
+      width: 100%; }
+
+  .form-busca-agenciado {
+    width: 100%; }
 
   .menu_mobile {
     display: block;
