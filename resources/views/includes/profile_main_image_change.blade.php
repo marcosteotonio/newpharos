@@ -1,6 +1,7 @@
 <div style="background-color: #eee; padding: 15px;">
     <div class="row">
         <div class="col-md-12">
+        {!! Form::label('file','Foto de Apresentação')!!}<br>
             <img id="avatar" src="<?php
             if(sizeof($media) > 0 ){
                 echo asset('/uploads/profiles/'.$user->id.'/'.$media[0]->path);
@@ -10,10 +11,11 @@
             ?>" alt="" style="height:320px; witdh: 280px">
         </div>
         <div class="col-md-12">
+        <hr>
             {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-media-main', 'id' => 'edit-agenciado-media-main'])!!}
                 {!! Form::hidden('user_id', $user->id )!!}
                 <div class="form-group" style="">
-                    {!! Form::label('file','Foto de Apresentação')!!}<br>
+                    
                     {!! Form::file('file')!!}
                     <button type="submit" class="btn btn-access save_edit_agenciado_main" style="float: right;">{{ __('profile.enviar')}}</i></button>
                 </div>

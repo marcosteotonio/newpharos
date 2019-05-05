@@ -30,6 +30,12 @@ return [
     'courses' => 'Cursos',
     'publicity' => 'Publicidades',
     'save_profile' => 'Salvar Dados',
+    
+    'no_media' => 'Sem Imagens',
+
     'enviar' => 'Enviar',
+    'photo_galery' => 'Galeria de Fotos',
+
+    'confirmremove' => "Confirma Remoção?",
 
 ];

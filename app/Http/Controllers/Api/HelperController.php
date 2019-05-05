@@ -226,6 +226,64 @@ class HelperController extends Controller
         return response()->json(['success' => $data]);
     }
 
+    /**
+     * Adiciona Imagens Após a primeira,
+     * isso é feito ignorando o form antes de 
+     * adicionar a primeira foto.
+     */
+    function getAddAgenciadoMediaImages(Request $request){
+        $messages = [
+            'file.required' => 'Nenhum arquivo selecionado!',
+            'file.image' => 'O arquivo deve ser uma imagem!',
+            'file.mimes' => 'Os formátos válidos são jpeg,png,jpg ou gif!',
+        ];
+        
+        $rules = [
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];        
+        
+        $validator = Validator::make( $request->all() , $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+        $order = Media::where('entity_id', $request->get('user_id'))->count();
+        $imageName = time().'.'.request()->file->getClientOriginalExtension();
+        request()->file->move( public_path('uploads/profiles/' . $request->get('user_id') ), $imageName);
+        
+        // dd($this->media_fields());  
+        $data = [
+            'entity_id' => $request->get('user_id'),
+            'entity_type' => 'App\Profile',
+            'type' => 'image',
+            'path' => $imageName,
+            'order' =>  $order,
+            'title' =>  null,
+        ];
+        
+        $media = Media::insert($data);
+
+        return response()->json(['success' => $data]);
+    }
+
+    function getRemoveAgenciadoMediaImages(Request $request, $id){
+        
+        $idExplode = explode('|', base64_decode($id));
+        $data['user_id'] = $idExplode[0];
+        $data['order'] = $idExplode[1];
+        
+        $mediaToDelete = Media::where(['entity_id' =>  $data['user_id'], 'order'=> $data['order'] ])->delete();
+
+        if($mediaToDelete){
+            return response()->json(['success' => 'Foto do perfil removida com sucesso!']);
+        } else {
+            return response()->json(['error' => 'Not Found!']);
+        }
+
+
+    }
+
     //Apenas para cliente
     public function postFavorito(Request $request){
 
