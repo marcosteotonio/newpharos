@@ -31,4 +31,6 @@ return [
     'publicity' => 'Publicidades',
     'save_profile' => 'Salvar Dados',
 
+    'enviar' => 'Enviar',
+
 ];

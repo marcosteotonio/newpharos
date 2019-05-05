@@ -25,6 +25,9 @@ Route::group(['prefix' => 'site'], function(){
     Route::post('resend-agenciado', 'Api\HelperController@getResendAgenciado');
     
     Route::post('edit-agenciado-data', 'Api\HelperController@getEditAgenciadoData');
+    
+    Route::post('edit-agenciado-media-main', 'Api\HelperController@getEditAgenciadoMediaMain');
+    
     Route::post('favoritar', 'Api\HelperController@postFavorito')->name('favoritar');
 
 //    Cliente

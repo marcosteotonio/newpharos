@@ -185,6 +185,47 @@ class HelperController extends Controller
         
     }
 
+
+    function getEditAgenciadoMediaMain(Request $request){
+        $messages = [
+            'required' => 'O :attribute é requerido.',
+        ];
+        
+        $rules = [
+            'user_id' => 'required',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];        
+        
+        $validator = Validator::make( $request->all() , $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+        
+        $imageName = time().'.'.request()->file->getClientOriginalExtension();
+        request()->file->move( public_path('uploads/profiles/' . $request->get('user_id') ), $imageName);
+        
+        // dd($this->media_fields());  
+        $data = [
+            'entity_id' => $request->get('user_id'),
+            'entity_type' => 'App\Profile',
+            'type' => 'image',
+            'path' => $imageName,
+            'order' =>  0,
+            'title' =>  null,
+        ];
+        
+        $media = Media::where('entity_id', $request->get('user_id') )->first();
+        if($media){
+            Media::where('entity_id', $request->get('user_id') )->update($data);
+        } else {
+            Media::insert($data);
+        }
+
+        return response()->json(['success' => $data]);
+    }
+
     //Apenas para cliente
     public function postFavorito(Request $request){
 
@@ -283,9 +324,9 @@ class HelperController extends Controller
             
             $custom_fields = [
                 'tattoo' => 0,
-                'film_outside' => true,
-                'make_figuration' => true,
-                'make_event' => true,
+                'film_outside' => false,
+                'make_figuration' => false,
+                'make_event' => false,
             ];
             if( key_exists($value->Field, $custom_fields )){
                 $Fields[$value->Field] = $custom_fields[$value->Field] ;
@@ -294,5 +335,27 @@ class HelperController extends Controller
 
 
         return $Fields;
+    }
+
+    function media_fields(){
+        $profile =  DB::select('describe media');
+        $Fields = [];
+        foreach($profile as $key => $value){
+
+            $exclude = ['id','created_at','updated_at'];
+            if(!in_array($value->Field, $exclude) ){
+                $Fields[ $value->Field ] = null;
+            }
+            
+            $custom_fields = [
+               
+            ];
+            if( key_exists($value->Field, $custom_fields )){
+                $Fields[$value->Field] = $custom_fields[$value->Field] ;
+            }
+        }
+
+        return $Fields;
+
     }
 }

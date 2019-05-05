@@ -76,6 +76,8 @@ use Carbon\Carbon;
 <br>
 
 <script type="text/javascript" async>
+
+    $('Form[name="edit-agenciado-data"]').trigger("reset")
     $('Form[name="edit-agenciado-data"]').submit(function(e){
         e.preventDefault()
         console.log('tentativa enviar detalhes')

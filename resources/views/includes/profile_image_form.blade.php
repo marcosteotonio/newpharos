@@ -1,3 +1,4 @@
+@if(sizeof($media) > 0)
 <div class="" style="background-color: #eee; padding: 15px;">
     <div class="title_yt">
         Galeria de Fotos
@@ -33,3 +34,4 @@
         </div>
     {!! Form::close()!!}
 </div>
+@endif
