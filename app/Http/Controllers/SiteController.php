@@ -283,7 +283,7 @@ class SiteController extends Controller
             return redirect()->intended('/')->with('error', 'E-mail e/ou Senha inválida!');
         }
 
-        return redirect()->intended('/')->with('info', 'Logado com successo!');
+        return redirect()->intended('/perfil')->with('info', 'Logado com successo!');
 
     }
 
@@ -363,8 +363,9 @@ class SiteController extends Controller
 
         $data = $request->all();
         $data['level'] = 2;
-
+        $data['name'] = 'cliente';
         $user = User::create($data);
+
 
         // if ($request->hasFile('image')) {
         //     $media = new Media;
