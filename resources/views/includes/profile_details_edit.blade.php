@@ -1,8 +1,6 @@
-<?php
-    
-?>
+<?php ?>
 {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-data', 'id' => 'edit-agenciado-data', 'onSubmit' => 'return false'])!!}
-
+    {!! Form::hidden('user_id', $user->id )!!}
                         
     <div class="form-group">
         {!! Form::label('name',__("Nome"))!!}
@@ -60,12 +58,12 @@
     </div>
 
     <div class="form-group" style="">
-        {!! Form::label('courses',__('profile.courses') )!!}
-        {!! Form::textarea('courses', isset($profile->courses) ? $profile->courses : '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
+        {!! Form::label('curso',__('profile.courses') )!!}
+        {!! Form::textarea('curso', isset($profile->courses) ? $profile->courses : '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
     </div>
 
     <div class="form-group" style="">
-        {!! Form::label('publicity','Publicidades')!!}
+        {!! Form::label('publicidade',__('profile.publicity') )!!}
         {!! Form::textarea('publicidade', isset($profile->publicity) ? $profile->publicity : '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
     </div>
     <button type="submit" class="btn btn-access" id="save_edit_agenciado_data" style="float: right;">{{__('profile.save_profile') }}</button>

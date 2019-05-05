@@ -11,21 +11,8 @@
 |
  */
 
-$languages = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-if($languages){
-    $languages = explode(';',$languages);
-    App::setLocale($languages[0]);
-}
-
-Route::group([], function(){
-    $languages = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-    if($languages){
-        $languages = explode(';',$languages);
-        if($languages){
-            $languages = explode(',',$languages[0]);
-        }
-        App::setLocale($languages[0]);
-    }
+ Route::group(['middleware' => 'lang'], function(){
+    
     //SITE - todas as rotas em portugues
     Route::get('/', 'SiteController@getIndex')->name('home');
     Route::get('/logout', 'SiteController@getLogout')->name('logout');

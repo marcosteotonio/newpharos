@@ -12,7 +12,7 @@ return [
     | you want to customize your views to better match your application.
     |
 
-    __('Data de Nascimento') convert EN language
+    __('fancy_name') convert EN language as 'Nome Artístico'
     */
 
     // 'previous' => '&laquo; Previous',

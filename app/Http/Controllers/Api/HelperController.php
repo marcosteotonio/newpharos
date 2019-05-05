@@ -123,9 +123,10 @@ class HelperController extends Controller
 
     function getEditAgenciadoData(Request $request){
 
+
         $messages = [
-            'name.required' => 'O Nome é necessário',
-            'email.required' => 'O Email é necessário',
+            'fancy_name.required' => 'O Nome é necessário',
+            // 'email.required' => 'O Email é necessário',
             'date_birth.required' => 'A Data de Nascimento é necessário',
             'height.required' => 'A Altura é necessário',
             'dummy.required' => 'O Manequin é necessário',
@@ -137,8 +138,8 @@ class HelperController extends Controller
         ];
         
         $rules = [
-            'name' => 'required',
-            'email' => 'required',
+            'fancy_name' => 'required',
+            // 'email' => 'required',
             'date_birth' => 'required',
             'height' => 'required',
             'dummy' => 'required',
@@ -147,7 +148,7 @@ class HelperController extends Controller
             // 'resume' => 'required',
             // 'courses' => 'required',
             // 'publicity' => 'required',
-        ];        
+        ];
 
         $validator = Validator::make( $request->all() , $rules, $messages);
         
@@ -160,10 +161,12 @@ class HelperController extends Controller
         $data = $request->all();
         $data['date_birth'] = Carbon::parse($data['date_birth'])->format('Y-m-d');
         $data['height'] = str_replace(',','.',$data['height']);
+         
+        $data = array_replace(  $this->profile_fields(), $data );
+
 
         $profile = Profile::insert($data);
         
-        dd($profile);
 
         if($profile){
             return response()->json(['success' => 'Dados do perfil Atualizados.']);
@@ -257,5 +260,18 @@ class HelperController extends Controller
 
         return response()->json(['success' => 'successo']);
 
+    }
+
+    function profile_fields(){
+        $profile =  DB::select('describe profiles');
+        $Fields = [];
+        foreach($profile as $key => $value){
+            $exclude = ['id','created_at','updated_at'];
+            if(!in_array($value->Field, $exclude) ){
+                $Fields[$value->Field] = 'unset';
+            }
+        }
+
+        return $Fields;
     }
 }
