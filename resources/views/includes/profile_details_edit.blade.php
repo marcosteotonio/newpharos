@@ -1,4 +1,6 @@
-<?php ?>
+<?php
+use Carbon\Carbon;
+?>
 {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-data', 'id' => 'edit-agenciado-data', 'onSubmit' => 'return false'])!!}
     {!! Form::hidden('user_id', $user->id )!!}
                         
@@ -14,7 +16,7 @@
 
     <div class="form-group">
         {!! Form::label('fancy_name',__("profile.fancy_name"))!!}
-        {!! Form::text('fancy_name', isset($profile->fancy_name) ? $profile->fancy_name : '',['class' => 'form-control', 'readonly' => 'true', 'style' => 'cursor: not-allowed'])!!}
+        {!! Form::text('fancy_name', isset($profile->fancy_name) ? $profile->fancy_name : '',['class' => 'form-control'])!!}
     </div>
 
     <div class="row">
@@ -52,19 +54,21 @@
         <input  name="gender" type="radio" value="feminino" <?php if(isset($profile->gender)){ if($profile->gender == 'feminino'){ echo  'checked="true"'; } } ?> > {{__('profile.female')}}
     </div>
 
-    <div class="form-group" style="">
-        {!! Form::label('resume', __('profile.resume') )!!}
-        {!! Form::textarea('resume',isset($profile->resume) ? $profile->resume : '', ['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
-    </div>
+    @if(0)
+        <div class="form-group" style="">
+            {!! Form::label('resume', __('profile.resume') )!!}
+            {!! Form::textarea('resume',isset($profile->resume) ? $profile->resume : '', ['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
+        </div>
+    @endif
 
     <div class="form-group" style="">
         {!! Form::label('curso',__('profile.courses') )!!}
-        {!! Form::textarea('curso', isset($profile->courses) ? $profile->courses : '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
+        {!! Form::textarea('curso', isset($profile->curso) ? $profile->curso : '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
     </div>
 
     <div class="form-group" style="">
         {!! Form::label('publicidade',__('profile.publicity') )!!}
-        {!! Form::textarea('publicidade', isset($profile->publicity) ? $profile->publicity : '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
+        {!! Form::textarea('publicidade', isset($profile->publicidade) ? $profile->publicidade : '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
     </div>
     <button type="submit" class="btn btn-access" id="save_edit_agenciado_data" style="float: right;">{{__('profile.save_profile') }}</button>
 {!! Form::close()!!}
@@ -75,6 +79,7 @@
     $('Form[name="edit-agenciado-data"]').submit(function(e){
         e.preventDefault()
         console.log('tentativa enviar detalhes')
+        $('#save_edit_agenciado_data').attr('disabled', 'disabled')
         var formData = new FormData( document.getElementById('edit-agenciado-data'))
         $.ajax({
             method: "POST",
@@ -88,6 +93,7 @@
             console.log(result)
             $('.btn-primary').removeAttr('disabled');
             if(result.error){
+                console.log(result)
                 showMessagesError(result)
             } else {
                 $.notify({
@@ -95,12 +101,15 @@
                 },{type: 'success' });
                 // $('#form_register_agenciado').unbind('submit').submit()
             }
+            $('#save_edit_agenciado_data').removeAttr('disabled')
         })
         .fail( function( msg ) {
+            console.log(msg)
             $('.btn-primary').removeAttr('disabled');
             $.notify({
                 message: msg 
             },{type: 'danger' });
+            $('#save_edit_agenciado_data').removeAttr('disabled')
         });
     })
 

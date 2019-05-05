@@ -8,8 +8,7 @@
                 
             </style>
             <div class="owl-carousel owl-theme owl-loaded owl-drag">
-                @if($profile)
-                    @foreach($profile->toArray()['medias'] as $key => $val )
+                    @forelse($media as $key => $val )
                     <div class="media_list">
                         <div class="media_list__delete">
                             <i class="fa fa-trash" style=" color: #9f432c"></i>
@@ -17,14 +16,13 @@
                         <div class="media_list__background" style="background-image: url( '<?php echo url( '/uploads/profiles/' .$profile->user_id.'/'. $val['path'] ); ?>' );">
                         </div>
                     </div>
-                    @endforeach 
-                @else
+                    @empty
                     <div class="media_list">
                         <div class="media_list__background">
                             NO MEDIA
                         </div>
                     </div>
-                @endif
+                    @endforelse 
             </div>
         </div>
     </div>

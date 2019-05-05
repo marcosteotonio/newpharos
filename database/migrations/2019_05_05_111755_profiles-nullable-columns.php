@@ -13,70 +13,60 @@ class ProfilesNullableColumns extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+        Schema::table('profiles', function (Blueprint $table) {
            
-            $table->string('slug');
-            $table->string('fancy_name');
             
-            $table->string('drt')->nullable();
-            $table->string('cnh')->nullable();
+            $table->string('drt')->nullable()->default(null)->change();
+            $table->string('cnh')->nullable()->default(null)->change();
 
-            $table->string('rg')->nullable();
-            $table->string('organ')->nullable();
-            $table->string('cpf')->nullable();
+            $table->string('rg')->nullable()->default(null)->change();
+            $table->string('organ')->nullable()->default(null)->change();
+            $table->string('cpf')->nullable()->default(null)->change();
 
-            $table->date('date_birth');
-            $table->string('gender')->enum(['feminino', 'masculino'])->default('masculino');
 
-            $table->text('address')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->text('address')->nullable()->default(null)->change();
+            $table->string('phone_number')->nullable()->default(null)->change();
 
-            $table->string('marital_status')->nullable();
-            $table->string('education')->nullable();
-            $table->string('city_birth')->nullable();
+            $table->string('marital_status')->nullable()->default(null)->change();
+            $table->string('education')->nullable()->default(null)->change();
+            $table->string('city_birth')->nullable()->default(null)->change();
 
-            $table->string('height')->nullable();
-            $table->string('weight')->nullable();
+            $table->string('height')->nullable()->default(null)->change();
+            $table->string('weight')->nullable()->default(null)->change();
             
-            $table->string('shirt')->nullable();
-            $table->string('pants')->nullable();
-            $table->string('feet')->nullable();
+            $table->string('shirt')->nullable()->default(null)->change();
+            $table->string('pants')->nullable()->default(null)->change();
+            $table->string('feet')->nullable()->default(null)->change();
             
-            $table->string('dummy')->nullable();
-            $table->string('bust')->nullable();
-            $table->string('waist')->nullable();
-            $table->string('hip')->nullable();
+            $table->string('dummy')->nullable()->default(null)->change();
+            $table->string('bust')->nullable()->default(null)->change();
+            $table->string('waist')->nullable()->default(null)->change();
+            $table->string('hip')->nullable()->default(null)->change();
 
-            $table->string('skin_color')->nullable();
-            $table->string('eye_color')->nullable();
-            $table->string('hair_color')->nullable();
+            $table->string('skin_color')->nullable()->default(null)->change();
+            $table->string('eye_color')->nullable()->default(null)->change();
+            $table->string('hair_color')->nullable()->default(null)->change();
 
-            $table->string('hair_type')->nullable();
-            $table->string('hair_size')->nullable();
+            $table->string('hair_type')->nullable()->default(null)->change();
+            $table->string('hair_size')->nullable()->default(null)->change();
 
-            $table->boolean('tattoo')->default(0);
-            $table->string('tattoo_location')->nullable();
+            $table->string('tattoo_location')->nullable()->default(null)->change();
 
-            $table->string('practice_sports')->nullable();
-            $table->string('play_instrument')->nullable();
+            $table->string('practice_sports')->nullable()->default(null)->change();
+            $table->string('play_instrument')->nullable()->default(null)->change();
 
-            $table->boolean('film_outside')->default(0);
-            $table->boolean('make_figuration')->default(0);
-            $table->boolean('make_event')->default(0);
 
-            $table->string('bank_nro')->nullable();
-            $table->string('back_agency')->nullable();
+            $table->string('bank_nro')->nullable()->default(null)->change();
+            $table->string('back_agency')->nullable()->default(null)->change();
 
-            $table->string('bank_account')->nullable();
-            $table->string('bank_holder_name')->nullable();
-            $table->string('bank_holder_cpf')->nullable();
+            $table->string('bank_account')->nullable()->default(null)->change();
+            $table->string('bank_holder_name')->nullable()->default(null)->change();
+            $table->string('bank_holder_cpf')->nullable()->default(null)->change();
 
-            $table->string('tutor_name')->nullable();
-            $table->string('tutor_rg')->nullable();
-            $table->string('tutor_organ')->nullable();
-            $table->string('tutor_cpf')->nullable();
+            $table->string('tutor_name')->nullable()->default(null)->change();
+            $table->string('tutor_rg')->nullable()->default(null)->change();
+            $table->string('tutor_organ')->nullable()->default(null)->change();
+            $table->string('tutor_cpf')->nullable()->default(null)->change();
             
         });
     }

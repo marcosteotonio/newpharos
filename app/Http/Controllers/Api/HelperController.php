@@ -161,12 +161,21 @@ class HelperController extends Controller
         $data = $request->all();
         $data['date_birth'] = Carbon::parse($data['date_birth'])->format('Y-m-d');
         $data['height'] = str_replace(',','.',$data['height']);
-         
-        $data = array_replace(  $this->profile_fields(), $data );
+        $data['slug'] = str_slug($data['fancy_name']);
 
-
-        $profile = Profile::insert($data);
+        $data = array_replace_recursive( $this->profile_fields(), $data );
+        $unsetThis = ['name', 'email', '_token'];
+        foreach($unsetThis as $k => $v)
+            unset($data[$v]);
         
+        
+        $profile = Profile::where('user_id', $request->get('user_id') )->first();
+        if(!$profile){
+            $profile = Profile::insert($data);
+        } else {
+            $profile = Profile::where('user_id', $request->get('user_id') )->update($data);
+        }
+
 
         if($profile){
             return response()->json(['success' => 'Dados do perfil Atualizados.']);
@@ -266,11 +275,23 @@ class HelperController extends Controller
         $profile =  DB::select('describe profiles');
         $Fields = [];
         foreach($profile as $key => $value){
+
             $exclude = ['id','created_at','updated_at'];
             if(!in_array($value->Field, $exclude) ){
-                $Fields[$value->Field] = 'unset';
+                $Fields[ $value->Field ] = null;
+            }
+            
+            $custom_fields = [
+                'tattoo' => 0,
+                'film_outside' => true,
+                'make_figuration' => true,
+                'make_event' => true,
+            ];
+            if( key_exists($value->Field, $custom_fields )){
+                $Fields[$value->Field] = $custom_fields[$value->Field] ;
             }
         }
+
 
         return $Fields;
     }
