@@ -45,11 +45,12 @@
                 showMessagesError(result)
             } else {
                 console.log(result)
-                $('#avatar')[0].src = "{{ url('/uploads/profiles/'.$user->id).'/'  }}" + result.success.path
-                $('Form[name="edit-agenciado-media-main"]').trigger("reset")
+                // $('#avatar')[0].src = "{{ url('/uploads/profiles/'.$user->id).'/'  }}" + result.success.path
+                // $('Form[name="edit-agenciado-media-main"]').trigger("reset")
                 $.notify({
-                    message: 'Foto do Perfil Atualizada'
+                    message: 'Foto de Apresentação Atualizada'
                 },{type: 'success' });
+                location.reload()
                 // $('#form_register_agenciado').unbind('submit').submit()
             }
             $('.save_edit_agenciado_main').removeAttr('disabled')

@@ -38,4 +38,8 @@ return [
 
     'confirmremove' => "Confirma Remoção?",
 
+    'insert_main_first' => 'Insira a foto de apresentação primeiro!',
+
+    'profile_images' => 'Imagens do perfil',
+
 ];

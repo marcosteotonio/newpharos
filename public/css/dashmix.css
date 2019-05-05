@@ -16932,7 +16932,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .media_list__background {
   height: 150px;
-  background-size: cover; }
+  background-size: cover;
+  background-position: 50% 50%; }
 .media_list__delete {
   float: right;
   padding: 4px;

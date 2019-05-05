@@ -35,13 +35,14 @@ use Carbon\Carbon;
                         <!--  -->
                         @include('includes.profile_main_image_change')
 
-                        <hr>
-                        <!--  -->
-                        @include('includes.profile_videos_form')
                         
                         <hr>
                         <!--  -->
                         @include('includes.profile_image_form')
+                        
+                        <hr>
+                        <!--  -->
+                        @include('includes.profile_videos_form')
                         
                     </div>
                 </div>
