@@ -1,0 +1,34 @@
+<?php
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pagination Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used by the paginator library to build
+    | the simple pagination links. You are free to change them to anything
+    | you want to customize your views to better match your application.
+    |
+
+    __('Data de Nascimento') convert EN language
+    */
+
+    // 'previous' => '&laquo; Previous',
+    'edit_profile_title' => 'Editar Perfil',
+
+    'fancy_name' => 'Nome Artístico',
+    'date_birth' => 'Data de Nascimento',
+    'height' => 'Altura',
+    'dummy' => 'Manequim',
+    'feet' => 'Calçado',
+    'gender' => 'Sexo',
+        'male' => 'Masculino',
+        'female' => 'Feminino',
+    'resume' => 'Currículo',
+    'courses' => 'Cursos',
+    'publicity' => 'Publicidades',
+    'save_profile' => 'Salvar Dados',
+
+];

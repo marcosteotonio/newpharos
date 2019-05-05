@@ -124,6 +124,11 @@
     .owl-next i{
         color: white;
     }
+    @media (min-width:1px) and (max-width:767px){
+        .status_profile{
+            margin-top: 50px;
+        }
+    }
 </style>
 @endsection
 
@@ -194,7 +199,7 @@
             <div class="col-md-8">
                 <!-- Separador SM screen --><div class="d-none d-sm-block d-md-none d-lg-none d-xl-none"> <br> </div>
                 
-                <div class="row">
+                <div class="row status_profile">
                     @foreach( $details as $key => $val)
                     <div class="col-md-{{ $val['size'] <= 4 ? $val['size'] * 3 : 12 }} col-sm-{{ $val['size'] <= 2 ? $val['size'] * 6 : 12 }} col-xs-12"  style="margin-bottom: 10px;">
                         <div class="profile__details__icons">

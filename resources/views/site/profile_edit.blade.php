@@ -19,149 +19,30 @@ use Carbon\Carbon;
 @section('content')
     <div class="container padding-65 profile_edit"> <!-- CONTENT-BEGAN -->
        <div class="row">
-            <div class="col-md-3"> </div>
-            <div class="col-md-6">
+            <div class="col-md-3 mobile_hide"> </div>
+            <div class="col-md-6 col-sm-12">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="profile_edit__title">
-                            Editar Perfil
+                            {{ __('profile.edit_profile_title')}}
                         </div>
                     </div>
-                        <div class="col-md-12">
-                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-data', 'id' => 'edit-agenciado-data', 'onSubmit' => 'return false'])!!}
+                    <div class="col-md-12">
+                        <!--  -->
+                        @include('includes.profile_details_edit')
+                        
+                        <hr>
+                        <!--  -->
+                        @include('includes.profile_main_image_change')
 
-                            
-                                <div class="form-group">
-                                    {!! Form::label('name','Nome')!!}
-                                    {!! Form::text('name', $user->name,['class' => 'form-control', 'readonly' => 'true', 'style' => 'cursor: not-allowed'])!!}
-                                </div>
-
-                                <div class="form-group">
-                                    {!! Form::label('email','Email')!!}
-                                    {!! Form::text('email', $user->email ,['class' => 'form-control', 'readonly' => 'true', 'style' => 'cursor: not-allowed'])!!}
-                                </div>
-                                <!--  -->
-                                <div class="form-group" style="width: 37%; padding-right: 5px; display: inline-block;">
-                                    {!! Form::label('date_birth','Data de Nascimento')!!}
-                                    {!! Form::text('date_birth', isset($profile->date_birth) ? Carbon::parse( $profile->date_birth )->format('d/m/Y'): '',['class' => 'form-control frm_date', 'style' => ''])!!}
-                                </div>
-
-                                <div class="form-group" style="width: 20%;  padding-right: 5px; display: inline-block;">
-                                    {!! Form::label('height','Altura')!!}
-                                    {!! Form::text('height', isset($profile->height) ? $profile->height : '',['class' => 'form-control frm_height', 'style' => ''])!!}
-                                </div>
-
-                                <div class="form-group" style="width: 20%; padding-right: 5px;  display: inline-block;">
-                                    {!! Form::label('dummy','Manequin')!!}
-                                    {!! Form::text('dummy', isset( $profile->dummy) ? $profile->dummy : '',['class' => 'form-control', 'style' => ''])!!}
-                                </div>
-
-                                <div class="form-group" style="width: 20%; display: inline-block; float: right;">
-                                    {!! Form::label('feet','Calçado')!!}
-                                    {!! Form::text('feet', isset($profile->feet) ? $profile->feet : '',['class' => 'form-control', 'style' => ''])!!}
-                                </div>
-                                <!--  -->
-
-                                <div class="form-group" style="">
-                                    <label for="">Sexo</label><br>
-                                    <input  name="gender" type="radio" value="masculino" <?php if(isset($profile->gender)){ if($profile->gender == 'masculino'){ echo  'checked="true"'; } }?> > Masculino
-                                    &nbsp; &nbsp;
-                                    <input  name="gender" type="radio" value="feminino" <?php if(isset($profile->gender)){ if($profile->gender == 'feminino'){ echo  'checked="true"'; } } ?> > Feminino
-                                </div>
-
-                                <div class="form-group" style="">
-                                    {!! Form::label('resume','Currículo')!!}
-                                    {!! Form::textarea('resume', '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
-                                </div>
-
-                            <div class="form-group" style="">
-                                {!! Form::label('resume','Cursos')!!}
-                                {!! Form::textarea('curso', '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
-                            </div>
-
-                            <div class="form-group" style="">
-                                {!! Form::label('resume','Publicidades')!!}
-                                {!! Form::textarea('publicidade', '',['class' => 'form-control', 'style' => 'background-color: #eee;'])!!}
-                            </div>
-                            {!! Form::close()!!}
-
-                            <!--  -->
-                            <br>
-                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-media-profile', 'id' => 'edit-agenciado-media-profile'])!!}
-                                <div class="form-group" style="">
-                                    {!! Form::label('file','Foto de Apresentação')!!}
-                                    {!! Form::file('media[]')!!}
-                                </div>
-
-
-                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-media-videos', 'id' => 'edit-agenciado-media-videos'])!!}
-                                <!--  -->
-                                <div class="" style="background-color: #eee; padding: 15px;">
-                                    <div class="title_yt">
-                                        Playlist de Vídeos
-                                    </div>
-                                    @if(0)
-                                    <div class="form-group" style="">
-                                        {!! Form::text('title_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 39%;'])!!}
-                                        {!! Form::text('link_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 49%;'])!!}
-                                        <button type="button" class="btn" style="float: right;"><i class="fa fa-trash" style=" color: #9f432c"></i></button>
-                                    </div>
-                                    @endif
-                                    <div class="form-group" style="">
-                                        {!! Form::text('title_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 39%; background-color: #fff !important;'])!!}
-                                        {!! Form::text('link_yt[]', '',['class' => 'form-control', 'placeholder' => 'Digiteo título do vídeo', 'style' => 'display: inline-block; width: 49%; background-color: #fff !important;'])!!}
-                                        <button type="button" class="btn btn-access" style="float: right;"><i class="fa fa-check"></i></button>
-                                    </div>
-                                    <div style=" text-align: right;">
-                                        <button type="button" class="btn btn-access" style=""> <i class="fa fa-plus-circle"></i> Adicionar Vídeo</button>
-                                    </div>
-                                </div>
-                                <br>
-                            {!! Form::close()!!}
-
-
-
-                            {!! Form::open(['method' => 'post', 'name' => 'edit-agenciado-media-images', 'id' => 'edit-agenciado-media-images'])!!}
-                                <div class="" style="background-color: #eee; padding: 15px;">
-                                    <div class="title_yt">
-                                        Galeria de Fotos
-                                    </div>
-                                    <div class="row">
-                                        <div class="col md-12">
-                                            <style>
-                                            
-                                            </style>
-                                            <div class="owl-carousel owl-theme owl-loaded owl-drag">
-                                                @if($profile)
-                                                    @foreach($profile->toArray()['medias'] as $key => $val )
-                                                    <div class="media_list">
-                                                        <div class="media_list__delete">
-                                                            <i class="fa fa-trash" style=" color: #9f432c"></i>
-                                                        </div>
-                                                        <div class="media_list__background" style="background-image: url( '<?php echo url( '/uploads/profiles/' .$profile->user_id.'/'. $val['path'] ); ?>' );">
-                                                        </div>
-                                                    </div>
-                                                    @endforeach 
-                                                @else
-                                                    <div class="media_list">
-                                                        <div class="media_list__background">
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-group" style="">
-                                        {!! Form::label('file', 'Adicionar Foto')!!}
-                                        {!! Form::file('media[]')!!}
-                                    </div>
-                                </div>
-                        {!! Form::close()!!}
-                        <div style="padding: 15px; text-align: center;">
-                            <button type="button" class="btn btn-access" id="save_edit_agenciado_data" style="">Salvar</button>
-                        </div>
-
+                        <hr>
+                        <!--  -->
+                        @include('includes.profile_videos_form')
+                        
+                        <hr>
+                        <!--  -->
+                        @include('includes.profile_image_form')
+                        
                     </div>
                 </div>
             </div>
@@ -196,34 +77,6 @@ use Carbon\Carbon;
                 }
             }).show()
 
-            $('#save_edit_agenciado_data').on('click', () => {
-
-                var formData = new FormData( document.getElementById('edit-agenciado-data'))
-                $.ajax({
-                    method: "POST",
-                    url: "{!! url('/api/site/edit-agenciado-data') !!}",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    // enctype: 'multipart/form-data'
-                })
-                .done( function( result ) {
-                    console.log(result)
-                    $('.btn-primary').removeAttr('disabled');
-                    if(result.error){
-                        showMessagesError(result)
-                    } else {
-                        $('#form_register_agenciado').unbind('submit').submit()
-                    }
-                })
-                .fail( function( msg ) {
-                    $('.btn-primary').removeAttr('disabled');
-                    $.notify({
-                        message: msg 
-                    },{type: 'danger' });
-                });
-
-            })
         });
     </script>
 @endsection

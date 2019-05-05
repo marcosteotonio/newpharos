@@ -9,11 +9,11 @@
         {!! Form::open(['url' => url( env('APP_PREFIX') .'/elencos'),'class'=> '','name' => 'pesquisa_form', 'method'=> 'get', 'style'=> ''])!!}
         <div class="row">
             
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-12 col-xs-12">
                 <i class="fa fa-star fa-lg" style="color: #ffa916;"></i>
                 <label class='text-uppercase large-text bold'> Agenciados</label>
             </div>
-            <div class="col-md-8 col-sm-4 col-xs-12">
+            <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="inline-flex float-right form-busca-agenciado">
                         {!! Form::text('search', isset($input['search']) ? $input['search'] : '' , ['class'=> 'input-text-w-image', 'placeholder' => 'Encontre um agenciado...'])!!}
                         <button type="submit" class="btn-transparent">
@@ -25,9 +25,7 @@
 
             <div class="col-md-12">
                 <div class="row">
-
-
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="bg-gray rounded-corner" id="characteristics" style="padding: 15px">
                             <div class="row">
                                 @if(1)
@@ -94,7 +92,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-sm-4">
+                                <div class="col-md-12 col-sm-4 col-push-8">
                                     <button type="submit" class="btn btn-access runFilter"> Filtrar </button>
                                 </div>
 
@@ -103,47 +101,95 @@
                         </div>
                     </div>
 
-                    <div class="col md-9">
-                        <div class="row">
-                                @forelse ($profiles as $profile)
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="mobile-show" style="display: none;">
+                            <br>
+                            <br>
+                            <div class="elenco">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="owl-carousel owl-theme owl-loaded owl-drag" style="display: none">
+                                            @foreach($profiles as $key => $val)
+                                                <div class="ElencoShowCase" style=" max-height: 400px; max-width: 400px;">
+                                                    <a href="{{ url(env('APP_PREFIX').'/elenco/'.$val['slug'] ) }}">
+                                                        <div class="ElencoShowCase__image"
+                                                            style="background-image: url( '<?php
+                                                            echo url( env('APP_PREFIX'). '/uploads/profiles/' . $val['user_id'] . '/' . $val['medias'][0]['path'] ); ?>' );">
+                                                        </div>
+                                                    </a>
+                                                    <div class="ElencoShowCase__name">
+                                                        {{ $val['fancy_name'] }}
+                                                    </div>
+                                                    <div class="ElencoShowCase__description">
+                                                        {{ $val['years_old'] }}
+                                                            <?php
+                                                            if(0){
+                                                                $ocupation = "";
+                                                                if( $val['occupation'] ){
+                                                                    $ocupation = ' - '.$val['occupation'];
+                                                                } else if($val['alternative_occupation']){
+                                                                    $ocupation =  ' - '.$val['alternative_occupation'];
+                                                                }
+                                                                $size = 24;
+                                                                if(strlen($ocupation) >= $size){
+                                                                    echo substr($ocupation, 0, $size). '...';
+                                                                } else {
+                                                                    echo $ocupation;
+                
+                                                                }
+                                                            } else {
+                                                                echo $val['gender'];
+                                                            }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mobile-hide">
+                            @forelse ($profiles as $profile)
                                 <?php $profile->toArray(); ?>
-                                    <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 15px" id="elenco-{{$profile['id']}}">
-                                        <a href="<?php echo url( env('APP_PREFIX') .'/elenco/'. $profile->slug ); ?>">
-                                            <div class="ElencoShowCase__image"
-                                                style="background-image: url('<?php echo '/uploads/profiles/' . $profile['user_id'] . '/' . $profile['medias'][0]['path'] ;?>'); height: 250px;">
-                                            </div>
-                                        </a>
-                                        <div class="ElencoShowCase__name">
-                                            {{ $profile->fancy_name }}
+                                <div class="col-xl-3 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 15px" id="elenco-{{$profile['id']}}">
+                                    <a href="<?php echo url( env('APP_PREFIX') .'/elenco/'. $profile->slug ); ?>">
+                                        <div class="ElencoShowCase__image"
+                                            style="background-image: url('<?php echo '/uploads/profiles/' . $profile['user_id'] . '/' . $profile['medias'][0]['path'] ;?>'); height: 250px;">
                                         </div>
-                                        <div class="ElencoShowCase__description">
-                                            {{ $profile->years_old }}
-                                            <?php
-                                                $ocupation = "";
-                                                if( $profile->occupation ){
-                                                    $ocupation = ' - '.$profile->occupation;
-                                                } else if($profile->alternative_occupation){
-                                                    $ocupation =  ' - '.$profile->alternative_occupation;
-                                                }
-                                                $size = 24;
-                                                if(strlen($ocupation) >= $size){
-                                                    echo substr($ocupation, 0, $size). '...';
-                                                } else {
-                                                    echo $ocupation;
+                                    </a>
+                                    <div class="ElencoShowCase__name">
+                                        {{ $profile->fancy_name }}
+                                    </div>
+                                    <div class="ElencoShowCase__description">
+                                        {{ $profile->years_old }}
+                                        <?php
+                                            $ocupation = "";
+                                            if( $profile->occupation ){
+                                                $ocupation = ' - '.$profile->occupation;
+                                            } else if($profile->alternative_occupation){
+                                                $ocupation =  ' - '.$profile->alternative_occupation;
+                                            }
+                                            $size = 24;
+                                            if(strlen($ocupation) >= $size){
+                                                echo substr($ocupation, 0, $size). '...';
+                                            } else {
+                                                echo $ocupation;
 
-                                                }
-                                            ?>
-                                        </div>
+                                            }
+                                        ?>
                                     </div>
-                                @empty
-                                    <div class="col-xs-12 ElencoShowCase__image" style="padding-bottom: 15px; text-align: center; display: grid; align-content: center;">
-                                        SEM RESULTADOS!
-                                    </div>
-                                @endforelse
+                                </div>
+                            @empty
+                                <div class="col-xs-12 ElencoShowCase__image" style="padding-bottom: 15px; text-align: center; display: grid; align-content: center;">
+                                    SEM RESULTADOS!
+                                </div>
+                            @endforelse
 
                         </div>
                         <div class="col-md-12" style="padding-bottom: 15px">
-                            {{ $profiles->render() }}
+                            <!-- {..!! $profiles->render() !!} -->
+                            {{ $profiles->links() }}
                         </div>
                     </div>
                 </div>
@@ -184,7 +230,29 @@
         $('Form[name=search]').submit()
     }
 
-
+    $('.owl-carousel').owlCarousel({
+        items: 4,
+        // loop:true,
+        margin:10,
+        nav: true,
+        dots: false,
+        // autoplay:true,
+        // infinite: true,
+        lazyLoadEager: true,
+        // autoplayHoverPause: true,
+        navText: ['<i class="fa fa-angle-left fa-2x"></i>','<i class="fa fa-angle-right fa-2x"></i>'],
+        responsive:{
+            0:{
+                items: 1
+            },
+            600:{
+                items: 2
+            },
+            1000:{
+                items: 4
+            }
+        }
+    }).show()
     
 </script>
 @endsection

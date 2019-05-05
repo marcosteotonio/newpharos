@@ -11,31 +11,47 @@
 |
  */
 
-//SITE - todas as rotas em portugues
-Route::get('/', 'SiteController@getIndex')->name('home');
-Route::get('/logout', 'SiteController@getLogout')->name('logout');
+$languages = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+if($languages){
+    $languages = explode(';',$languages);
+    App::setLocale($languages[0]);
+}
 
-Route::get('/elencos', 'SiteController@getElencos')->name('elencos');
-Route::post('/elencos', 'SiteController@postElencos');
-
-Route::get('/elenco/{slug}', 'SiteController@getElencoPerfil');
-
-Route::get('/trabalhos', 'SiteController@getTrabalhos')->name('trabalhos');
-Route::get('/trabalho/{slug}', 'SiteController@getTrabalho');
-
-Route::get('/agencia', 'SiteController@getAgencia')->name('agencia');
-Route::get('/contato', 'SiteController@getContato')->name('contato');
-
-
-Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
-
-Route::group(['middleware'=> ['auth.agenciado']], function(){
-    Route::get('/perfil', 'SiteController@getProfle')->name('perfil');
-    Route::get('/perfil/editar', 'SiteController@getProfleEditar');
-    //Cliente
-    Route::get('/cliente', 'SiteController@Cliente')->name('cliente');
-    Route::get('/cliente/editar', 'SiteController@getClienteEditar');
-
+Route::group([], function(){
+    $languages = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+    if($languages){
+        $languages = explode(';',$languages);
+        if($languages){
+            $languages = explode(',',$languages[0]);
+        }
+        App::setLocale($languages[0]);
+    }
+    //SITE - todas as rotas em portugues
+    Route::get('/', 'SiteController@getIndex')->name('home');
+    Route::get('/logout', 'SiteController@getLogout')->name('logout');
+    
+    Route::get('/elencos', 'SiteController@getElencos')->name('elencos');
+    Route::post('/elencos', 'SiteController@postElencos');
+    
+    Route::get('/elenco/{slug}', 'SiteController@getElencoPerfil');
+    
+    Route::get('/trabalhos', 'SiteController@getTrabalhos')->name('trabalhos');
+    Route::get('/trabalho/{slug}', 'SiteController@getTrabalho');
+    
+    Route::get('/agencia', 'SiteController@getAgencia')->name('agencia');
+    Route::get('/contato', 'SiteController@getContato')->name('contato');
+    
+    
+    Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
+    
+    Route::group(['middleware'=> ['auth.agenciado']], function(){
+        Route::get('/perfil', 'SiteController@getProfle')->name('perfil');
+        Route::get('/perfil/editar', 'SiteController@getProfleEditar');
+        //Cliente
+        Route::get('/cliente', 'SiteController@Cliente')->name('cliente');
+        Route::get('/cliente/editar', 'SiteController@getClienteEditar');
+    
+    });
 });
 
 

@@ -124,19 +124,29 @@ class HelperController extends Controller
     function getEditAgenciadoData(Request $request){
 
         $messages = [
-            'required' => 'O :attribute é necessário.',
-            'unique' => 'O :attribute já existe.',
-            'password.confirmed' => 'A senha não confere!',
-            'email' => 'O :attribute é inválido.',
-            'password.min' => 'A senha deve conter no mínimo :min caracteres.'
+            'name.required' => 'O Nome é necessário',
+            'email.required' => 'O Email é necessário',
+            'date_birth.required' => 'A Data de Nascimento é necessário',
+            'height.required' => 'A Altura é necessário',
+            'dummy.required' => 'O Manequin é necessário',
+            'feet.required' => 'O Calçado é necessário',
+            'gender.required' => 'O Sexo é necessário',
+            // 'resume.required' => 'O Curriculo é necessário',
+            // 'courses.required' => 'Informe os cursos.',
+            // 'publicity.required' => 'Informe as publicidades anteriores',
         ];
         
         $rules = [
             'name' => 'required',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'required',
-            'level' => 'between:1,3|required'
+            'email' => 'required',
+            'date_birth' => 'required',
+            'height' => 'required',
+            'dummy' => 'required',
+            'feet' => 'required',
+            'gender' => 'required',
+            // 'resume' => 'required',
+            // 'courses' => 'required',
+            // 'publicity' => 'required',
         ];        
 
         $validator = Validator::make( $request->all() , $rules, $messages);
@@ -145,8 +155,22 @@ class HelperController extends Controller
         if ($validator->fails()) {
             return response()->json([ 'error' => $validator->messages() ]);
         }
+
+        // dd($request->all());
+        $data = $request->all();
+        $data['date_birth'] = Carbon::parse($data['date_birth'])->format('Y-m-d');
+        $data['height'] = str_replace(',','.',$data['height']);
+
+        $profile = Profile::insert($data);
         
-        return response()->json(['success' => 'successo']);
+        dd($profile);
+
+        if($profile){
+            return response()->json(['success' => 'Dados do perfil Atualizados.']);
+        } else {
+            return response()->json(['Error' => 'Falha na atualizar dados do perfil.']);
+        }
+        
     }
 
     //Apenas para cliente
