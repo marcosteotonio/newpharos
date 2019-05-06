@@ -128,6 +128,7 @@ class HelperController extends Controller
             'fancy_name.required' => 'O Nome é necessário',
             // 'email.required' => 'O Email é necessário',
             'date_birth.required' => 'A Data de Nascimento é necessário',
+            'date_birth.date_format' => 'A Data de Nascimento é inválida.',
             'height.required' => 'A Altura é necessário',
             'dummy.required' => 'O Manequin é necessário',
             'feet.required' => 'O Calçado é necessário',
@@ -140,7 +141,7 @@ class HelperController extends Controller
         $rules = [
             'fancy_name' => 'required',
             // 'email' => 'required',
-            'date_birth' => 'required',
+            'date_birth' => 'required|date_format:d/m/Y',
             'height' => 'required',
             'dummy' => 'required',
             'feet' => 'required',
