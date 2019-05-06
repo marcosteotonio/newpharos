@@ -2,10 +2,11 @@
 <main id="main-container" class="footer">
     <div class="container padding-15">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12">
                 <img class="footer__image" src="<?php echo url( env('APP_PREFIX') . '/images/logo-white.png' ); ?>" style="" alt="">
             </div>
-            <div class="col-md-3">
+
+            <div class="col-md-3  col-sm-12 mobile-hide">
                 <ul class="footer__map">
                     <li>
                         <a href='{!! route("elencos") !!}'>ELENCO</a> 
@@ -24,7 +25,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12 mobile-hide">
                 <ul class="footer__endereco">
                     <li>
                         <i class="fa fa-li fa-pencil-alt "></i>
@@ -48,7 +49,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12">
                 <div class="footer__social">
                     <a href="{!! env('INSTAGRAM', 'https://instagram.com')!!}">
                         <i class="fab fa-instagram fa-2x"></i>

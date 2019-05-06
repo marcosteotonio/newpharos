@@ -16932,7 +16932,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 
 .media_list__background {
   height: 150px;
-  background-size: cover; }
+  background-size: cover;
+  background-position: 50% 50%; }
 .media_list__delete {
   float: right;
   padding: 4px;
@@ -16972,7 +16973,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   .allrightsreserved .centerGrid {
     grid-template-rows: 75px; }
 
-@media (max-width: 767px) {
+@media (min-width: 1px) and (max-width: 767px) {
   .header-menu-main {
     height: auto;
     text-align: center; }
@@ -17037,7 +17038,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     top: 0px;
     left: 0px;
     height: 100%;
-    z-index: 105;
+    z-index: 98;
     width: 90%;
     background-color: #3e5986; }
     .menu_mobile__main__image {
@@ -17056,6 +17057,63 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
         .menu_mobile__main__menu ul li a {
           color: white !important; }
         .menu_mobile__main__menu ul li a:hover {
-          box-shadow: 1px 1px 4px #ffff; } }
+          box-shadow: 1px 1px 4px #ffff; }
+
+  .ElencoShowCase__image {
+    filter: unset; }
+
+  .mobile-show {
+    display: block !important; }
+
+  .mobile-hide {
+    display: none !important; }
+
+  .page-link {
+    padding-left: 6px;
+    padding-right: 6px; } }
+@media (min-width: 768px) {
+  .footer {
+    text-align: center; }
+    .footer__image {
+      margin-bottom: 15px; }
+
+  .btn__decorated_side {
+    display: none !important; }
+
+  .btn__decorated_side {
+    display: none; }
+
+  .menu_mobile {
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    z-index: 98;
+    width: 90%;
+    background-color: #3e5986; }
+    .menu_mobile__main__image {
+      margin-bottom: 15px; }
+    .menu_mobile__main__menu ul {
+      display: block;
+      height: 100%;
+      padding: 25px; }
+      .menu_mobile__main__menu ul li {
+        list-style-type: none;
+        padding: unset;
+        margin: unset;
+        font-size: 20px;
+        font-weight: 600;
+        height: 50px; }
+        .menu_mobile__main__menu ul li a {
+          color: white !important; }
+        .menu_mobile__main__menu ul li a:hover {
+          box-shadow: 1px 1px 4px #ffff; }
+
+  .mobile-carrousel {
+    display: block !important; }
+
+  .profile-elenco {
+    display: none !important; } }
 
 /*# sourceMappingURL=dashmix.css.map */

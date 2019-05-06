@@ -260,10 +260,14 @@ class SiteController extends Controller
      * Editar Perfil
      */
     function getProfleEditar(Request $request){
+        $data['profile'] =  DB::select('describe profiles');
+        
         $data['title'] = 'Perfil :: Editar';
         $data['user'] = auth::user();
         $data['profile'] = Profile::where('user_id', $data['user']->id)->first();
-
+        
+        $data['media'] = Media::where(['entity_id' =>  $data['user']->id, 'type' => 'image'])->orderBy('order', 'ASC')->get();
+        $data['video'] = Media::where(['entity_id' =>  $data['user']->id, 'type' => 'video'])->get();
         // dd($data);
         return view('site.profile_edit', $data);
     }

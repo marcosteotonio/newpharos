@@ -20,7 +20,7 @@ if(0){
                         <img src="<?php echo url( '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;">
                     </a>
                 </div>
-                <button type="button" class="menu_mobile_open" style="display: none">
+                <button type="button" class="menu_mobile_open" style="display: none; z-index: 99; background-color: #d3d3d3; border-radius: 0px 0px 10px 10px;">
                     <i class="fa fa-bars"></i>
                 </button>
                 <div id="menu_mobile_topo" class="menu_mobile" style="display: none;">
@@ -51,12 +51,22 @@ if(0){
                                     </a>
                                 </li>
                             </ul>
+                            <br>
+                            <div class="" style="font-size: 16px; color: white;">
+                                    Avenida Getúlio Vargas, 1151<br>
+                                    sala 506, Menina Deus<br>
+                                    Porto Alegre/RS - Brasil<br>
+                                    <br>
+                                    (51) 3209-8378
+                                    <br>
+                                    {!! env('EMAILCONTATOPHAROS', 'claudia@pharoselenco.com.br') !!}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
                     <div class="row">
-                        <div class="col-md-12 inline-menu-top">
+                        <div class="col-md-12 inline-menu-top mobile-hide">
                             <ul class=inline-menu>
                                 <li>
                                     <a href="{!!route('elencos')!!}">
@@ -148,24 +158,10 @@ if(0){
         $('#cli_form').show()
     })
 
-    $('.menu_mobile_open').click(function(){
-        console.log('click')
-        let status = document.getElementById('menu_mobile').style.display
-        if( status === 'none'){
-            document.getElementById('menu_mobile').style.display = "block"
-        } else {
-            document.getElementById('menu_mobile').style.display = "none"
-        }
-        $('#menu_mobile_top').toggle()  
+    $('.menu_mobile_open').click( function(){
+        // $("#menu_mobile_topo").toggle("slide")
+        $("#menu_mobile_topo").animate({'width': 'toggle'})
     })
-
-    $(document).click(function(event) { 
-        $target = $(event.target);
-        if(!$target.closest('.menu_mobile').length && 
-        $('.menu_mobile').is(":visible")) {
-            $('.menu_mobile').hide();
-        }        
-    });
     
 
 </script>

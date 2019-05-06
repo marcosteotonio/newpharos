@@ -59,6 +59,7 @@
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
     </head>
+  
     <body style="font-family: 'ProximaNova', serif; overflow-y: hidden;">
             <div class="showUP" style="
                 display: grid;
@@ -86,7 +87,7 @@
                     animation-name: pulse;
                 }
                 </style>
-                <img class="animated pulse-infinite"src="<?php echo url( '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;position: relative; left: calc(50% - 73px);">
+                <img class="animated pulse-infinite"src="<?php echo url( '/images/logo.png' ); ?>" alt="PharosElenco" style="margin-top: 10px; height: 145px;position: relative; left: calc(50% - 93px);">
             </div>
         @include('includes.mainmenu')
 
