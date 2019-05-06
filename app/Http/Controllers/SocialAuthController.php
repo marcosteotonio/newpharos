@@ -9,11 +9,19 @@ use Auth;
 class SocialAuthController extends Controller
 {
 //    acessando facebook
-    public function login(){
-        return Socialite::driver('facebook')->redirect();
+    public function login(Request $r){
+
+        if($r->tipo){
+            return Socialite::driver('facebook')
+                ->with(["tipo" => "cliente"])
+                ->redirect();
+        } else {
+            return Socialite::driver('facebook')->redirect();
+        }
+
     }
 
-    public function retorno(){
+    public function retorno(Request $r){
         $userSocial = Socialite::driver('facebook')->user();
         $email = $userSocial->getEmail();
 
@@ -21,13 +29,21 @@ class SocialAuthController extends Controller
             $user = Auth::user();
             $user->facebook = $mail;
             $user->save();
-            return redirect()->intended('/perfil');
+            if($r->tipo){
+                return redirect()->intended('/cliente');
+            } else {
+                return redirect()->intended('/perfil');
+            }
+
         }
 
        $user = User::where('facebook',$email)->first();
 
         if(isset($user->name)){
             Auth::login($user);
+            if($r->tipo){
+                return redirect()->intended('/cliente');
+            }
             return redirect()->intended('/perfil');
         }
         if(User::where('email',$email)->count()){
@@ -35,6 +51,9 @@ class SocialAuthController extends Controller
             $user->facebook = $email;
             $user->save();
             Auth::login($user);
+            if($r->tipo){
+                return redirect()->intended('/cliente');
+            }
             return redirect()->intended('/perfil');
         }
 
@@ -46,51 +65,19 @@ class SocialAuthController extends Controller
         $user->password = bcrypt($userSocial->token);
         $user->save();
         Auth::login($user);
+
+        if($r->tipo){
+            return redirect()->intended('/cliente');
+        }
         return redirect()->intended('/perfil');
     }
 
 
 
-    public function login2(){
-        return Socialite::driver('facebook')->redirect("https://pharos.prmuller.com/retorno/facebook2");
-    }
 
 
-    public function retorno2(){
-        $userSocial = Socialite::driver('facebook2')->user();
-        $email = $userSocial->getEmail();
 
-        if(Auth::check()){
-            $user = Auth::user();
-            $user->facebook = $mail;
-            $user->save();
-            return redirect()->intended('/cliente');
-        }
 
-        $user = User::where('facebook',$email)->first();
-
-        if(isset($user->name)){
-            Auth::login($user);
-            return redirect()->intended('/cliente');
-        }
-        if(User::where('email',$email)->count()){
-            $user = User::where('email', $mail)->first();
-            $user->facebook = $email;
-            $user->save();
-            Auth::login($user);
-            return redirect()->intended('/cliente');
-        }
-
-        $user = new User();
-        $user->name = $userSocial->getName();
-        $user->email = $userSocial->getEmail();
-        $user->level = "2";
-        $user->facebook = $userSocial->getEmail();
-        $user->password = bcrypt($userSocial->token);
-        $user->save();
-        Auth::login($user);
-        return redirect()->intended('/cliente');
-    }
 
 
 
