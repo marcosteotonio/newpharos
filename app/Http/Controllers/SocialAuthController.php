@@ -52,7 +52,7 @@ class SocialAuthController extends Controller
 
 
     public function login2(){
-        return Socialite::driver('facebook2')->redirect();
+        return Socialite::driver('facebook')->redirect("https://pharos.prmuller.com/retorno/facebook2");
     }
 
 
