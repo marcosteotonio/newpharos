@@ -11,9 +11,11 @@ class SocialAuthController extends Controller
 //    acessando facebook
     public function login(Request $r){
 
+
+
         if($r->tipo){
             return Socialite::driver('facebook')
-                ->with(["tipo" => "cliente"])
+                ->scopes(["tipo" => "cliente"])
                 ->redirect();
         } else {
             return Socialite::driver('facebook')->redirect();
