@@ -8,7 +8,7 @@
             }  else {
                 echo asset('/media/avatars/avatar0.jpg');
             }
-            ?>" alt="" style="height:320px; witdh: 280px">
+            ?>" alt="" style="height:320px; width: 100%">
         </div>
         <div class="col-md-12">
         <hr>
