@@ -57,7 +57,7 @@
             <hr>
         </div>
         <div class="text-center padding-bottom">
-            <a class="btn btn-facebook"  style="color: white;">
+            <a href="/login/facebook/?tipo=cliente" class="btn btn-facebook"  style="color: white;">
                 <i class="fab fa-facebook-square"></i> ENTRAR COM O FACEBOOK
             </a>
         </div>
@@ -78,7 +78,7 @@
                 {!! Form::password('password', ['class' => 'form-control'])!!}
             </div>
             <div class="text-center padding-bottom">
-                <button type="submit" class="btn btn-access">
+                <button type="submit" class="btn btn-acENTRAR COM O FACEBOOKcess">
                     CADASTRAR
                 </button>
             </div>
@@ -87,7 +87,7 @@
             <hr>
         </div>
         <div class="text-center padding-bottom">
-            <a href="#" class="btn btn-facebook">
+            <a href="/login/facebook/?tipo=cliente" class="btn btn-facebook">
                 <i class="fab fa-facebook-square" style="color: white;"></i> CADASTRAR COM O FACEBOOK
             </a>
         </div>

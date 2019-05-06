@@ -34,5 +34,10 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'facebook' => [
+        'client_id' => "423277621588191",         //agenciado
+        'client_secret' => "cbb4efb82cd5bf9518da169942446ed2", // Your Facebook Client Secret
+        'redirect' => 'https://pharos.prmuller.com/retorno/facebook',
+    ],
 
 ];
