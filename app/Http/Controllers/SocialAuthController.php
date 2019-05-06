@@ -14,7 +14,7 @@ class SocialAuthController extends Controller
     }
 
     public function retorno(){
-        $user = Socialite::drive('facebook')->user();
+        $user = Socialite::driver('facebook')->user();
         $email = $user->getEmail();
 
         if(Auth::check()){
