@@ -57,7 +57,7 @@
             <hr>
         </div>
         <div class="text-center padding-bottom">
-            <a href="ENTRAR COM O FACEBOOK" class="btn btn-facebook"  style="color: white;">
+            <a href="/login/facebook2" class="btn btn-facebook"  style="color: white;">
                 <i class="fab fa-facebook-square"></i> ENTRAR COM O FACEBOOK
             </a>
         </div>
@@ -87,7 +87,7 @@
             <hr>
         </div>
         <div class="text-center padding-bottom">
-            <a href="/login/facebook" class="btn btn-facebook">
+            <a href="/login/facebook2" class="btn btn-facebook">
                 <i class="fab fa-facebook-square" style="color: white;"></i> CADASTRAR COM O FACEBOOK
             </a>
         </div>

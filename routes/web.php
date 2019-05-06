@@ -42,6 +42,9 @@ Route::group(['middleware'=> ['auth.agenciado']], function(){
 Route::get('/login/facebook','SocialAuthController@login');
 Route::get('/retorno/facebook','SocialAuthController@retorno');
 
+Route::get('/login/facebook2','SocialAuthController@login2');
+Route::get('/retorno/facebook2','SocialAuthController@retorno2');
+
 
 
 
