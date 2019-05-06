@@ -216,9 +216,9 @@ class HelperController extends Controller
             'title' =>  null,
         ];
         
-        $media = Media::where('entity_id', $request->get('user_id') )->first();
+        $media = Media::where(['entity_id' => $request->get('user_id'), 'order' => 0] )->first();
         if($media){
-            Media::where('entity_id', $request->get('user_id') )->update($data);
+            Media::where(['entity_id' => $request->get('user_id'), 'order' => 0])->update($data);
         } else {
             Media::insert($data);
         }
