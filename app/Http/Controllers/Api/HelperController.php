@@ -159,7 +159,7 @@ class HelperController extends Controller
 
         // dd($request->all());
         $data = $request->all();
-        $data['date_birth'] = Carbon::parse($data['date_birth'])->format('Y-m-d');
+        $data['date_birth'] = Carbon::parse($data['date_birth'], 'd/m/Y')->format('Y-m-d');
         $data['height'] = str_replace(',','.',$data['height']);
         $data['slug'] = str_slug($data['fancy_name']);
 
