@@ -14,8 +14,8 @@ class SocialAuthController extends Controller
     }
 
     public function retorno(){
-        $user = Socialite::driver('facebook')->user();
-        $email = $user->getEmail();
+        $userSocial = Socialite::driver('facebook')->user();
+        $email = $userSocial->getEmail();
 
         if(Auth::check()){
             $user = Auth::user();
@@ -39,10 +39,10 @@ class SocialAuthController extends Controller
         }
 
         $user = new User();
-        $user->name = $user->getName();
-        $user->email = $user->getEmail();
-        $user->facebook = $user->getEmail();
-        $user->password = bcrypt($user->token);
+        $user->name = $userSocial->getName();
+        $user->email = $userSocial->getEmail();
+        $user->facebook = $userSocial->getEmail();
+        $user->password = bcrypt($userSocial->token);
         $user->save();
         Auth::login($user);
         return redirect()->intended('/perfil');
