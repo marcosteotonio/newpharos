@@ -159,7 +159,7 @@
         <div class="row padding-15">
             <div class="col-md-12 text-center padding-15">
                 @include('includes.btn_decorated', [
-                'url' => url( env('APP_PREFIX').'/elencos' ),
+                'url' => url( env('APP_PREFIX').'/elencos?age[]=20_30&age[]=30_40&age[]=40_50&age[]=50_100' ),
                 'text' => 'VEJA TODO  O NOSSO ELENCO ADULTO'
                 ])
             </div>
