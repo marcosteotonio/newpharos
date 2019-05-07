@@ -35,5 +35,7 @@ Route::group(['prefix' => 'site'], function(){
 //    Cliente
     Route::post('login-cliente', 'Api\HelperController@getLoginCliente')->name('login.cliente');
 
+    Route::post('link-sanitizer', 'Api\HelperController@linkSanatizer');
+
 });
 

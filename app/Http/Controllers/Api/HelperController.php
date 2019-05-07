@@ -417,4 +417,53 @@ class HelperController extends Controller
         return $Fields;
 
     }
+
+    function linkSanatizer(Request $request){
+        $messages = [
+            'link' => 'O :attribute é necessário.',
+        ];
+
+        $rules = [
+            'link' => 'required',
+        ];
+
+        $validator = Validator::make( $request->all() , $rules, $messages);
+
+
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+        $link = parse_url($request->get('link'));
+        // dd($link);
+        try {
+
+            if($link['host'] == 'www.youtube.com'){ // Youtube Original
+                $link = $link['query'];
+    
+                if($link[0] == 'v' && $link[1] == '='){ //remove 'v='
+                    $link = 'https://www.youtube.com/embed/'.substr( $link, strlen($link) - 11 );
+                }
+            } else if($link['host'] == 'youtu.be'){ // Youtube Shared
+                $link = $link['path'];
+                $link = 'https://www.youtube.com/embed'.$link;
+            }
+            else if ($link['host'] == 'vimeo.com'){ // Vimeo Video
+                $link = $link['path'];
+                $link = 'https://player.vimeo.com/video'.$link;
+            }
+            else {
+                throw new exception('Utilize Links do youtube!');
+            }
+            
+
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage() ] );
+        }
+        
+
+        // 'https://player.vimeo.com/video/265186808'
+
+        return $link;
+    }
 }
