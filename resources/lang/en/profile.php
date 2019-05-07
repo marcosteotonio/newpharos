@@ -42,4 +42,6 @@ return [
     
     'profile_images' => 'Imagens do perfil',
 
+    'video_gallery'  => 'Galeria de Vídeos',
+
 ];

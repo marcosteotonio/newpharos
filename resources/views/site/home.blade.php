@@ -159,7 +159,7 @@
         <div class="row padding-15">
             <div class="col-md-12 text-center padding-15">
                 @include('includes.btn_decorated', [
-                'url' => url( env('APP_PREFIX').'/elenco' ),
+                'url' => url( env('APP_PREFIX').'/elencos' ),
                 'text' => 'VEJA TODO  O NOSSO ELENCO ADULTO'
                 ])
             </div>
@@ -219,7 +219,7 @@
         <div class="row padding-15">
             <div class="col-md-12 text-center padding-15">
             @include('includes.btn_decorated', [
-                'url' => url( env('APP_PREFIX').'/elenco' ),
+                'url' => url( env('APP_PREFIX').'/elencos?search=&age[]=0_20' ),
                 'text' => 'VEJA TODO  O NOSSO ELENCO INFANTIL'
             ])
             </div>

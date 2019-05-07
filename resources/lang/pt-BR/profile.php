@@ -42,4 +42,9 @@ return [
 
     'profile_images' => 'Imagens do perfil',
 
+    'video_gallery'  => 'Galeria de Vídeos',
+
+    'video_address' => 'Endereço do video',
+    'video_description' => 'Título do vídeo',
+
 ];

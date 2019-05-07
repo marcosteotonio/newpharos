@@ -30,6 +30,9 @@ Route::group(['prefix' => 'site'], function(){
     Route::post('add-agenciado-media-images', 'Api\HelperController@getAddAgenciadoMediaImages');
     Route::post('remove-agenciado-media-images/{id}', 'Api\HelperController@getRemoveAgenciadoMediaImages');
     
+    Route::post('add-agenciado-media-videos', 'Api\HelperController@getAddAgenciadoMediaVideos');
+    Route::post('remove-agenciado-media-videos/{id}', 'Api\HelperController@getRemoveAgenciadoMediaVideos');
+    
     Route::post('favoritar', 'Api\HelperController@postFavorito')->name('favoritar');
 
 //    Cliente

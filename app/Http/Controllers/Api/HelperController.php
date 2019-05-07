@@ -18,7 +18,7 @@ use App\Media;
 use App\Profile;
 use App\User;
 use App\Skills;
-
+use App\Video;
 use App\Post;
 
 use Carbon\Carbon;
@@ -418,23 +418,10 @@ class HelperController extends Controller
 
     }
 
-    function linkSanatizer(Request $request){
-        $messages = [
-            'link' => 'O :attribute é necessário.',
-        ];
+    function linkSanatizer($link){
+        
 
-        $rules = [
-            'link' => 'required',
-        ];
-
-        $validator = Validator::make( $request->all() , $rules, $messages);
-
-
-        if ($validator->fails()) {
-            return response()->json([ 'error' => $validator->messages() ]);
-        }
-
-        $link = parse_url($request->get('link'));
+        $link = parse_url($link);
         try {
 
             if($link['host'] == 'www.youtube.com'){ // Youtube Original
@@ -464,5 +451,58 @@ class HelperController extends Controller
         // 'https://player.vimeo.com/video/265186808'
 
         return $link;
+    }
+
+    function getAddAgenciadoMediaVideos(Request $request){
+        $messages = [
+            'description' => 'O descrição é necessário.',
+            'link' => 'O endereço do vídeo é necessário.',
+        ];
+
+        $rules = [
+            'description' => 'required',
+            'link' => 'required',
+        ];
+
+        $validator = Validator::make( $request->all() , $rules, $messages);
+
+
+        if ($validator->fails()) {
+            return response()->json([ 'error' => $validator->messages() ]);
+        }
+
+
+        $data = [
+            'entity_id'  => $request->get('user_id'),
+            'link' => $this->linkSanatizer( $request->get('link') ),
+            'description' => $request->get('description'),
+            'order' => 0,
+            'host' => parse_url($request->get('link'))['host']
+        ];
+
+
+        $video = Video::create($data);
+
+        if (!$video){
+            return response()->json(['error' => ['Falha em cadastrar vídeo..'] ] );
+        }
+
+        return response()->json(['success' => 'successo']);
+    }
+
+    function getRemoveAgenciadoMediaVideos(Request $request, $id){
+        
+        $idExplode = explode('|', base64_decode($id));
+        $data['user_id'] = $idExplode[0];
+        $data['id'] = $idExplode[1];
+        $mediaToDelete = Video::where(['entity_id' =>  $data['user_id'], 'id'=> $data['id'] ])->delete();
+
+        if($mediaToDelete){
+            return response()->json(['success' => 'Foto do perfil removida com sucesso!']);
+        } else {
+            return response()->json(['error' => 'Not Found!']);
+        }
+
+
     }
 }

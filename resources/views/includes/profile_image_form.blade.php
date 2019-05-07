@@ -85,10 +85,6 @@
                 $.ajax({
                 method: "POST",
                 url: "{!! url('/api/site/remove-agenciado-media-images') !!}/" + this.attributes.media_id.value,
-                // data: formData,
-                // processData: false,
-                // contentType: false,
-                // enctype: 'multipart/form-data'
                 })
                 .done( function( result ) {
                     if(result.error){
@@ -98,15 +94,13 @@
                     } else {
                         $('Form[name="add-agenciado-media-images"]').trigger("reset")
                         $.notify({
-                            message: 'Foto do Perfil Adicionada!'
+                            message: 'Foto do Perfil Removida!'
                         },{type: 'error' });
                     }
                     location.reload();
-                    $('.save_edit_agenciado_media').removeAttr('disabled')
                 })
                 .fail( function( msg ) {
                     console.log(msg)
-                    $('.save_edit_agenciado_media').removeAttr('disabled')
                 });
             }        
             

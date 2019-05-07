@@ -13,6 +13,7 @@ use Validator;
 
 use Exception;
 use App\Media;
+use App\Video;
 use App\Profile;
 use App\User;
 use App\Skills;
@@ -267,7 +268,7 @@ class SiteController extends Controller
         $data['profile'] = Profile::where('user_id', $data['user']->id)->first();
         
         $data['media'] = Media::where(['entity_id' =>  $data['user']->id, 'type' => 'image'])->orderBy('order', 'ASC')->get();
-        $data['video'] = Media::where(['entity_id' =>  $data['user']->id, 'type' => 'video'])->get();
+        $data['video'] = Video::where(['entity_id' =>  $data['user']->id])->get();
         // dd($data);
         return view('site.profile_edit', $data);
     }

@@ -15,6 +15,7 @@ class VidioProfile extends Migration
     {
         Schema::create('video', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('entity_id')->nullable();
             $table->text('link')->nullable();
             $table->text('description')->nullable();
             $table->text('order')->nullable();

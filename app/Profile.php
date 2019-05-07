@@ -97,6 +97,17 @@ class Profile extends Model
     }
 
     /**
+     * Retorna todas as medias que o perfil possui.
+     *
+     * @return void
+     */
+    public function videos()
+    {
+        return $this->morphMany('App\Video', 'entity', null,null, 'user_id');
+
+    }
+
+    /**
      * Retorna todos os posts que o perfil foi adicionado.
      *
      * @return void
