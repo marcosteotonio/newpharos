@@ -435,7 +435,6 @@ class HelperController extends Controller
         }
 
         $link = parse_url($request->get('link'));
-        // dd($link);
         try {
 
             if($link['host'] == 'www.youtube.com'){ // Youtube Original
