@@ -15,7 +15,6 @@ class SocialAuthController extends Controller
 
         if($r->tipo){
             return Socialite::driver('facebook')
-                ->scopes(["tipo" => "cliente"])
                 ->redirect();
         } else {
             return Socialite::driver('facebook')->redirect();
