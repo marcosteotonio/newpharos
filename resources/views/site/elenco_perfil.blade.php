@@ -185,7 +185,7 @@
                 <div class="profile__images">
                     @forelse( $profile['medias'] as $key => $images)
                         <?php $images = $images->toArray();  //dd($profile); ?>
-                        <div class="profile__image" style="background-image: url('<?php echo '/uploads/profiles/'.$profile['user_id'].'/'.$images['path']; ?>')"> 
+                        <div class="profile__image" style="background-image: url('<?php echo '/uploads/profiles/'.$profile['user_id'].'/'.$images['path']; ?>')" data-img=" {{ url('/uploads/profiles/'.$profile['user_id'].'/'.$images['path'])  }}">
                         </div>
                     @empty
                         <div class="profile__image"> 
@@ -332,6 +332,11 @@
                   });
               }
             })
+        })
+
+        $('.profile__image').click(function(){
+            let image = $(this).data('img')
+            $('.profile__image').first().css('background-image', 'url("'+ image +'")');
         })
     </script>
 @endsection
