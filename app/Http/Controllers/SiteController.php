@@ -201,8 +201,7 @@ class SiteController extends Controller
      */
     function getTrabalhos(){
         $data['title'] = 'Trabalhos';
-        $data['works'] = Post::all();
-        $data['works'] = [];
+        $data['works'] = Notices::get()->toArray();
       
         return view('site.trabalhos', $data);
     }

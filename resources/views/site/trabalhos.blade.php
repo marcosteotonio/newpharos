@@ -60,16 +60,15 @@
                 <div class="works">
                     
                     @forelse($works as $key =>  $val)
-                        @if(0)
                             @if( in_array( $key, ['0']) )
-                                <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>"
+                                <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val['slug'] ); ?>"
                                 class="work__item works__item__main work__image rounded-corner"
-                                style="background-image: url('<?php echo url(  $val->media ); ?>')">
+                                style="background-image: url('uploads/notices/<?php echo $val['media']; ?>')">
                                     <div class="work__inside">
                                         <div class="work__item__information work__item__information_main rounded-base">
                                             <div class="work__Information__title medium-text bold">
                                                 <?php
-                                                    $txt = $val->subtitle;
+                                                    $txt = $val['subtitle'];
                                                     $len = 35;
                                                     if( strlen( $txt ) <= $len ){
                                                         echo  $txt;
@@ -81,7 +80,7 @@
                                             <div class="work__Information__subtitle xlarge-text bold">
                                                 
                                                 <?php
-                                                    $txt = $val->title;
+                                                    $txt = $val['title'];
                                                     $len = 25;
                                                     if( strlen( $txt ) <= $len ){
                                                         echo  $txt;
@@ -95,12 +94,12 @@
                                     </div>
                                 </a>
                             @else
-                                <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>" class="work__item works__item__sec">
-                                    <div class="work__inside work__image" style="background-image: url('<?php echo url( $val->media ); ?>">
+                                <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val['slug'] ); ?>" class="work__item works__item__sec">
+                                    <div class="work__inside work__image" style="background-image: url('uploads/notices/<?php echo $val['media'] ; ?>">
                                         <div class="work__item__information">
                                             <div class="work__Information__title bold">
                                                 <?php
-                                                    $txt = $val->subtitle;
+                                                    $txt = $val['subtitle'];
                                                     $len = 25;
                                                     if( strlen( $txt ) <= $len ){
                                                         echo  $txt;
@@ -113,7 +112,7 @@
                                     </div>
                                     <div class="work__Information__subtitle bold">
                                         <?php
-                                            $txt = $val->title;
+                                            $txt = $val['title'];
                                             $len = 25;
                                             if( strlen( $txt ) <= $len ){
                                                 echo  $txt;
@@ -124,7 +123,6 @@
                                     </div>
                                 </a> 
                             @endif
-                        @endif
                     @empty
                         <div class="" style="grid-row: 1; grid-column: 1 / 4">
                             Aqui estaremos expondo os trabalhos que nossa agência tem atuado no momento.<br>
