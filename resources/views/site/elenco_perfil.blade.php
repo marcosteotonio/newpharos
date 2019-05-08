@@ -238,21 +238,30 @@
                 </div>
 
 
-                @if( isset( $profile['videos'] ) )
-                    <?php dd($profile);?>
+                @if( sizeof( $video ) )
                     <div class="profile__videos">
                         <div class="row padding-15">
                             <div class="col-md-12">
                                 <div class="iframe_yt" >
                                     <iframe  width="100%" height="420px" id="player"
-                                        src="https://www.youtube.com/embed/{ { $videos[0]->key }}?autoplay=0&controls=0&fs=0&rel=0&origin=pharosevento.com.br">
+                                        src="{{ $video[0]->link }}?autoplay=0&fs=0&rel=0&origin=pharosevento.com.br">
                                     </iframe> 
                                 </div>
                             </div>
                             <div class="col-md-12" style="padding: 0 30px;">
                                 <div class="owl-carousel owl-theme owl-loaded owl-drag" style="display: none">
-                                    @foreach( $profile['videos'] as $key => $val)
-                                        <div class="thumb_yt yt_switch" ytid="$val" style=" background-image: url( 'https://img.youtube.com/vi/val/0.jpg' ) ">
+                                    @foreach( $video as $key => $val)
+                                        <?php
+                                        $id = explode('/', $val->link);
+                                        $id = $id[ sizeof($id)-1 ];
+                                        if($val->host == 'www.youtube.com'){
+                                            $picture = 'https://img.youtube.com/vi/'.$id.'/0.jpg';
+                                        } else {
+                                            $picture = asset('/images/vimeo-logo.jpg');
+                                            // $picture = 'https://i.vimeocdn.com/video/'.$id.'_590x332.jpg';
+                                        }
+                                        ?>
+                                        <div class="thumb_yt yt_switch" ytid="{{ $val->link }}" style=" background-image: url( {{$picture}} ); background-position: 50% 50%;">
                                         </div>
                                     @endforeach
                                 </div>
@@ -295,7 +304,7 @@
             $('.owl-nav').show();
 
             $('.yt_switch').on('click', (e) => {
-                let src = 'https://www.youtube.com/embed/' + e.target.attributes.ytid.value  + '?autoplay=1&controls=0&fs=0&rel=0&origin=pharosevento.com.br'
+                let src = e.target.attributes.ytid.value  + '?autoplay=1&fs=0&rel=0&origin=pharosevento.com.br'
                 $('#player').attr('src', src)
             })
         });

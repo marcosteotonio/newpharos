@@ -185,6 +185,7 @@ class SiteController extends Controller
             //     ];
             // }
 
+            $data['video'] = Video::where(['entity_id' =>  $data['profile']->user_id])->get();
 
         } catch (\Throwable $th) {
             dd($th->getMessage());
