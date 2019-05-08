@@ -17,6 +17,7 @@ use App\Video;
 use App\Profile;
 use App\User;
 use App\Skills;
+use App\Notices;
 
 use App\Post;
 
@@ -52,10 +53,9 @@ class SiteController extends Controller
         /**
          *  divide in two parts to exibition
          */
-        $data['WorksShowCase'] = Post::get();
+        $data['WorksShowCase'] = Notices::limit(5)->get()->toArray();
 
         $data['secWorksShowCase'] = $data['WorksShowCase']; unset( $data['secWorksShowCase'][0] );
-        
         return view('site.home', $data);
     }
 

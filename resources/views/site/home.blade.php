@@ -230,7 +230,7 @@
 @endsection
 
 @section('works')
-<?php //dd($WorksShowCase[0]->media) ?>
+<?php //dd($WorksShowCase[0]['media']) ?>
 
     <div class="container padding-15">
         <div class="row">
@@ -242,22 +242,22 @@
             
             <div class="col-md-12">
                 <div class="worksHomePage">
-                    @if( !isset($secWorksShowCase) )
-                        <a href="<?php echo url( env('APP_PREFIX').'trabalho/'.$WorksShowCase[0]->slug ); ?>" 
+                    @if( isset($secWorksShowCase) )
+                        <a href="<?php echo url('trabalho/'.$WorksShowCase[0]['slug'] ); ?>" 
                             class="work mainWork"
-                            style="background-image: url('<?php echo $WorksShowCase[0]->media; ?>">
+                            style="background-image: url('uploads/notices/<?php echo $WorksShowCase[0]['media']; ?>">
                             <div class="mainWork__Information">
                                 <div class="work__Information__agency">
                                     <?php
-                                    if( strlen($WorksShowCase[0]->subtitle) >= 30){
-                                        echo substr( $WorksShowCase[0]->subtitle, 0, 30);
+                                    if( strlen($WorksShowCase[0]['subtitle']) >= 30){
+                                        echo substr( $WorksShowCase[0]['subtitle'], 0, 30);
                                     } else {
-                                        echo $WorksShowCase[0]->subtitle;
+                                        echo $WorksShowCase[0]['subtitle'];
                                     }
                                     ?>
                                 </div>
                                 <div class="work__Information__work_title">
-                                    {{ $WorksShowCase[0]->title }}
+                                    {{ $WorksShowCase[0]['title'] }}
                                 </div>
                             </div>
                         </a>
@@ -267,22 +267,22 @@
                             @foreach($secWorksShowCase as $chave => $val)
                             <?php //dd($chave) ?>
                                 @if($chave != 0 || $chave <= 3 )
-                                    <a href="{{ url(env('APP_PREFIX').'trabalho/'.$val->slug) }}" class="secWork__block">
-                                        <div class="work"style="background-image: url('<?php echo $val->media; ?>')">
+                                    <a href="{{ url('trabalho/'.$val['slug']) }}" class="secWork__block">
+                                        <div class="work"style="background-image: url('uploads/notices/<?php echo $val['media']; ?>')">
                                             <div class="work__Information">
                                                 <div class="work__Information__tipo">
                                                     <?php
-                                                    if( strlen($val->subtitle) >= 30){
-                                                        echo substr( $val->subtitle, 0, 30);
+                                                    if( strlen($val['subtitle']) >= 30){
+                                                        echo substr( $val['subtitle'], 0, 30);
                                                     } else {
-                                                        echo $val->subtitle;
+                                                        echo $val['subtitle'];
                                                     }
                                                     ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="work__Information__work_description">
-                                            {{ $val->title }}
+                                            {{ $val['title'] }}
                                         </div>
                                     </a>
                                 @endif
