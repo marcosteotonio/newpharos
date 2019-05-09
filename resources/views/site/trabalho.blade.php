@@ -95,10 +95,10 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="work__title">
-                            {{ $work[0]->subtitle }}
+                            {{ $work->subtitle }}
                         </div>
                         <div class="work__agency">
-                            {{ $work[0]->title }}
+                            {{ $work->title }}
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -110,11 +110,11 @@
                         </div>
                     </div>
                     <div class="col-md-12 padding-15">
-                        <img  class="work_image_main" src="<?php echo url( env('APP_PREFIX') . $work[0]->media ); ?>" alt="">
+                        <img  class="work_image_main" src="/uploads/notices/<?php echo $work->media; ?>" alt="">
                     </div>
                     <div class="col-md-12">
                         <p>
-                            {!! $work[0]->description !!}                        
+                            {!! $work->description !!}                        
                         </p>
                     </div>
                 </div>
@@ -127,13 +127,12 @@
                 </div>
                 <div class="image_others_works">
                     @forelse($secWorkShowCase as $key =>  $val)
-                        @if($key <= 2)
-                        <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val->slug ); ?>" class="work__item works__item__sec">
-                            <div class="work__inside work__image" style="background-image: url('<?php echo url( $val->media ); ?>">
+                        <a href="/uploads/notices/<?php $val['slug'] ?>" class="work__item works__item__sec">
+                            <div class="work__inside work__image" style="background-image: url('/uploads/notices/<?php echo $val['media']; ?>">
                                 <div class="work__item__information">
                                     <div class="work__Information__title bold">
                                         <?php
-                                            $txt = $val->subtitle;
+                                            $txt = $val['subtitle'];
                                             $len = 25;
                                             if( strlen( $txt ) <= $len ){
                                                 echo  $txt;
@@ -146,7 +145,7 @@
                             </div>
                             <div class="work__Information__subtitle bold">
                                 <?php
-                                    $txt = $val->title;
+                                    $txt = $val['title'];
                                     $len = 25;
                                     if( strlen( $txt ) <= $len ){
                                         echo  $txt;
@@ -156,7 +155,6 @@
                                 ?>
                             </div>
                         </a>
-                        @endif
                     @empty
                     
                     @endforelse

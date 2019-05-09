@@ -60,10 +60,13 @@
                 <div class="works">
                     
                     @forelse($works as $key =>  $val)
+                        <?php if(!$val['media']){
+                            $val['media'] = 'default_notice.png';
+                        }?>
                             @if( in_array( $key, ['0']) )
                                 <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val['slug'] ); ?>"
                                 class="work__item works__item__main work__image rounded-corner"
-                                style="background-image: url('uploads/notices/<?php echo $val['media']; ?>')">
+                                style="background-image: url('uploads/notices/<?php echo $val['media']; ?>'); background-position: 50% 50%; ">
                                     <div class="work__inside">
                                         <div class="work__item__information work__item__information_main rounded-base">
                                             <div class="work__Information__title medium-text bold">
@@ -95,7 +98,7 @@
                                 </a>
                             @else
                                 <a href="<?php echo url( env('APP_PREFIX') . '/trabalho/' . $val['slug'] ); ?>" class="work__item works__item__sec">
-                                    <div class="work__inside work__image" style="background-image: url('uploads/notices/<?php echo $val['media'] ; ?>">
+                                    <div class="work__inside work__image" style="background-image: url('uploads/notices/<?php echo $val['media'] ; ?>'); background-position: 50% 50%;">
                                         <div class="work__item__information">
                                             <div class="work__Information__title bold">
                                                 <?php

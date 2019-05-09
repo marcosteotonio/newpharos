@@ -201,7 +201,7 @@ class SiteController extends Controller
      */
     function getTrabalhos(){
         $data['title'] = 'Trabalhos';
-        $data['works'] = Notices::get()->toArray();
+        $data['works'] = Notices::orderBy( 'id', 'DESC' )->get()->toArray();
       
         return view('site.trabalhos', $data);
     }
@@ -212,17 +212,14 @@ class SiteController extends Controller
     function getTrabalho($slug){
         $data['title'] = 'Trabalhos';
                 
-        
-        $data['work'] = DB::select('select * from notices where slug = \''.$slug.'\' and media is not null');
-        foreach($data['work'] as $key => $val){
-            $data['work'][$key]->media = env('NOTICES_DIR').$val->media;
+        $data['work'] = Notices::where(['slug' => $slug])->first();
+        if(!$data['work']->media){
+            $data['work']->media = 'default_notice.png';
         }
-
-        $data['secWorkShowCase'] = DB::select('select * from notices where media is not null ORDER BY RAND() limit 3');
-        foreach($data['secWorkShowCase'] as $key => $val){
-            $data['secWorkShowCase'][$key]->media = env('NOTICES_DIR').$val->media;
+        $data['secWorkShowCase'] = Notices::limit(3)->orderBy( \DB::raw('RAND()') )->get();
+        if($data['secWorkShowCase']){
+            $data['secWorkShowCase'] = $data['secWorkShowCase']->toArray();
         }
-
         return view('site.trabalho', $data);
     }
 
