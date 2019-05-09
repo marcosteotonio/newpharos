@@ -54,46 +54,14 @@
                         </div>
                         <div class="form-group">
                             <label for="body">Conteúdo *</label>
-                            <textarea type="text" class="form-control" name="body" rows="10" placeholder="">{{ old('body') }}</textarea>
+                            <textarea type="text" class="form-control" name="description" rows="10" placeholder="">{{ old('description') }}</textarea>
                         </div>
+
                         <div class="form-group">
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="typeImage" name="typeFile" checked="" value="typeImage">
-                                <label class="custom-control-label" for="typeImage">Imagem</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="typeMovie" name="typeFile" value="typeMovie">
-                                <label class="custom-control-label" for="typeMovie">Vídeo</label>
-                            </div>
+                            <label for="subtitle">Foto</label>
+                            <input type="file" class="form-control" name="image" placeholder="">
                         </div>
-                        <div class="form-group" id="type-image">
-                            <label class="d-block" for="image">Anexar imagem</label>
-                            <input type="file" id="image" name="image">
-                        </div>
-                        <div class="form-group type-movie-disabled" id="type-movie">
-                            <label for="movie">Link do vídeo (Youtube / Vimeo)</label>
-                            <input type="text" class="form-control" name="movie" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label class="d-block">Agenciado <small>(Segure <code>CTRL</code> e clique para selecionar mais de um)</small></label>
-                            <select class="form-control" id="profile_id" name="profile_id[]" multiple>
-                                <option value="">-- Selecione --</option>
-                                @foreach($profiles as $profile)
-                                    <option value="{{$profile->id}}">{{$profile->user->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="d-block">Status</label>
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="status-active" name="status" checked value="1">
-                                <label class="custom-control-label" for="status-active">Ativo</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="status-inactive" name="status" value="2">
-                                <label class="custom-control-label" for="status-inactive">Inativo</label>
-                            </div>
-                        </div>
+
                         <div class="form-group"> 
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
@@ -103,4 +71,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js_after')
+
+    <script src="https://cloud.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
 @endsection
