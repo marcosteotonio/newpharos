@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Media;
+use App\Notices;
 use App\Post;
 use App\Profile;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -17,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->latest()->paginate(10);
+        $posts = Notices::orderBy('created_at', 'desc')->latest()->paginate(10);
 
         return view('posts.index', compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
@@ -45,59 +47,32 @@ class PostController extends Controller
     {
         request()->validate([
             'title' => 'required',
-            'body' => 'required|min:10',
-            'typeFile' => 'required',
+            'description' => 'required|min:10',
+
         ]);
 
         $slug = str_slug($request->title, '-');
         $request->merge(['slug' => $slug]);
 
-        $post = Post::create($request->all());
+        if ($request->hasFile('image')) {
 
-        if ($request->profile_id) {
-            $post->profiles()->sync($request->profile_id);
+            $image = $request->file('image');
+            $name = "{$slug}.{$request->image->extension()}";
+            $path = "/uploads/notices";
+            $destinationPath = public_path($path);
+            $image->move($destinationPath, $name);
+            $request->merge(['media'=> $name]);
+            $request->merge(['media_type'=>'image']);
         }
 
-        switch ($request->typeFile) {
-            case 'typeImage':
+        $post = Notices::create($request->all());
 
-                if ($request->hasFile('image')) {
 
-                    $media = new Media;
 
-                    $image = $request->file('image');
-                    $name = "{$slug}.{$request->image->extension()}";
-                    $path = "/uploads/posts";
-                    $destinationPath = public_path($path);
-                    $imagePath = $destinationPath . "/" . $name;
-                    $image->move($destinationPath, $name);
 
-                    $media->path = $path . "/" . $name;
-                    $media->type = "image";
-
-                    $post->medias()->save($media);
-                }
-
-                break;
-
-            case 'typeMovie':
-
-                if ($request->movie) {
-                    $media = new Media;
-                    $media->path = $request->movie;
-                    $media->type = "movie";
-
-                    $post->medias()->save($media);
-                }
-
-                break;
-
-            default:
-                break;
-        }
 
         return redirect()->route('posts.index')
-            ->with('success', 'Postagem criada com sucesso!');
+            ->with('success', 'Noticias criada com sucesso!');
     }
 
     /**
@@ -117,11 +92,11 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        $profiles = Profile::all();
+        $post = Notices::find($id);
 
-        return view('posts.edit', compact('post', 'profiles'));
+        return view('posts.edit', compact( 'post'));
     }
 
     /**
@@ -131,68 +106,34 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        request()->validate([
-            'title' => 'required',
-            'body' => 'required|min:10',
-            'typeFile' => 'required',
-        ]);
+//        request()->validate([
+//            'title' => 'required',
+//            'description' => 'required|min:10',
+//            'media' => 'required',
+//        ]);
+        $data = $request->all();
 
         $slug = str_slug($request->title, '-');
         $request->merge(['slug' => $slug]);
 
-        $post->update($request->all());
 
-        // $post->profiles()->detach();
-        if ($request->profile_id) {
-            $post->profiles()->sync($request->profile_id);
+        if ($request->hasFile('image')) {
+
+            $image = $request->file('image');
+            $name = "{$slug}.{$request->image->extension()}";
+            $path = "/uploads/notices";
+            $destinationPath = public_path($path);
+            $image->move($destinationPath, $name);
+            $request->merge(['media'=> $name]);
+            $request->merge(['media_type'=>'image']);
         }
 
-        switch ($request->typeFile) {
-            case 'typeImage':
-
-                if ($request->hasFile('image')) {
-
-                    $post->medias()->delete();
-
-                    $media = new Media;
-
-                    $image = $request->file('image');
-                    $name = "{$slug}.{$request->image->extension()}";
-                    $path = "/uploads/posts";
-                    $destinationPath = public_path($path);
-                    $imagePath = $destinationPath . "/" . $name;
-                    $image->move($destinationPath, $name);
-
-                    $media->path = $path . "/" . $name;
-                    $media->type = "image";
-
-                    $post->medias()->save($media);
-                }
-
-                break;
-
-            case 'typeMovie':
-
-                if ($request->movie) {
-
-                    $post->medias()->delete();
-                    $media = new Media;
-                    $media->path = $request->movie;
-                    $media->type = "movie";
-
-                    $post->medias()->save($media);
-                }
-
-                break;
-
-            default:
-                break;
-        }
+        Notices::find($id)->update($request->all());
 
         return redirect()->route('posts.index')
-            ->with('success', 'Postagem atualizada com sucesso!');
+            ->with('success', 'Noticia atualizada com sucesso!');
     }
 
     /**
@@ -201,14 +142,9 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        if ($post->medias()->count() > 0 && $post->medias[0]->type == "image") {
-            unlink(public_path($post->medias[0]->path));
-        }
-
-        $post->medias()->delete();
-        $post->delete();
+      Notices::find($id)->delete();
 
         return redirect()->route('posts.index')
             ->with('success', 'Postagem deletada com sucesso!');

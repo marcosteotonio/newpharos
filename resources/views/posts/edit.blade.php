@@ -48,20 +48,20 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         
-                        @if ($post->medias()->count() > 0 && @$post->medias[0]->type == 'image')
-                        <div class="row items-push">
-                            <div class="col-md-4 animated fadeIn">
-                                <div class="options-container">
-                                    <img class="img-fluid options-item" src="{{asset(@$post->medias[0]->path)}}" alt="">
-                                    <div class="options-overlay bg-primary-dark-op">
-                                        <div class="options-overlay-content">
-                                            <h3 class="h4 text-white mb-2">{{$post->slug}}</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
+                        {{--@if ($post->medias()->count() > 0 && @$post->medias[0]->type == 'image')--}}
+                        {{--<div class="row items-push">--}}
+                            {{--<div class="col-md-4 animated fadeIn">--}}
+                                {{--<div class="options-container">--}}
+                                    {{--<img class="img-fluid options-item" src="{{asset(@$post->medias[0]->path)}}" alt="">--}}
+                                    {{--<div class="options-overlay bg-primary-dark-op">--}}
+                                        {{--<div class="options-overlay-content">--}}
+                                            {{--<h3 class="h4 text-white mb-2">{{$post->slug}}</h3>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--@endif--}}
 
                         <div class="form-group">
                             <label for="title">Título *</label>
@@ -73,76 +73,85 @@
                         </div>
                         <div class="form-group">
                             <label for="body">Conteúdo *</label>
-                            <textarea type="text" class="form-control" name="body" rows="10" placeholder="">{{ old('body', $post->body) }}</textarea>
+                            <textarea type="text" class="form-control" name="description" rows="10" placeholder="">{{ old('body', $post->description) }}</textarea>
                         </div>
+
                         <div class="form-group">
-                            @if ($post->medias()->count() > 0)
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="typeImage" name="typeFile" value="typeImage" {{ $post->medias[0]->type == 'image' ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="typeImage">Imagem</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="typeMovie" name="typeFile" value="typeMovie" {{ $post->medias[0]->type == 'movie' ? 'checked' : '' }}>
-                                <label class="custom-control-label" for="typeMovie">Vídeo</label>
-                            </div>
-                            @else
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="typeImage" name="typeFile" value="typeImage" checked }}>
-                                <label class="custom-control-label" for="typeImage">Imagem</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="typeMovie" name="typeFile" value="typeMovie">
-                                <label class="custom-control-label" for="typeMovie">Vídeo</label>
-                            </div>
-                            @endif
+                            <label for="subtitle">FOTO</label>
+                            <input type="file" class="form-control" name="image" placeholder="">
                         </div>
+
+
+
+
+                        {{--<div class="form-group">--}}
+                            {{--@if ($post->medias()->count() > 0)--}}
+                            {{--<div class="custom-control custom-radio custom-control-inline custom-control-primary">--}}
+                                {{--<input type="radio" class="custom-control-input" id="typeImage" name="typeFile" value="typeImage" {{ $post->medias[0]->type == 'image' ? 'checked' : '' }}>--}}
+                                {{--<label class="custom-control-label" for="typeImage">Imagem</label>--}}
+                            {{--</div>--}}
+                            {{--<div class="custom-control custom-radio custom-control-inline custom-control-primary">--}}
+                                {{--<input type="radio" class="custom-control-input" id="typeMovie" name="typeFile" value="typeMovie" {{ $post->medias[0]->type == 'movie' ? 'checked' : '' }}>--}}
+                                {{--<label class="custom-control-label" for="typeMovie">Vídeo</label>--}}
+                            {{--</div>--}}
+                            {{--@else--}}
+                            {{--<div class="custom-control custom-radio custom-control-inline custom-control-primary">--}}
+                                {{--<input type="radio" class="custom-control-input" id="typeImage" name="typeFile" value="typeImage" checked }}>--}}
+                                {{--<label class="custom-control-label" for="typeImage">Imagem</label>--}}
+                            {{--</div>--}}
+                            {{--<div class="custom-control custom-radio custom-control-inline custom-control-primary">--}}
+                                {{--<input type="radio" class="custom-control-input" id="typeMovie" name="typeFile" value="typeMovie">--}}
+                                {{--<label class="custom-control-label" for="typeMovie">Vídeo</label>--}}
+                            {{--</div>--}}
+                            {{--@endif--}}
+                        {{--</div>--}}
                         
-                        @if ($post->medias()->count() > 0)
-                        <div class="form-group {{ $post->medias[0]->type == 'movie' ? 'type-image-disabled' : '' }}" id="type-image">
-                            <label class="d-block" for="image">Anexar imagem</label>
-                            <input type="file" id="image" name="image">
-                        </div>
+                        {{--@if ($post->medias()->count() > 0)--}}
+                        {{--<div class="form-group {{ $post->medias[0]->type == 'movie' ? 'type-image-disabled' : '' }}" id="type-image">--}}
+                            {{--<label class="d-block" for="image">Anexar imagem</label>--}}
+                            {{--<input type="file" id="image" name="image">--}}
+                        {{--</div>--}}
 
-                        <div class="form-group {{ $post->medias[0]->type == 'image' ? 'type-movie-disabled' : '' }}" id="type-movie">
-                            <label for="movie">Youtube link</label>
-                            <input type="text" class="form-control" name="movie" placeholder="" value="{{ $post->medias[0]->type == 'movie' ? $post->medias[0]->path : '' }}">
-                        </div>
-                        @else
-                        <div class="form-group" id="type-image">
-                            <label class="d-block" for="image">Anexar imagem</label>
-                            <input type="file" id="image" name="image">
-                        </div>
-                        <div class="form-group type-movie-disabled" id="type-movie">
-                            <label for="movie">Link do vídeo (Youtube / Vimeo)</label>
-                            <input type="text" class="form-control" name="movie" placeholder="" value="">
-                        </div>
-                        @endif
+                        {{--<div class="form-group {{ $post->medias[0]->type == 'image' ? 'type-movie-disabled' : '' }}" id="type-movie">--}}
+                            {{--<label for="movie">Youtube link</label>--}}
+                            {{--<input type="text" class="form-control" name="movie" placeholder="" value="{{ $post->medias[0]->type == 'movie' ? $post->medias[0]->path : '' }}">--}}
+                        {{--</div>--}}
+                        {{--@else--}}
+                        {{--<div class="form-group" id="type-image">--}}
+                            {{--<label class="d-block" for="image">Anexar imagem</label>--}}
+                            {{--<input type="file" id="image" name="image">--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group type-movie-disabled" id="type-movie">--}}
+                            {{--<label for="movie">Link do vídeo (Youtube / Vimeo)</label>--}}
+                            {{--<input type="text" class="form-control" name="movie" placeholder="" value="">--}}
+                        {{--</div>--}}
+                        {{--@endif--}}
 
-                        <div class="form-group">
-                            <label class="d-block">Agenciado <small>(Segure <code>CTRL</code> e clique para selecionar mais de um)</small></label>
-                            <select class="form-control" id="profile_id" name="profile_id[]" multiple>
-                                <option value="">-- Selecione --</option>
-                                @foreach($profiles as $profile)
-                                    @if ($post->profiles->contains($profile))
-                                    <option value="{{$profile->id}}" selected>{{$profile->user->name}}</option>
-                                    @else
-                                    <option value="{{$profile->id}}">{{$profile->user->name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label class="d-block">Agenciado <small>(Segure <code>CTRL</code> e clique para selecionar mais de um)</small></label>--}}
+                            {{--<select class="form-control" id="profile_id" name="profile_id[]" multiple>--}}
+                                {{--<option value="">-- Selecione --</option>--}}
+                                {{--@foreach($profiles as $profile)--}}
+                                    {{--@if ($post->profiles->contains($profile))--}}
+                                    {{--<option value="{{$profile->id}}" selected>{{$profile->user->name}}</option>--}}
+                                    {{--@else--}}
+                                    {{--<option value="{{$profile->id}}">{{$profile->user->name}}</option>--}}
+                                    {{--@endif--}}
+                                {{--@endforeach--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
 
-                        <div class="form-group">
-                            <label class="d-block">Status</label>
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                            <input type="radio" class="custom-control-input" id="status-active" name="status" {{ $post->status == 1 ? 'checked' : '' }} value="1">
-                                <label class="custom-control-label" for="status-active">Ativo</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline custom-control-primary">
-                                <input type="radio" class="custom-control-input" id="status-inactive" name="status" {{ $post->status == 2 ? 'checked' : '' }} value="2">
-                                <label class="custom-control-label" for="status-inactive">Inativo</label>
-                            </div>
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label class="d-block">Status</label>--}}
+                            {{--<div class="custom-control custom-radio custom-control-inline custom-control-primary">--}}
+                            {{--<input type="radio" class="custom-control-input" id="status-active" name="status" {{ $post->status == 1 ? 'checked' : '' }} value="1">--}}
+                                {{--<label class="custom-control-label" for="status-active">Ativo</label>--}}
+                            {{--</div>--}}
+                            {{--<div class="custom-control custom-radio custom-control-inline custom-control-primary">--}}
+                                {{--<input type="radio" class="custom-control-input" id="status-inactive" name="status" {{ $post->status == 2 ? 'checked' : '' }} value="2">--}}
+                                {{--<label class="custom-control-label" for="status-inactive">Inativo</label>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="form-group"> 
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
@@ -152,4 +161,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js_after')
+
+    <script src="https://cloud.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
 @endsection
