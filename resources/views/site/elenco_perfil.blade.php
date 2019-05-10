@@ -170,10 +170,7 @@
                         <span class="d-none d-sm-inline-block" style="text-transform: uppercase;color:#FFF">demonstrar interesse</span>
                     </a>
                     @endif
-                    <a href="" class="btn btn-access" style="height: 50px; padding: 13px;">
-                        <i class="fa fa-fw fa-share-alt fa-lg d-sm-none"></i>
-                        <i class="fa fa-fw fa-share-alt fa-lg ml-1 d-none d-sm-inline-block"></i>
-                    </a>
+                        <div class="sharethis-inline-share-buttons"></div>
                 </div>
             </div>
         </div>
@@ -339,4 +336,7 @@
             $('.profile__image').first().css('background-image', 'url("'+ image +'")');
         })
     </script>
+
+
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=589f326b79d6fb00120307bb&product=inline-share-buttons' async='async'></script>
 @endsection
