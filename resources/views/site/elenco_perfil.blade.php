@@ -131,7 +131,10 @@
     }
 </style>
 @endsection
-
+@section('title', $profile['fancy_name']  )
+@section('type', "perfil" )
+@section('url', url($_SERVER['REQUEST_URI'])  )
+@section('foto',  url('/uploads/profiles/'.$profile['user_id'].'/'.$profile['medias'][0]['path'])  )
 @section('content')
     <div class="container padding-50"> <!-- CONTENT-BEGAN -->
 
@@ -163,17 +166,14 @@
 
             <div class="col-md-8 col-sm-4 col-xs-12">
                 <div class="float-right">
-                    @if(Auth::user())
+                    @if(Auth::user() && Auth::user()->level != '3')
                     <a  class="btn btn-access-red" id="bt-favoritar" style="color:#FFF">
                         <i class="fa fa-fw fa-heart d-sm-none"></i>
                         <i class="fa fa-fw fa-heart ml-1 d-none d-sm-inline-block"></i>
                         <span class="d-none d-sm-inline-block" style="text-transform: uppercase;color:#FFF">demonstrar interesse</span>
                     </a>
                     @endif
-                    <a href="" class="btn btn-access" style="height: 50px; padding: 13px;">
-                        <i class="fa fa-fw fa-share-alt fa-lg d-sm-none"></i>
-                        <i class="fa fa-fw fa-share-alt fa-lg ml-1 d-none d-sm-inline-block"></i>
-                    </a>
+                        <div class="sharethis-inline-share-buttons"></div>
                 </div>
             </div>
         </div>
@@ -339,4 +339,7 @@
             $('.profile__image').first().css('background-image', 'url("'+ image +'")');
         })
     </script>
+
+
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=589f326b79d6fb00120307bb&product=inline-share-buttons' async='async'></script>
 @endsection

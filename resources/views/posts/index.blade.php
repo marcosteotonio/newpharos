@@ -42,9 +42,10 @@
                 <thead>
                     <tr class="text-uppercase">
                         <th class="text-center" style="width: 50px;">#</th>
+                        <th>FOTO</th>
                         <th>TÍTULO</th>
+                        <th>SLUG</th>
                         <th class="text-center" style="width: 200px;">POSTADO EM</th>
-                        <th class="text-center" style="width: 100px;">STATUS</th>
                         <th class="text-center" style="width: 100px;">AÇÕES</th>
                     </tr>
                 </thead>
@@ -53,29 +54,45 @@
                     <tr>
                         <th class="text-center" scope="row">{{ ++$i }}</th>
                         <td class="font-w600 font-size-base">
+                            @if($post->media)
+                            <img src="{{ url('/uploads/notices/'.$post->media )}}" alt="" class="image-grayscale" width="100">
+                                @else
+                                <img src="https://via.placeholder.com/100x100.png?text=SEM+FOTO" alt="" >
+                            @endif
+                        </td>
+                        
+                        <td class="font-w600 font-size-base">
                             {{ $post->title }}
                         </td>
+
+                        <td class="font-w600 font-size-base">
+                            {{ $post->slug }}
+                        </td>
+
                         <td class="text-center font-size-base">
                             {{$post->created_at->format('d/m/Y')}}
-                        </td>
-                        <td class="text-center">
-                            @if ($post->status == 1)
-                            <span class="badge badge-success">ATIVO</span>
-                            @else
-                            <span class="badge badge-danger">INATIVO</span>
-                            @endif
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
                                 <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary" data-toggle="tooltip" title="Editar" data-placement="left">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
+
+                                {{--<a href="{{ route('posts.destroy', $post->id) }}" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Remover" data-placement="left">--}}
+                                   <form method="post" action="{{ route('posts.destroy', $post->id) }}">
+                                       @csrf
+                                        @method('DELETE')
+                                      <button class="btn btn-sm btn-danger" type="submit"> <i type="submit" class="fa fa-trash-alt"></i></button>
+                                   </form>
+                                {{--</a>--}}
                             </div>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+
+            <div>{{$posts->links()}}</div>
         </div>
     </div>
 </div>

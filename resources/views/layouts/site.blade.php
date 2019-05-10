@@ -12,6 +12,11 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <meta property="og:title" content="@yield('title')" />
+        <meta property="og:type" content="@yield('type')" />
+        <meta property="og:url" content="@yield('url')" />
+        <meta property="og:image" content="@yield('foto')" />
+
         <!-- Icons -->
         <link rel="shortcut icon" href="{{ url( env('APP_PREFIX') . '/images/logo.png') }}">
         <link rel="icon" sizes="192x192" type="image/png" href="{{ url( env('APP_PREFIX') . '/images/logo.png') }}">

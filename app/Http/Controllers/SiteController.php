@@ -401,4 +401,17 @@ class SiteController extends Controller
 
     }
 
+
+    public function sendContact(Request $request){
+
+        $email = $request->all();
+        $vai = Mail::send('emails.site.contato_email', ['dados' => $request->all()], function($message) use ($email){
+            $message->from($email['email'], $email['name']);
+            $message->subject("Contato via site");
+            $message->priority(1);
+            $message->to('contato@pharoselenco.com.br');
+        });
+        return redirect()->back()->with("success", "Mensagem enviado com sucesso!");
+    }
+
 }

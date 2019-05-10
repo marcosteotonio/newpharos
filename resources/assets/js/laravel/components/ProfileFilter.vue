@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
@@ -131,29 +131,29 @@ export default {
             filters: {
                 gender: [],
                 feet: {
-                    value: [34, 40],
+                    value: [15, 50],
                     min: 15,
                     max: 50
                 },
                 dummy: {
-                    value: [38, 44],
+                    value: [0, 60],
                     min: 0,
                     max: 60,
                     interval: 2,
                 },
                 age: {
-                    value: [18, 30],
+                    value: [1, 100],
                     min: 1,
                     max: 100
                 },
                 weight: {
-                    value: [50, 77],
+                    value: [2, 150],
                     min: 2,
                     max: 150,
                     formatter: "{value} kg"
                 },
                 height: {
-                    value: [1.40, 1.80],
+                    value: [1, 2.20],
                     min: 1,
                     max: 2.20,
                     interval: 0.1,

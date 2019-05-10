@@ -27,18 +27,21 @@
     
     Route::get('/agencia', 'SiteController@getAgencia')->name('agencia');
     Route::get('/contato', 'SiteController@getContato')->name('contato');
-    
+    Route::post('/send', 'SiteController@sendContact')->name('send');
+
     
     Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
     
-    Route::group(['middleware'=> ['auth.agenciado']], function(){
+    Route::group(['middleware'=> ['check.agenciado']], function(){
         Route::get('/perfil', 'SiteController@getProfle')->name('perfil');
         Route::get('/perfil/editar', 'SiteController@getProfleEditar');
-        //Cliente
-        Route::get('/cliente', 'SiteController@Cliente')->name('cliente');
-        Route::get('/cliente/editar', 'SiteController@getClienteEditar');
-    
     });
+
+     //Cliente
+     Route::group(['middleware'=> ['check.cliente']], function(){
+         Route::get('/cliente', 'SiteController@Cliente')->name('cliente');
+         Route::get('/cliente/editar', 'SiteController@getClienteEditar');
+     });
 });
 
 

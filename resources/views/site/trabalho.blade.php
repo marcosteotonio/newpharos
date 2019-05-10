@@ -86,7 +86,10 @@
     }
 </style>
 @endsection
-
+@section('title', $work->title )
+@section('type', "news" )
+@section('url', url($_SERVER['REQUEST_URI'])  )
+@section('foto',  url("/uploads/notices/". $work->media) )
 @section('content')
     <div class="container padding-50"> <!-- CONTENT-BEGAN -->
         <div class="row">
@@ -103,10 +106,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="float-right">
-                            <a href="#" class="btn btn-access" style="height: 50px; padding: 13px;">
-                                <i class="fa fa-fw fa-share-alt fa-lg d-sm-none"></i>
-                                <i class="fa fa-fw fa-share-alt fa-lg ml-1 d-none d-sm-inline-block"></i>
-                            </a>
+                            <div class="sharethis-inline-share-buttons"></div>
                         </div>
                     </div>
                     <div class="col-md-12 padding-15">
@@ -167,5 +167,6 @@
     </div> <!-- CONTENT-END -->
 @endsection
 
-@section('js')
+@section('js_after')
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=589f326b79d6fb00120307bb&product=inline-share-buttons' async='async'></script>
 @endsection
