@@ -399,8 +399,11 @@
                         <div class="row gutters-tiny js-gallery img-fluid-100 pb-4">
                             <div class="row gutters-tiny js-gallery img-fluid-100 pb-4">
                                 @if ($profile->medias->count() > 0)
-                                @foreach($profile->medias as $media)
-                                <div class="col-md-2 animated fadeIn push">
+                                @foreach($profile->medias as $key => $media)
+                                <div class="col-md-2 animated fadeIn push" media_id="{{ base64_encode( $profile->user_id.'|'.$media->id ) }}">
+                                    <div class="media_list__delete" media_id="{{ base64_encode( $profile->user_id.'|'.$media->id ) }}">
+                                        <i class="fa fa-trash" style=" color: #9f432c"></i>
+                                    </div>
                                     <a class="img-link img-link-simple img-lightbox" href="{{ url('public/uploads/profiles/' . $profile->user_id . '/' . $media->path) }}">
                                         <img class="img-fluid" src="{{ url('public/uploads/profiles/' . $profile->user_id . '/thumb/' . $media->path) }}" alt="">
                                     </a>
@@ -465,4 +468,26 @@
     </form>
 
 </div>
+@endsection
+
+@section('js_after')
+<script>
+    $('.media_list__delete').on('click', function(e){
+            var ConfirmDeletion= confirm("{{ __('profile.confirmremove') }}");
+            if (ConfirmDeletion == true) {
+                $.ajax({
+                method: "POST",
+                url: "{!! url('/api/site/remove-agenciado-media-images') !!}/" + this.attributes.media_id.value,
+                })
+                .done( function( result ) {
+                    alert('Foto removida!')
+                    location.reload();
+                })
+                .fail( function( msg ) {
+                    console.log(msg)
+                });
+            }        
+            
+        })
+    </script>
 @endsection

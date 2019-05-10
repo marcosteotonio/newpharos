@@ -272,9 +272,9 @@ class HelperController extends Controller
         
         $idExplode = explode('|', base64_decode($id));
         $data['user_id'] = $idExplode[0];
-        $data['order'] = $idExplode[1];
+        $data['id'] = $idExplode[1];
         
-        $mediaToDelete = Media::where(['entity_id' =>  $data['user_id'], 'order'=> $data['order'] ])->delete();
+        $mediaToDelete = Media::where(['id'=> $data['id'] ])->delete();
 
         if($mediaToDelete){
             return response()->json(['success' => 'Foto do perfil removida com sucesso!']);

@@ -12,7 +12,7 @@
                 <div class="owl-carousel owl-theme owl-loaded owl-drag media_carousel">
                         @forelse($media as $key => $val )
                         <div class="media_list">
-                            <div class="media_list__delete" media_id="{{ base64_encode( $user->id.'|'.$val->order ) }}">
+                            <div class="media_list__delete" media_id="{{ base64_encode( $user->id.'|'.$val->id ) }}">
                                 <i class="fa fa-trash" style=" color: #9f432c"></i>
                             </div>
                             <div class="media_list__background" style="background-image: url( '<?php echo url( '/uploads/profiles/' .$profile->user_id.'/'. $val['path'] ); ?>' );">
@@ -79,32 +79,7 @@
             });
         })
 
-        $('.media_list__delete').on('click', function(e){
-            var ConfirmDeletion= confirm("{{ __('profile.confirmremove') }}");
-            if (ConfirmDeletion == true) {
-                $.ajax({
-                method: "POST",
-                url: "{!! url('/api/site/remove-agenciado-media-images') !!}/" + this.attributes.media_id.value,
-                })
-                .done( function( result ) {
-                    if(result.error){
-                        $.notify({
-                            message: result.error
-                        },{type: 'error' });
-                    } else {
-                        $('Form[name="add-agenciado-media-images"]').trigger("reset")
-                        $.notify({
-                            message: 'Foto do Perfil Removida!'
-                        },{type: 'error' });
-                    }
-                    location.reload();
-                })
-                .fail( function( msg ) {
-                    console.log(msg)
-                });
-            }        
-            
-        })
+       
         
 
     </script>
