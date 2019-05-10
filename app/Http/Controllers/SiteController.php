@@ -406,14 +406,11 @@ class SiteController extends Controller
 
         $email = $request->all();
         $vai = Mail::send('emails.site.contato_email', ['dados' => $request->all()], function($message) use ($email){
-            $message->from('professormarcos2@gmail.com', 'Pharos');
+            $message->from($email['email'], $email['name']);
             $message->subject("Contato via site");
             $message->priority(1);
-            $message->to($email['email']);
+            $message->to('contato@pharoselenco.com.br');
         });
-
-
-
         return redirect()->back()->with("success", "Mensagem enviado com sucesso!");
     }
 
