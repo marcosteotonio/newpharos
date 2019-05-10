@@ -166,7 +166,7 @@
 
             <div class="col-md-8 col-sm-4 col-xs-12">
                 <div class="float-right">
-                    @if(Auth::user())
+                    @if(Auth::user() && Auth::user()->level != '3')
                     <a  class="btn btn-access-red" id="bt-favoritar" style="color:#FFF">
                         <i class="fa fa-fw fa-heart d-sm-none"></i>
                         <i class="fa fa-fw fa-heart ml-1 d-none d-sm-inline-block"></i>
