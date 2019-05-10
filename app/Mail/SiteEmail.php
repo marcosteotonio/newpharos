@@ -30,4 +30,11 @@ class SiteEmail extends Mailable
     {
         return $this->view('view.name');
     }
+
+    function send(Request $request){
+        Mail::to($request->user())
+            ->cc($moreUsers)
+            ->bcc($evenMoreUsers)
+            ->queue(new OrderShipped($order));
+    }
 }
