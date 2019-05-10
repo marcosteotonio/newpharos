@@ -98,7 +98,7 @@
                         <div class="form-group form-row">
                             <div class="col-6">
                                 <label for="date_birth">Data de nascimento * </label>
-                                <input type="date" class="form-control" name="date_birth" placeholder="" value="{{ old('date_birth', $profile->date_birth) }}">
+                                <input type="date" class="form-control" name="date_birth" placeholder="" value="{{ old('date_birth', \Carbon\Carbon::parse($profile->date_birth)->format('Y-m-d')) }}">
                             </div>
                             <div class="col-6">
                                 <label for="gender">Sexo *</label>

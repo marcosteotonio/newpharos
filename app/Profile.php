@@ -132,13 +132,11 @@ class Profile extends Model
     {
         return asset('public/uploads/profiles/' . $this->user_id . '/thumb/' . $this->medias->first()->path);
     }
-    function getDateBirthAttribute($value){
-        return Carbon::parse($value)->format('Y-m-d');
+   
+    function getYearsOldAttribute()
+    {
+        return $this->date_birth->age;
     }
-//    function getYearsOldAttribute()
-//    {
-//        return $this->date_birth->age;
-//    }
 
 
     /**
