@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
@@ -131,7 +132,7 @@ class Profile extends Model
     {
         return asset('public/uploads/profiles/' . $this->user_id . '/thumb/' . $this->medias->first()->path);
     }
-
+   
     function getYearsOldAttribute()
     {
         return $this->date_birth->age;
