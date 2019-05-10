@@ -135,10 +135,10 @@ class Profile extends Model
     function getDateBirthAttribute($value){
         return Carbon::parse($value)->format('Y-m-d');
     }
-    function getYearsOldAttribute()
-    {
-        return $this->date_birth->age;
-    }
+//    function getYearsOldAttribute()
+//    {
+//        return $this->date_birth->age;
+//    }
 
 
     /**
