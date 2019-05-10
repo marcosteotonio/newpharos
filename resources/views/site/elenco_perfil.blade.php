@@ -131,7 +131,9 @@
     }
 </style>
 @endsection
-
+@section('title', $profile['fancy_name']  )
+@section('url', url($_SERVER['REQUEST_URI'])  )
+@section('foto',  url('/uploads/profiles/'.$profile['user_id'].'/'.$profile['medias'][0]['path'])  )
 @section('content')
     <div class="container padding-50"> <!-- CONTENT-BEGAN -->
 
