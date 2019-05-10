@@ -17,14 +17,18 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+
+
         if (Auth::guard($guard)->check()) {
+
             if(Auth::user()->level == 1){
                 return $next($request);
             } else {
                 return redirect('/');
             }
-//            return redirect('/dashboard');
         }
+        return $next($request);
+
 
 
     }
