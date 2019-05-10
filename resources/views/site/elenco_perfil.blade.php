@@ -132,6 +132,7 @@
 </style>
 @endsection
 @section('title', $profile['fancy_name']  )
+@section('type', "perfil" )
 @section('url', url($_SERVER['REQUEST_URI'])  )
 @section('foto',  url('/uploads/profiles/'.$profile['user_id'].'/'.$profile['medias'][0]['path'])  )
 @section('content')

@@ -13,7 +13,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <meta property="og:title" content="@yield('title')" />
-        <meta property="og:type" content="perfil" />
+        <meta property="og:type" content="@yield('type')" />
         <meta property="og:url" content="@yield('url')" />
         <meta property="og:image" content="@yield('foto')" />
 
