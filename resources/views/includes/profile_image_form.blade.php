@@ -80,6 +80,25 @@
         })
 
        
+        $('.media_list__delete').on('click', function(e){
+            var ConfirmDeletion= confirm("{{ __('profile.confirmremove') }}");
+            if (ConfirmDeletion == true) {
+                $.ajax({
+                method: "POST",
+                url: "{!! url('/api/site/remove-agenciado-media-images') !!}/" + this.attributes.media_id.value,
+                })
+                .done( function( result ) {
+                    $.notify({
+                        message: 'Foto do Perfil Removida!'
+                    },{type: 'success' });
+                    location.reload();
+                })
+                .fail( function( msg ) {
+                    console.log(msg)
+                });
+            }        
+            
+        })
         
 
     </script>
