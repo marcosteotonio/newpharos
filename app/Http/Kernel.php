@@ -61,5 +61,7 @@ class Kernel extends HttpKernel
         'throttle'          => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'auth.agenciado'    => \App\Http\Middleware\SiteLogin::class,
         'lang'              => \App\Http\Middleware\Lang::class,
+        'check.agenciado' =>  \App\Http\Middleware\CheckAgenciado::class,
+        'check.cliente' =>  \App\Http\Middleware\CheckCliente::class,
     ];
 }
