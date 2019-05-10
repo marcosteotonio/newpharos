@@ -31,14 +31,16 @@
     
     Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
     
-    Route::group(['middleware'=> ['auth.agenciado']], function(){
+    Route::group(['middleware'=> ['check.agenciado']], function(){
         Route::get('/perfil', 'SiteController@getProfle')->name('perfil');
         Route::get('/perfil/editar', 'SiteController@getProfleEditar');
-        //Cliente
-        Route::get('/cliente', 'SiteController@Cliente')->name('cliente');
-        Route::get('/cliente/editar', 'SiteController@getClienteEditar');
-    
     });
+
+     //Cliente
+     Route::group(['middleware'=> ['check.cliente']], function(){
+         Route::get('/cliente', 'SiteController@Cliente')->name('cliente');
+         Route::get('/cliente/editar', 'SiteController@getClienteEditar');
+     });
 });
 
 
