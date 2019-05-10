@@ -18,22 +18,22 @@
         <div class="row">
             <div class="col-xl-8 col-lg-4 col-md-12 col-sm-12 col-xs-12">
                 <label class='text-uppercase large-text bold'> CONTATO </label>
-                {!! Form::open([]) !!}
+                {!! Form::open(['url'=> '/send']) !!}
                     <div class="form-group">
                         {!! Form::label('name','Nome') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control bg-gray-light'])!!}
+                        {!! Form::text('name', null, ['class' => 'form-control bg-gray-light','required'=>'required'])!!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('email','E-mail') !!}
-                        {!! Form::email('email', null, ['class' => 'form-control bg-gray-light'])!!}
+                        {!! Form::email('email', null, ['class' => 'form-control bg-gray-light', 'required'=>'required'])!!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('phone','Telefone') !!}
-                        {!! Form::text('phone', null, ['class' => 'form-control bg-gray-light'])!!}
+                        {!! Form::text('phone', null, ['class' => 'form-control bg-gray-light', 'required'=>'required'])!!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('message','Mensagem') !!}
-                        {!! Form::textarea('message', null, ['class' => 'form-control bg-gray-light'])!!}
+                        {!! Form::textarea('message', null, ['class' => 'form-control bg-gray-light', 'required'=>'required'])!!}
                     </div>
                     <div class="form-group">
                         {!! Form::submit('Enviar',['class' => 'btn btn-access', 'style' => 'float: right'])!!}

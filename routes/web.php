@@ -27,7 +27,8 @@
     
     Route::get('/agencia', 'SiteController@getAgencia')->name('agencia');
     Route::get('/contato', 'SiteController@getContato')->name('contato');
-    
+    Route::post('/send', 'SiteController@sendContact')->name('send');
+
     
     Route::get('/cadastro', 'SiteController@getCadastro')->name('cadastro');
     
