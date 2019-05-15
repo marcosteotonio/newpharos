@@ -14,8 +14,8 @@ class NoticeVideosAndAgenciado extends Migration
     public function up()
     {
         Schema::table('notices', function (Blueprint $table) {
-            $table->string('video');
-            $table->jsonb('agenciado');
+            $table->string('video')->nullable()->description('video do post');
+            $table->jsonb('agenciado')->nullable()->description('Agenciados relacionados');
         });
     }
 
