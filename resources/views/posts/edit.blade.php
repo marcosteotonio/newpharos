@@ -1,4 +1,6 @@
 @extends('layouts.backend')
+<?php
+?>
 
 @section('content')
 <div class="bg-body-light">
@@ -152,6 +154,35 @@
                                 {{--<label class="custom-control-label" for="status-inactive">Inativo</label>--}}
                             {{--</div>--}}
                         {{--</div>--}}
+
+                        <div class="form-group">
+                            <label for="subtitle">Video</label>
+                            @if($post->video )
+                            <div>
+                                <iframe src="{{ $post->video }}" style="max-width: 100%;" frameborder="0"></iframe>
+                            </div>
+                            @endif
+                            <input type="text" class="form-control" name="video" placeholder="Adicione um vídeo" value="{{ old('video')  }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subtitle">Agenciado <span id="normal_PC"><small> (segure <span style="color: darkred;">ctrl</span> e clique para selecionar mais de um)</small></label></span> <span id="mac_PC" style="display:none;"><small> (segure <span style="color: darkred;">cmd</span> e clique para selecionar mais de um)</small></label></span>
+                            <script>
+                                if( navigator.appVersion.indexOf('Macintosh') > 0){
+                                    document.getElementById('normal_PC').style.display = 'none'
+                                    document.getElementById('mac_PC').style.display = 'inline-block'
+                                }
+                            </script>
+                            <div style="width: 100%; background-color: #eee; border: 1px solid #d8dfed; border-radius: 3px; padding: 10px;">
+                                <select name="agenciado[]" id="" style="width:100%; border: none;" multiple>
+                                    <option value="">-- Selecione --</option>
+                                    @foreach( $profiles as $key => $value)
+                                        <option value="{{ $value['user_id'] }}" {{ $value['selected'] ? "selected" : '' }}>{{ $value['fancy_name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group"> 
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>

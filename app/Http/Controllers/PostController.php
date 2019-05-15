@@ -7,6 +7,7 @@ use App\Media;
 use App\Notices;
 use App\Post;
 use App\Profile;
+use App\Http\Controllers\Api\HelperController;
 use Illuminate\Http\Request;
 
 
@@ -45,14 +46,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $Helper = new HelperController();
         request()->validate([
             'title' => 'required',
             'description' => 'required|min:10',
 
         ]);
-
+        $video = $Helper->linkSanatizer($request->get('video'));
+        $agenciado = $request->get('agenciado') ? json_encode( $request->get('agenciado') ) : null;
         $slug = str_slug($request->title, '-');
-        $request->merge(['slug' => $slug]);
+
+        $request->merge([
+            'slug' => $slug,
+            'video'=> $video,
+            'agenciado'=> $agenciado,
+            ]);
 
         if ($request->hasFile('image')) {
 
@@ -95,8 +103,36 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Notices::find($id);
-
-        return view('posts.edit', compact( 'post'));
+        $profile = Profile::select('user_id','fancy_name')->get();
+        
+        if ($post->agenciado){
+            $agenciados = json_decode($post->agenciado);
+            foreach($profile as $key => $value){
+                if( in_array(  $value->user_id, json_decode($post->agenciado) ) ){
+                    $profiles[] = [
+                        'user_id' => $value->user_id,
+                        'fancy_name' => $value->fancy_name,
+                        'selected' => true,
+                    ];
+                } else {
+                    $profiles[] = [
+                        'user_id' => $value->user_id,
+                        'fancy_name' => $value->fancy_name,
+                        'selected' => false,
+                    ];
+                }
+                
+            }
+        } else {
+            foreach($profile as $key => $value){
+                $profiles[] = [
+                    'user_id' => $value->user_id,
+                    'fancy_name' => $value->fancy_name,
+                    'selected' => false,
+                ];
+            }
+        }
+        return view('posts.edit', compact( 'post', 'profiles'));
     }
 
     /**
@@ -108,6 +144,8 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $Helper = new HelperController();
+
 //        request()->validate([
 //            'title' => 'required',
 //            'description' => 'required|min:10',
@@ -115,10 +153,24 @@ class PostController extends Controller
 //        ]);
         $data = $request->all();
 
+        $agenciado = $request->get('agenciado') ? json_encode( $request->get('agenciado') ) : null;
         $slug = str_slug($request->title, '-');
-        $request->merge(['slug' => $slug]);
-
-
+        $request->merge([
+            'slug' => $slug,
+            'agenciado'=> $agenciado,
+            ]);
+            
+        if($request->get('video')){
+            if( strpos( $request->get('video'),'embed') > 0 ){
+                $video = $request->get('video');
+            } else {
+                $video = $Helper->linkSanatizer( $request->get('video') );
+            }
+            $request->merge([
+                'video'=> $video,
+            ]);
+        }
+        // dd($request->all());
         if ($request->hasFile('image')) {
 
             $image = $request->file('image');
@@ -130,7 +182,14 @@ class PostController extends Controller
             $request->merge(['media_type'=>'image']);
         }
 
-        Notices::find($id)->update($request->all());
+        //because of the link sanitazer, I cant let videos null pass throught
+        $data = $request->all();
+        if( $request->get('video') == null ){
+            unset( $data['video'] );
+        }
+
+
+        Notices::find($id)->update($data);
 
         return redirect()->route('posts.index')
             ->with('success', 'Noticia atualizada com sucesso!');

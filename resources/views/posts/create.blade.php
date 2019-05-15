@@ -64,7 +64,7 @@
 
                         <div class="form-group">
                             <label for="subtitle">Video</label>
-                            <input type="text" class="form-control" name="subtitle" placeholder="Adicione um vídeo" value="{{ old('video') }}">
+                            <input type="text" class="form-control" name="video" placeholder="Adicione um vídeo" value="{{ old('video') }}">
                         </div>
 
                         <div class="form-group">
@@ -76,7 +76,7 @@
                                 }
                             </script>
                             <div style="width: 100%; background-color: #eee; border: 1px solid #d8dfed; border-radius: 3px; padding: 10px;">
-                                <select name="agenciado" id="" style="width:100%; border: none;" multiple>
+                                <select name="agenciado[]" id="" style="width:100%; border: none;" multiple>
                                     <option value="">-- Selecione --</option>
                                     @foreach(\app\Profile::select('user_id','fancy_name')->get() as $key => $value)
                                         <option value="{{ $value->user_id }}">{{ $value->fancy_name }}</option>

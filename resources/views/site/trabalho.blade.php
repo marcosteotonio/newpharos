@@ -110,8 +110,15 @@
                         </div>
                     </div>
                     <div class="col-md-12 padding-15">
-                        <img  class="work_image_main" src="/uploads/notices/<?php echo $work->media; ?>" alt="">
+                        <img class="work_image_main" src="/uploads/notices/<?php echo $work->media; ?>" alt="">
                     </div>
+                    @if( $work->video )
+                    <div class="col-md-12 padding-15" style="text-align: center;">
+                        <div>
+                            <iframe src="{!! $work->video !!}" height="320" width="420" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    @endif
                     <div class="col-md-12">
                         <p>
                             {!! $work->description !!}                        

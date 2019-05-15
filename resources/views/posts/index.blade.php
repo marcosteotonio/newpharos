@@ -70,7 +70,7 @@
                         </td>
 
                         <td class="text-center font-size-base">
-                            {{$post->created_at->format('d/m/Y')}}
+                            {{ isset($post->created_at) ? $post->created_at->format('d/m/Y') : ''}}
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
