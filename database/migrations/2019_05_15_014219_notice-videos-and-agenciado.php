@@ -15,7 +15,7 @@ class NoticeVideosAndAgenciado extends Migration
     {
         Schema::table('notices', function (Blueprint $table) {
             $table->string('video');
-            $table->jsonb('agenciado');
+            $table->json('agenciado');
         });
     }
 
