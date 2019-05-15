@@ -16,6 +16,12 @@ class Notices extends Model
         'title',
         'slug',
         'subtitle',
-        'description'
+        'description',
+        'video',
+        'agenciado',
+    ];
+
+    protected $cast =[
+         'agenciado' => 'array',
     ];
 }

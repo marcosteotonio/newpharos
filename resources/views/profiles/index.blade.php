@@ -71,7 +71,7 @@
                                 {{ $profile->medias->count() }}
                             </td>
                             <td class="text-center">
-                                {{ $profile->posts->count() }}
+                                 {{ App\Notices::where('agenciado','like','%"'. $profile->user_id.'"%')->count() }}
                             </td>
                             <td class="text-center">
                                 @if ($profile->status == 1)
