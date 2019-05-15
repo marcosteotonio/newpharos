@@ -103,7 +103,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Notices::find($id);
-        $profile = Profile::select('user_id','fancy_name')->get();
+        $profile = Profile::select('user_id','fancy_name')->orderBy('fancy_name', 'ASC')->get();
         
         if ($post->agenciado){
             $agenciados = json_decode($post->agenciado);
