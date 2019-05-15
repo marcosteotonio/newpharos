@@ -50,7 +50,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#profile-posts">
-                    <span class="badge badge-pill badge-primary">{{$profile->posts->count()}}</span>
+                    <span class="badge badge-pill badge-primary">{{ App\Notices::where('agenciado','like','%"'. $profile->user_id.'"%')->count() }}</span>
                     Postagens
                 </a>
             </li>
@@ -427,17 +427,19 @@
                                 <tr class="text-uppercase">
                                     <th>Título</th>
                                     <th style="width: 30%;">Data de postagem</th>
-                                    <th class="d-none d-sm-table-cell font-w700">Status</th>
+                                    <!-- <th class="d-none d-sm-table-cell font-w700">Status</th> -->
                                     <th class="d-none d-md-table-cell text-center" style="width: 100px;">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($profile->posts as $post)
+                                <?php $videos_relacionados = App\Notices::where('agenciado','like','%"'. $profile->user_id.'"%')->get(); ?>
+                                @foreach ($videos_relacionados as $post)
                                 <tr>
                                     <td class="font-w600">
-                                        <a href="{{ route('posts.edit', $post->id) }}">{{ $post->title }}</a>
+                                        <a href="\trabalho\{{ $post->slug }}" target="_post"> {{ $post->title }}</a>
                                     </td>
                                     <td class="d-none d-sm-table-cell"><em class="text-muted">{{$post->created_at->format('d/m/Y')}}</em></td>
+                                    @if(0)
                                     <td class="d-none d-sm-table-cell font-size-base">
                                         @if ($post->status == 1)
                                         <span class="badge badge-success">ATIVO</span>
@@ -445,8 +447,9 @@
                                         <span class="badge badge-danger">INATIVO</span>
                                         @endif
                                     </td>
+                                    @endif
                                     <td class="text-center">
-                                        <a href="{{ route('posts.edit', $post->id) }}" data-toggle="tooltip" title="Editar" data-placement="left" target="_blank">
+                                        <a href="{{ route('posts.edit', $post->id) }}" data-toggle="tooltip" title="Editar" data-placement="left">
                                             <i class="fa fa-external-link-alt"></i>
                                         </a>
                                     </td>
