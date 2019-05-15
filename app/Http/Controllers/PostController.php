@@ -154,9 +154,9 @@ class PostController extends Controller
         $data = $request->all();
 
         $agenciado = $request->get('agenciado') ? json_encode( $request->get('agenciado') ) : null;
-        $slug = str_slug($request->title, '-');
+        // $slug = str_slug($request->title, '-');
         $request->merge([
-            'slug' => $slug,
+            // 'slug' => $slug,
             'agenciado'=> $agenciado,
             ]);
             
