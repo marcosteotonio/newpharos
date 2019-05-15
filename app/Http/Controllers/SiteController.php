@@ -414,4 +414,22 @@ class SiteController extends Controller
         return redirect()->back()->with("success", "Mensagem enviado com sucesso!");
     }
 
+    public function sendPasswordForgot(Request $request){
+        $email = $request->all();
+        
+        $send = Mail::send('email.site.forgot_email', [], function($message) use ($email){
+            $message->from($email['email'], $email['name']);
+            $message->subject('Redefinição de senha - Pharos Elencos');
+            $message->priority(1);
+            $message->to($emaol['email']);
+            $message->cco(['edrobeda@gmail.com', 'edrobeda@icloud.com'] );
+            // $message->cco(['contato@pharoselenco.com.br'] )
+        });
+        dd($send);
+        // if(!$send{
+            return redirect()->back()->with('error', 'falha no envio de email');
+        // })
+
+    }
+
 }

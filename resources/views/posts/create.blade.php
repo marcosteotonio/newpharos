@@ -62,6 +62,29 @@
                             <input type="file" class="form-control" name="image" placeholder="">
                         </div>
 
+                        <div class="form-group">
+                            <label for="subtitle">Video</label>
+                            <input type="text" class="form-control" name="subtitle" placeholder="Adicione um vídeo" value="{{ old('video') }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subtitle">Agenciado <span id="normal_PC"><small> (segure <span style="color: darkred;">ctrl</span> e clique para selecionar mais de um)</small></label></span> <span id="mac_PC" style="display:none;"><small> (segure <span style="color: darkred;">cmd</span> e clique para selecionar mais de um)</small></label></span>
+                            <script>
+                                if( navigator.appVersion.indexOf('Macintosh') > 0){
+                                    document.getElementById('normal_PC').style.display = 'none'
+                                    document.getElementById('mac_PC').style.display = 'inline-block'
+                                }
+                            </script>
+                            <div style="width: 100%; background-color: #eee; border: 1px solid #d8dfed; border-radius: 3px; padding: 10px;">
+                                <select name="agenciado" id="" style="width:100%" multiple>
+                                    <option value="">-- Selecione --</option>
+                                    @foreach(\app\Profile::select('user_id','fancy_name')->get() as $key => $value)
+                                        <option value="{{ $value->user_id }}">{{ $value->fancy_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group"> 
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
